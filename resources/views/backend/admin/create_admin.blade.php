@@ -25,31 +25,34 @@
                 <form action="{{route('storeAdmin')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
 
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12" align="center">
                             <div class="control-group">
                                 <div class="controls">
                                     <div class="fileupload fileupload-new" data-provides="fileupload">
-                                        <div class="row">
-                                        <div class="col-md-6">
+                                        
                                             <div class="fileupload-new thumbnail" style="width: 150px; height:100px;">
-                                                <img src="{{ url('public/img/avatar.jpg') }}"/>
+                                                <img src="{{ url('public/backend/images/avatar.png') }}"/>
                                             </div>
                                             <div class="fileupload-preview fileupload-exists thumbnail"
                                                  style="width: 150px; height:100px;">
                                             </div>
-                                        </div>
-                                            
-                                        <div class="col-md-6">
+                                       
 												<span class="btn btn-file" style="margin-top: 30px">
 												<span class="fileupload-new btn btn-primary">Select image</span>
 												<span class="fileupload-exists btn btn-info">Change</span>
                                                     <input type="file" name="image" required/>
                                                 </span>
                                             {{--<a class="btn fileupload-exists btn btn-warning" data-dismiss="fileupload">Remove</a>--}}
+                                        
                                         </div>
                                     </div>
                                     </div>
                                 </div>
-                            </div>    
+                            </div>
+                            </div>
+                        </div>    
                        
                     <div class="form-group">
                         <div class="row">    
@@ -76,7 +79,7 @@
                         <div class="row">        
                             <div class="col-md-3"><strong>Contact</strong></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="contact" placeholder="Moblie">
+                                <input type="text" class="form-control" name="contact" placeholder="Mobile">
                                 <small class="text text-danger">{{$errors->first('contact')}}</small>
                             </div>
                         </div>
@@ -111,9 +114,9 @@
                                 <div align="center">
                                     <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;
                                         Save Changes
-                                    </button>
+                                    </button>&nbsp;
                                     <button type="reset" class="btn btn-danger"><i class="fa fa-close"></i>&nbsp;&nbsp;
-                                        Cancel
+                                        Cancel &nbsp;&nbsp;
                                     </button>
                                 </div>
                             </div>

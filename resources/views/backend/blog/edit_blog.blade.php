@@ -3,16 +3,28 @@
 @section('title', 'Edit Blog')
 
 @section('content')
-    <div class="col-lg-9 main-chart">
-        <div class="panel panel-default">
-            <div class="panel-heading" align="center">
-                <h3 class="panel-title">Edit Blog</h3>
-            </div>
-            <div class="panel-body">
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blog
+      </h1>
+      
+    </section>
+    <!-- Main content -->
+<section class="content">
+    <div class="row">    
+        <div class="col-12 col-lg-10">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Edit <strong style="color: #5fa7da">Blog</strong>&nbsp &nbsp</h3>
+                </div>
+
+                <div class="box-body">
                 <form action="{{route('updateBlog')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <input type="hidden" name="id" value="{{$blog->blogs_id}}">
-                    <div class="rows">
+                    <div class="row">
                         <div class="col-md-3">
                             <div class="control-group">
                                 <div class="controls">
@@ -35,39 +47,54 @@
                             </div>
                         </div>
                         <div class="col-md-9">
-                            <div class="col-md-3"><strong>Title : *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="title" value="{{$blog->title}}"
-                                       placeholder="title" required>
-                            </div>
-                            <div class="col-md-12">&nbsp;</div>
-                            <div class="col-md-3"><strong>Post By: *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="posted_by" value="{{$blog->posted_by}}"
-                                       placeholder="Postby" required>
-                            </div>
 
-                            <div class="col-md-12">&nbsp;</div>
-                            <div class="col-md-12">
-                                <div align="center">
-                                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;
-                                        Save Changes
-                                    </button>
-                                    <button type="reset" class="btn btn-danger"><i class="fa fa-close"></i>&nbsp;&nbsp;
-                                        Cancel
-                                    </button>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3"><strong>Title : *</strong></div>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="title" value="{{$blog->title}}"
+                                               placeholder="title" required>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">&nbsp;</div>
-                        <div class="col-md-3"><strong>Description : *</strong></div>
-                        <div class="col-md-9">&nbsp;</div>
-                        <div class="col-md-12">&nbsp;</div>
-                        <div class="col-md-12">
-                                <textarea class="form-control " name="description" id="description" rows="20"
-                                          style="resize: none" required>
-                                    {{$blog->description}}
-                                </textarea>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3"><strong>Post By: *</strong></div>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="posted_by" value="{{$blog->posted_by}}"
+                                               placeholder="Postby" required>
+                                    </div>
+                                </div>
+                            </div>        
+
+                            
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3"><strong>Description : *</strong></div>
+                                <div class="col-md-9">
+                                        <textarea class="form-control " name="description" id="description" rows="10"
+                                                  style="resize: none" required>
+                                            {{$blog->description}}
+                                        </textarea>
+                                </div>
+                            </div>
+                        </div>        
+
+                        <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div align="center">
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;
+                                                Save Changes
+                                            </button> &nbsp&nbsp
+                                            <button type="reset" class="btn btn-danger"><i class="fa fa-close"></i>&nbsp;&nbsp;
+                                                Cancel &nbsp&nbsp
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
                         </div>
 
                     </div>
@@ -75,4 +102,7 @@
             </div>
         </div>
     </div>
+</div>
+</section>
+</div>
 @endsection

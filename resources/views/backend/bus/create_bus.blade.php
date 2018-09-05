@@ -14,7 +14,7 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">    
-        <div class="col-12 col-lg-8">
+        <div class="col-12 col-lg-10">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Create <strong style="color: #5fa7da">Bus</strong>&nbsp &nbsp</h3>
@@ -23,30 +23,34 @@
                 <div class="box-body">   
                      <form action="{{route('storeBus')}}" method="post" enctype="multipart/form-data">
                         {{csrf_field()}}
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12" align="center">
                                 <div class="control-group">
                                     <div class="controls">
                                         <div class="fileupload fileupload-new" data-provides="fileupload">
-                                            <div class="row">
-                                                <div class="col-md-6">
+                                           
+                                                
                                                     <div class="fileupload-new thumbnail" style="width: 150px; height:100px;">
                                                         <img src="{{ url('public/img/avatar.jpg') }}"/>
                                                     </div>
                                                     <div class="fileupload-preview fileupload-exists thumbnail"
                                                          style="width: 150px; height:100px;"></div>
-                                                </div>
-                                                         
-                                                <div class="col-md-6">
+                                               
         												<span class="btn btn-file" style="margin-top: 30px">
         												<span class="fileupload-new btn btn-primary">Select image</span>&nbsp &nbsp &nbsp 
         												<span class="fileupload-exists btn btn-info">Change</span>
                                                             <input type="file" name="image" required/>
                                                         </span>
                                                     {{--<a class="btn fileupload-exists btn btn-warning" data-dismiss="fileupload">Remove</a>--}}
-                                                </div>
-                                            </div>
+                                              
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
 
                 
                         <div class="form-group">
