@@ -12,13 +12,12 @@ class CreateFAQsTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('f_a_qs', function (Blueprint $table) {
-            $table->increments('faq_id');
-            $table->string('question','300')->nullable();
-            $table->longText('answer')->nullable();
-            $table->timestamps();
-        });
+    {Schema::create('f_a_qs', function (Blueprint $table) {
+        $table->increments('faq_id');
+        $table->string('question','300')->nullable();
+        $table->longText('answer')->nullable();
+        $table->timestamps();
+    });
     }
 
     /**

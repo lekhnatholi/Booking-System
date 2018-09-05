@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Buses;
 use App\Bustypes;
+use App\FAQ;
+use App\Routes;
+use App\TNC;
 use App\Travellers;
 use App\Users;
 use App\Vendors;
-use App\FAQ;
-use App\TNC;
-use Socialite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests;
 
 class SiteController extends Controller
 {
 
-    public function book()
-    {
-        return view('frontend.book');
-    }
 
     public function index()
     {
@@ -38,7 +37,7 @@ class SiteController extends Controller
         return view('frontend.faq')->with($data);
     }
 
-     public function tnc()
+    public function tnc()
     {
         $data['tnc'] = TNC::all();
         return view('frontend.tnc')->with($data);
@@ -55,29 +54,29 @@ class SiteController extends Controller
             return redirect()->back();
         }
         //for checkbox to be selected incase filter appllied
-        $bustype = isset($request->bustype)?$request->bustype:'';
-        $shift = isset($request->shift)?$request->shift:'';
-        $price = isset($request->price)?$request->price:'';
+        $bustype = isset($request->bustype) ? $request->bustype : '';
+        $shift = isset($request->shift) ? $request->shift : '';
+        $price = isset($request->price) ? $request->price : '';
 
         //catching data from user input to display search routes
         $to = $request->to;
         $from = $request->from;
         $route = $from . "-" . $to;
-        $departure_date = isset($request->departure_date)?$request->departure_date:date('d-m-Y');
+        $departure_date = isset($request->departure_date) ? $request->departure_date : date('Y/m/d');
         $arrival_date = $request->arrival_date;
         $seat = $request->seat;
         $results = DB::table('schedules')
             ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
             ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
             ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-            ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+            ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
             ->where([
                 ['routes.title', 'LIKE', '%' . $route . '%'],
             ])
             ->get();
         $count = count($results, COUNT_RECURSIVE);
         $bustypes = Bustypes::all();
-        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat','bustype','shift','price'));
+        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat', 'bustype', 'shift', 'price'));
     }
 
     public function searchFilter(Request $request)
@@ -86,9 +85,9 @@ class SiteController extends Controller
             return redirect()->route('search');
         }
         //for checkbox to be selected incase filter appllied
-        $bustype = isset($request->bustype)?$request->bustype:'';
-        $shift = isset($request->shift)?$request->shift:'';
-        $price = isset($request->price)?$request->price:'';
+        $bustype = isset($request->bustype) ? $request->bustype : '';
+        $shift = isset($request->shift) ? $request->shift : '';
+        $price = isset($request->price) ? $request->price : '';
 
         //catching form data of hidden inputs
         $from = $request->from;
@@ -98,12 +97,12 @@ class SiteController extends Controller
         $arrival_date = $request->shift;
         $seat = $request->seat;
 
-        if (isset($request->bustype) && !isset($request->shift) && !isset($request->price) ) {
+        if (isset($request->bustype) && !isset($request->shift) && !isset($request->price)) {
             $results = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
                 ->where([
                     ['bustypes.bustypes_id', $bustype],
                     ['routes.title', 'LIKE', '%' . $route . '%']
@@ -115,11 +114,11 @@ class SiteController extends Controller
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
                 ->where([
                     ['routes.title', 'LIKE', '%' . $route . '%']
                 ])
-                ->orderBy('schedules.ticket_price',$price)
+                ->orderBy('schedules.ticket_price', $price)
                 ->get();
         }
         if (!isset($request->bustype) && isset($request->shift) && !isset($request->price)) {
@@ -127,11 +126,11 @@ class SiteController extends Controller
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
                 ->where([
                     ['routes.title', 'LIKE', '%' . $route . '%'],
                     ['schedules.shift', $shift]
-            ])
+                ])
                 ->get();
         }
 
@@ -140,11 +139,11 @@ class SiteController extends Controller
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
                 ->where([
                     ['routes.title', 'LIKE', '%' . $route . '%'],
                     ['bustypes.bustypes_id', $bustype],
-                    ['schedules.shift',$shift]
+                    ['schedules.shift', $shift]
                 ])
                 ->get();
         }
@@ -153,12 +152,12 @@ class SiteController extends Controller
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
                 ->where([
                     ['routes.title', 'LIKE', '%' . $route . '%'],
                     ['bustypes.bustypes_id', $bustype],
                 ])
-                ->orderBy('schedules.ticket_price',$price)
+                ->orderBy('schedules.ticket_price', $price)
                 ->get();
 
         }
@@ -167,12 +166,12 @@ class SiteController extends Controller
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
                 ->where([
                     ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['schedules.shift',$shift]
+                    ['schedules.shift', $shift]
                 ])
-                ->orderBy('schedules.ticket_price',$price)
+                ->orderBy('schedules.ticket_price', $price)
                 ->get();
         }
 
@@ -181,243 +180,20 @@ class SiteController extends Controller
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle','bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
                 ->where([
                     ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['buses.bustypes_id',$bustype],
-                    ['schedules.shift',$shift]
+                    ['buses.bustypes_id', $bustype],
+                    ['schedules.shift', $shift]
                 ])
-                ->orderBy('schedules.ticket_price',$price)
+                ->orderBy('schedules.ticket_price', $price)
                 ->get();
         }
 
         $count = count($results, COUNT_RECURSIVE);
         $bustypes = Bustypes::all();
-        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat','bustype','shift','price'));
+        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat', 'bustype', 'shift', 'price'));
     }
-
-    public function booking(){
-        return view('frontend.booking');
-    }
-
-    public function profile()
-    {
-        if (Auth::guest() | Auth::user()->user_type != 'traveller') {
-            return redirect()->route('home');
-        }
-        $travellerEmail = Auth::user()->email;
-        $traveller = Travellers::where('email', $travellerEmail)->first();
-        return view('frontend.profile', compact('traveller'));
-    }
-
-    public function editProfile()
-    {
-        if (Auth::guest() | Auth::user()->user_type != 'traveller') {
-            return redirect()->route('home');
-        }
-        $travellerEmail = Auth::user()->email;
-        $traveller = Travellers::where('email', $travellerEmail)->first();
-        return view('frontend.profileedit', compact('traveller'));
-    }
-
-    public function updateProfile(Request $request)
-    {
-        if (Auth::guest()) {
-            return redirect()->route('home');
-        }
-        if ($request->isMethod('get')) {
-            return view('frontend.profile');
-        }
-        if ($request->isMethod('post')) {
-            $travellerEmail = Auth::user()->email;
-            $this->validate($request,
-                [
-                    'name' => 'required',
-                    'contact' => 'required|numeric',
-                    'address' => 'required'
-                ]);
-            $data['name'] = $request->name;
-            $data['contact'] = $request->contact;
-            $data['address'] = $request->address;
-            $traveller = Travellers::where('email', $travellerEmail)->first();
-            if ($request->hasFile('image')) {
-                $destination = public_path("img/traveller");
-                $file = $request->image;
-                $extension = $file->getClientOriginalExtension();
-                $filename = str_random() . "." . $extension;
-                $file->move($destination, $filename);
-                $data['image'] = $filename;
-            }
-            if (Travellers::where('email', $travellerEmail)->update($data)) {
-                return redirect()->route('profile')->with('success', 'Your account has been successfully updated');
-            }
-            return redirect()->route('profile')->with('error', 'Sorry, the account couldn\'t be updated.');
-
-        }
-
-    }
-
-    public function history()
-    {
-        return view('frontend.history');
-    }
-
-    public function profileVendor()
-    {
-        if (Auth::guest() | Auth::user()->user_type != 'vendor') {
-            return redirect()->route('home');
-        }
-
-
-
-
-        $vendorEmail = Auth::user()->email;
-        $vendor = Vendors::where('email', $vendorEmail)->first();
-        return view('frontend.vendor_profile', compact('vendor'));
-    }
-
-    public function editProfileVendor()
-    {
-        if (Auth::guest() | Auth::user()->user_type != 'vendor') {
-            return redirect()->route('home');
-        }
-        $vendorEmail = Auth::user()->email;
-        $vendor = Vendors::where('email', $vendorEmail)->first();
-        return view('frontend.vendor_profileedit', compact('vendor'));
-    }
-
-    public function updateProfileVendor(Request $request)
-    {
-        if (Auth::guest()) {
-            return redirect()->route('home');
-        }
-        if ($request->isMethod('get')) {
-            return view('frontend.vendor_profile');
-        }
-        if ($request->isMethod('post')) {
-            $vendorEmail = Auth::user()->email;
-            $this->validate($request,
-                [
-                    'name' => 'required',
-                    'contact' => 'required|numeric',
-                    'address' => 'required'
-                ]);
-            $data['name'] = $request->name;
-            $data['contact'] = $request->contact;
-            $data['address'] = $request->address;
-            $vendor = Vendors::where('email', $vendorEmail)->first();
-            if ($request->hasFile('image')) {
-                $destination = public_path("img/vendor");
-                $file = $request->image;
-                $extension = $file->getClientOriginalExtension();
-                $filename = str_random() . "." . $extension;
-                $file->move($destination, $filename);
-                $data['image'] = $filename;
-            }
-            if (Vendors::where('email', $vendorEmail)->update($data)) {
-                return redirect()->route('profileVendor')->with('success', 'Your account has been successfully updated');
-            }
-            return redirect()->route('profileVendor')->with('error', 'Sorry, the account couldn\'t be updated.');
-        }
-
-    }
-
-    public function historyVendor()
-    {
-        return view('frontend.vendor_history');
-    }
-
-    public function registerUser(Request $request)
-    {
-        if (Auth::user()) {
-            return redirect()->route('profile');
-        }
-        if ($request->isMethod('get')) {
-            return redirect()->back();
-        }
-        $traveller = new Travellers();
-        $user = new Users();
-        $this->validate($request,
-            [
-                'email' => 'required|unique:travellers,email',
-                'password' => 'required|confirmed',
-
-            ]);
-
-        $data['email'] = $request->email;
-        $user_data['email'] = $request->email;
-        $data['password'] = $request->password;
-        $user_data['password'] = $request->password;
-        $user_data['user_type'] = 'traveller';
-
-        if ($user->create($user_data) && $traveller->create($data)) {
-
-            return view('frontend.index')->with('success', 'The record has been successfully inserted.');
-        }
-        return view('frontend.index')->with('error', 'Sorry, the record couldn\'t be stored');
-
-    }
-
-    public function loginUser(Request $request)
-    {
-        if ($request->isMethod('get')) {
-            return redirect()->route('home');
-        }
-        $email = $request->email;
-        $password = $request->password;
-        $remember = isset($request->remember) ? true : false;
-        if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
-            if (Auth::user()->user_type == 'traveller') {
-                $data['profile'] = 'active';
-                Travellers::where('email', Auth::user()->email)->update($data);
-                return redirect()->back();
-            }elseif ( Auth::user()->user_type == 'vendor' ){
-                $data['profile'] = 'online';
-                Vendors::where('email', Auth::user()->email)->update($data);
-                return redirect()->back();
-            }
-        }
-        return redirect()->back()->with('error', 'Invalid username and password');
-    }
-
-    public function userLogout()
-    {
-        Auth::logout();
-        return redirect()->route('home');
-    }
-
-
-
-    public function socialLogin($social)
- 
-   {
- 
-       return Socialite::driver($social)->redirect();
- 
-   }
-
-   public function handleProviderCallback($social)
- 
-   {
- 
-       $userSocial = Socialite::driver($social)->user();
- 
-       $user = Users::where(['email' => $userSocial->getEmail()])->first();
- 
-       if($user){
- 
-           Auth::login($user);
- 
-           return redirect()->route('home');
- 
-       }else{
- 
-           return view('frontend.index',[ 'email' => $userSocial->getEmail()]);
- 
-       }
- 
-   }
-
 
 
 }

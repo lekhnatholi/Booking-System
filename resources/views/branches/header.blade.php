@@ -139,22 +139,31 @@
                                     </a>
                                     @else
                 <div class="col-md-12" >
-                    <form action="{{route('loginUser')}}" id="loginUser" class="contact-form " method="post">
-                    {{@csrf_field()}}
+                    <form action="{{route('loginUser')}}" id="loginUser" class="contact-form "
+                          method="post">
+                        {{@csrf_field()}}
                         <div class="col-md-4 col-sm-4">
-                            <input class="form-control" type="text" name="email" id="userLoginEmail" placeholder="Email *"/>
+                            <input class="form-control" type="text" name="email"
+                                   id="userLoginEmail" placeholder="Email *"/>
                         </div>
 
                         <div class="col-md-4 col-sm-4">
-                             <input class="form-control" type="password" name="password" placeholder="Password *"/>
-                             <p> <center>    <a href="#" class="text-success forget">Forgot Password?</a></center></p>
+                            <input class="form-control" type="password" name="password"
+                                   placeholder="Password *"/>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <button id="submit" class="btn btn-primary">Login</button>
-                           
+
                         </div>
+                        <div class="col-md-12 col-sm-4">
+
+                            <center><a href="#" class="text-success forget">Forgot Password?</a>
+                            </center>
+
+                        </div>
+
                         <div class="clearfix">
-                            
+
                         </div>
                     </form>
                 </div>                    

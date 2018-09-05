@@ -12,9 +12,12 @@ class CreateBusesTable extends Migration
 {
     Schema::create('buses', function (Blueprint $table) {
         $table->increments('buses_id');
+        $table->longText('bus_layout')->nullable();
         $table->string('title',255)->nullable();
         $table->string('billbook_no',255)->nullable();
         $table->string('vehicle_no',255)->nullable();
+        $table->longText('seat_layout')->nullable();
+        $table->longText('front_layout')->nullable();
         $table->integer('vendors_id')->unsigned();
         $table->foreign('vendors_id')->references('vendors_id')->on('vendors')->onDelete('cascade')->onUpdate('cascade');
         $table->integer('routes_id')->unsigned();
