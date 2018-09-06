@@ -29,9 +29,15 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <strong>Traveller Name : *</strong>
+                                    <label>Traveller Name: *</label>
                                 </div>
                                 <div class="col-md-9">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                        </div>
                                     <select name="travellers_id" id="" class="form-control">
                                         @foreach($travellers as $key)
                                             <option value="{{$key->travellers_id}}">{{$key->email}}</option>
@@ -39,13 +45,20 @@
                                     </select>
                                     <small class="text text-danger">{{$errors->first('travellers_id')}}</small>
                                 </div>
+                          </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-3"><strong>Guest Name : *</strong></div>
+                                <div class="col-md-3"><label>Guest: *</label></div>
                                 <div class="col-md-9">
+                                    <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fa fa-user"></i>
+                                                     </div>
+                                                </div>
                                     <select name="guests_id" id="" class="form-control">
                                         @foreach($guests as $key)
                                             <option value="{{$key->guests_id}}">{{$key->contact}}</option>
@@ -54,13 +67,20 @@
                                     <small class="text text-danger">{{$errors->first('guests_id')}}</small>
                                 </div>
                             </div>
+                            </div>
                         </div>
 
                     
                         <div class="form-group"> 
                             <div class="row">
-                                    <div class="col-md-3"><strong>Bus : *</strong></div>
+                                    <div class="col-md-3"><label>Bus: *</label></div>
                                 <div class="col-md-9">
+                                    <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fa fa-bus"></i>
+                                                     </div>
+                                                </div>
                                     <select name="buses_id" id="" class="form-control">
                                         @foreach($buses as $key)
                                             <option value="{{$key->buses_id}}">{{$key->title}}</option>
@@ -69,36 +89,56 @@
                                     <small class="text text-danger">{{$errors->first('buses_id')}}</small>
                                 </div>
                             </div>
+                            </div>
                         </div>
 
 
                         <div class="form-group">
                             <div class="row " >
-                                <div class="col-md-3"><strong>Seat : *</strong></div>
+                                <div class="col-md-3"><label>Seat: *</label></div>
                                 <div class="col-md-9">
-
+                                   <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fa fa-support"></i>
+                                                     </div>
+                                                </div>
                                         <input type="text" name="seat" class="form-control" placeholder="Select Your Seat" required >
 
                                     <small class="text text-danger">{{$errors->first('seat')}}</small>
                                 </div>
                             </div>
                         </div>
+                        </div>
                    
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-md-3"><strong>Price : *</strong></div>
+                                <div class="col-md-3"><label>Price: *</label></div>
                                 <div class="col-md-9">
+                                    <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fa fa-dollar"></i>
+                                                     </div>
+                                                </div>
                                     <input type="text" class="form-control" name="price" placeholder="Total Price " required>
                                     <small class="text text-danger">{{$errors->first('price')}}</small>
                                 </div>
                             </div>
                         </div>
+                        </div>
                   
 
                         <div class="form-group">
                             <div class="row" >
-                                <div class="col-md-3"><strong>Profile : *</strong></div>
+                                <div class="col-md-3"><label>Profile: *</label></div>
                                     <div class="col-md-9">
+                                        <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fa fa-check"></i>
+                                                     </div>
+                                                </div>
                                         <select name="profile" id="profile" class="form-control">
                                             <option value="confirmed">confirmed  </option>
                                             <option value="cancelled">cancelled </option>
@@ -106,6 +146,7 @@
                                         </select>
                                         <small class="text text-danger">{{$errors->first('profile')}}</small>
                                     </div>
+                                </div>
                             </div>
                         </div>
                       
@@ -119,7 +160,7 @@
                                         </button>
                                         &nbsp &nbsp
                                         <button type="reset" class="btn btn-danger"><i class="fa fa-close"></i>&nbsp;&nbsp;
-                                            Cancel
+                                            Cancel &nbsp &nbsp
                                         </button>
                                     </div>
                                 </div>

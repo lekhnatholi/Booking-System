@@ -22,6 +22,8 @@
 <link rel="stylesheet" type="text/css" href="{{ url('public/backend/assets/vendor_components/flag-icon/css/flag-icon.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url('public/backend/assets/vendor_components/material-design-iconic-font/css/materialdesignicons.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url('public/backend/assets/vendor_components/simple-line-icons-master/css/simple-line-icons.css')}}">
+
+<link rel="stylesheet" href="{{ url('public/backend/assets/vendor_plugins/iCheck/all.css')}}">
     
 	<!-- Bootstrap 4.0-->
 	<link rel="stylesheet" href="{{ url('public/backend/assets/vendor_components/bootstrap/dist/css/bootstrap.css')}}">
@@ -807,6 +809,8 @@
 	
 	<!-- Lion_admin for demo purposes -->
 	<script src="{{ url('public/backend/js/demo.js')}}"></script>
+
+  <script src="{{ url('public/backend/assets/vendor_plugins/iCheck/icheck.min.js')}}"></script>
 
 	
 </body>
