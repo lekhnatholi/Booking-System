@@ -15,15 +15,15 @@
                             <div class="searchpanel panel-body">
 
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="radio" name="way"  value="one way" id="hideid"> <label >&nbsp One Way</label>
+                                    <div class="col-md-6 demo-radio-button">
+                                        <input type="radio" name="way" value="one way" id="hideid"/> <label for="hideid">&nbsp One Way</label>
                                     </div>        
                                     <div class="col-md-6">        
-                                        <input type="radio" name="way" value="two way" id="showid"> &nbsp Return ( Two Way )
+                                        <input type="radio" name="way" value="two way" id="showid" checked /> &nbsp <label for="showid">Return ( Two Way )</label>
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="row">
                                     <div class="col-md-6 ui-widget">
                                         <center><strong>Departure</strong></center>
@@ -34,6 +34,10 @@
                                             <input type="text" name="to" id="arrival" class="search-form-control" placeholder="Enter Arrival">
                                     </div> 
                                 </div>
+
+
+
+
 
 
                                 <div class="row">
@@ -81,7 +85,7 @@
 
                                 <div class="row">
                                     <div class="col-md-3" >
-                                        <input type="submit" name="SUBMIT" class="btn btn-default" style="background-color: #a3f2fb">
+                                        <input type="submit" name="SUBMIT" class="btn btn-default" style="background-color: #800000cf;color: white;">
                                     </div>
                                 </div>
                             </div>          
@@ -159,7 +163,7 @@
                                 </center>
                                     <div class="clearfix"></div>
 
-                                <button id="submit" class="btn btn-primary col-md-offset-5">Register Now</button>
+                                <button id="submit" class="btn btn-primary col-md-offset-5" style="background-color: #800000cf;color: white;">Register Now</button>
 
                                 
                 </form>
@@ -302,6 +306,21 @@
     </div>
 </section><!-- news -->
 
+<!-- fun-factor -->
+<section id = "call-to-action" class = "page-section no-pad bg-color">
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-12 top-pad-20 bottom-pad-20 text-center">
+                <h3 class = "text-capitalize inline-block tb-margin-20 black" data-animation = "fadeInUp">Are you <span class = "white">Bus Owner</span> let us help you earn more</h3>
+                <div class = "inline-block lr-pad-20">
+                    <a href = "#" class = "btn btn-transparent-white btn-lg" data-animation = "fadeInDown">Register Now!!!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 <!-- TRAVEL WITH US -->
 
@@ -395,28 +414,19 @@
                     <h2 class = "title">Who We Are</h2>
                 </div>
                 <div class = "owl-carousel pagination-1 dark-switch" data-pagination = "true" data-autoplay = "true" data-navigation = "false" data-singleitem = "true" data-animation = "fadeInUp">
+
+                    @foreach($whoweare as $w)
                     <div class = "item">
                         <!-- Heading -->
                         <h2 class = "entry-title">
-                            <a href = "#">Our mission</a>
+                            <a href = "#">{{$w->title}}</a>
                         </h2>
                         <!-- Content -->
                         <div class = "entry-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi facere earum quis ipsa vitae qui minima esse ducimus dolorum iste nisi laborum repellat dolores dolore debitis adipisci nemo quia autem pariatur a voluptatem dignissimos maiores accusantium nobis tempora consequatur cumque quas ea doloribus deleniti.</p>
-                            <p>Quibusdam commodi laboriosam error temporibus iste ipsa soluta distinctio maiores ad totam beatae incidunt veritatis enim? Reiciendis voluptate assumenda quidem eos explicabo rerum.</p>
+                            <p>{{$w->description}}</p>
                         </div>
                     </div>
-                    <div class = "item">
-                        <!-- Heading -->
-                        <h2 class = "entry-title">
-                            <a href = "#">Our history</a>
-                        </h2>
-                        <!-- Content -->
-                        <div class = "entry-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi facere earum quis ipsa vitae qui minima esse ducimus dolorum iste nisi laborum repellat dolores dolore debitis adipisci nemo quia autem pariatur a voluptatem dignissimos maiores accusantium nobis tempora consequatur cumque quas ea doloribus deleniti.</p>
-                            <p>Quibusdam commodi laboriosam error temporibus iste ipsa soluta distinctio maiores ad totam beatae incidunt veritatis enim? Reiciendis voluptate assumenda quidem eos explicabo rerum.</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class = "col-md-6 no-pad text-center" data-animation = "fadeInRight">
@@ -441,81 +451,37 @@
                     <h2 class = "title">What We Offer</h2>
                 </div>
                 <div class = "panel-group no-list" id = "accordion1" data-animation = "fadeInLeft">
+
+<?php $k=0 ?>
+                    @foreach($whatweoffer as $w)
+                    <?php $k++ ?>
                     <div class = "panel panel-default active">
                         <div class = "panel-heading">
                             <div class = "panel-title">
                                 <!-- Tab -->
-                                <a data-toggle = "collapse" data-parent = "#accordion1" href = "#item1">
+                                <a data-toggle = "collapse" data-parent = "#accordion1" href = "#item{{$k}}">
                                     <i class = "icon-mobile9"></i>
-                                    For Travellers
+                                    {{$w->title}}
                                 </a>
                             </div>
                         </div>
-                        <div id = "item1" class = "panel-collapse collapse in">
+                        <div id = "item{{$k}}" class = "panel-collapse collapse ">
                             <div class = "panel-body">
                                 <!-- Image -->
-                                <img src = "{{url('public/frontend//images/sections/additional-img1.jpg')}}" class = "pull-right" width = "120" height = "90" alt = ""/>
+                                <img src = "{{ asset('public/img/whatweoffer/'.$w->image)}})}}" class = "pull-right" width = "120" height = "90" alt = ""/>
                                 <!-- Tab Content-->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ipsa esse obcaecati repudiandae veniam amet modi recusandae optio earum sequi accusantium culpa vitae iste sit commodi eaque voluptatem officia quam.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ipsa esse obcaecati repudiandae veniam amet modi.</p>
+                                <p>{{$w->description}}</p>
                             </div>
                         </div>
                     </div>
-                    <div class = "panel panel-default active">
-                        <div class = "panel-heading">
-                            <div class = "panel-title">
-                                <!-- Tab -->
-                                <a data-toggle = "collapse" data-parent = "#accordion1" href = "#item2">
-                                    <i class = "icon-code"></i>
-                                    For Vendors
-                                </a>
-                            </div>
-                        </div>
-                        <div id = "item2" class = "panel-collapse collapse">
-                            <div class = "panel-body">
-                                <!-- Tab Content-->Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque natus quaerat voluptate? Asperiores hic dolore voluptate corporis obcaecati reiciendis sunt ipsam iste. Eligendi inventore voluptatibus quia saepe odit deserunt nam?
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class = "panel panel-default">
-                        <div class = "panel-heading">
-                            <div class = "panel-title">
-                                <!-- Tab -->
-                                <a data-toggle = "collapse" data-parent = "#accordion1" href = "#item3">
-                                    <i class = "icon-mic"></i>
-                                    For Investors
-                                </a>
-                            </div>
-                        </div>
-                        <div id = "item3" class = "panel-collapse collapse">
-                            <div class = "panel-body">
-                                <!-- Image -->
-                                <img src = "{{url('public/frontend/images/sections/additional-img2.jpg')}}" class = "pull-right" width = "120" height = "82" alt = ""/>
-                                <!-- Tab Content-->
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ipsa esse obcaecati repudiandae veniam amet modi recusandae optio earum sequi accusantium culpa vitae iste sit commodi eaque voluptatem officia quam.</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- fun-factor -->
-<section id = "call-to-action" class = "page-section no-pad bg-color">
-    <div class = "container">
-        <div class = "row">
-            <div class = "col-md-12 top-pad-20 bottom-pad-20 text-center">
-                <h3 class = "text-capitalize inline-block tb-margin-20 black" data-animation = "fadeInUp">Are you <span class = "white">Bus Owner</span> let us help you earn more</h3>
-                <div class = "inline-block lr-pad-20">
-                    <a href = "#" class = "btn btn-transparent-white btn-lg" data-animation = "fadeInDown">Register Now!!!</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- video -->
 <section id = "fun-factor" class = "page-section">
@@ -567,74 +533,24 @@
             <div class = "col-sm-12 col-md-6">
                 <div class = "section-title text-left" data-animation = "fadeInLeft">
                     <!-- Heading -->
-                    <h2 class = "title">Popular Destinations</h2>
+                    <h2 class = "title">Videos</h2>
                 </div>
-                <ul class = "latest-posts">
-                    <li data-animation = "fadeInLeft">
-                        <div class = "post-thumb">
-                            <img class = "img-rounded" src = "{{url('public/frontend/images/sections/blog/1.jpg')}}" alt = "" title = "" width = "84" height = "84"/>
-                        </div>
-                        <div class = "post-details">
-                            <div class = "description">
-                                <a href = "#">
-                                    <!-- Text -->The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
-                                </a>
-                            </div>
-                            <div class = "meta">
-                                <!-- Meta Date -->
-
-                                <span class = "time">
-                                    <i class = "fa fa-calendar"></i>
-                                    03.11.2014</span></div>
-                        </div>
-                    </li>
-                    <li data-animation = "fadeInUp">
-                        <div class = "post-thumb">
-                            <img class = "img-rounded" src = "{{url('public/frontend/images/sections/blog/2.jpg')}}" alt = "" title = "" width = "84" height = "84"/>
-                        </div>
-                        <div class = "post-details">
-                            <div class = "description">
-                                <a href = "#">
-                                    <!-- Text -->The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
-                                </a>
-                            </div>
-                            <div class = "meta">
-                                <!-- Meta Date -->
-
-                                <span class = "time">
-                                    <i class = "fa fa-calendar"></i>
-                                    03.11.2014</span></div>
-                        </div>
-                    </li>
-                    <li data-animation = "fadeInDown">
-                        <div class = "post-thumb">
-                            <img class = "img-rounded" src = "{{url('public/frontend/images/sections/blog/3.jpg')}}" alt = "" title = "" width = "84" height = "84"/>
-                        </div>
-                        <div class = "post-details">
-                            <div class = "description">
-                                <a href = "#">
-                                    <!-- Text -->The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.
-                                </a>
-                            </div>
-                            <div class = "meta">
-                                <!-- Meta Date -->
-
-                                <span class = "time">
-                                    <i class = "fa fa-calendar"></i>
-                                    03.11.2014</span></div>
-                        </div>
-                    </li>
-                </ul>
+                         <iframe src="http://www.youtube.com/embed/W7qWa52k-nE" width="560" height="315" frameborder="0" allowfullscreen></iframe>
             </div>
+
+
             <div class = "col-sm-12 col-md-6 testimonails">
                 <div class = "section-title text-left" data-animation = "fadeInRight">
                     <!-- Heading -->
                     <h2 class = "title">Testimonials</h2>
                 </div>
                 <div class = "owl-carousel pagination-1 dark-switch" data-effect = "backSlide" data-pagination = "true" data-autoplay = "true" data-navigation = "false" data-singleitem = "true" data-animation = "fadeInRight">
+
+
+                    @foreach($testimonials as $t)
                     <div class = "item">
                         <div class = "desc-border bottom-arrow quote">
-                            <blockquote class = "small-text">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.</blockquote>
+                            <blockquote class = "small-text">{{$t->message}}</blockquote>
                             <div class = "star-rating text-right">
                                 <i class = "fa fa-star text-color"></i>
                                 <i class = "fa fa-star text-color"></i>
@@ -646,64 +562,21 @@
                         <div class = "client-details text-center">
                             <div class = "client-image">
                                 <!-- Image -->
-                                <img class = "img-circle" src = "{{url('public/frontend/images/sections/testimonials/1.jpg')}}" width = "80" height = "80" alt = ""/>
+                                <img class = "img-circle" src = "{{ asset('public/img/testimonial/'.$t->image)}}" width = "80" height = "80" alt = ""/>
                             </div>
                             <div class = "client-details">
                                 <!-- Name -->
-                                <strong class = "text-color">John Doe</strong>
+                                <strong class = "text-color">{{$t->name}}</strong>
                                 <!-- Company -->
 
-                                <span>Traveller</span></div>
+                                <span>{{$t->post}}</span></div>
                         </div>
                     </div>
-                    <div class = "item">
-                        <div class = "desc-border bottom-arrow quote">
-                            <blockquote class = "small-text">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.</blockquote>
-                            <div class = "star-rating text-right">
-                                <i class = "fa fa-star text-color"></i>
-                                <i class = "fa fa-star text-color"></i>
-                                <i class = "fa fa-star text-color"></i>
-                                <i class = "fa fa-star text-color"></i>
-                                <i class = "fa fa-star-half-o text-color"></i>
-                            </div>
-                        </div>
-                        <div class = "client-details text-center">
-                            <div class = "client-image">
-                                <!-- Image -->
-                                <img class = "img-circle" src = "{{url('public/frontend/images/sections/testimonials/1.jpg')}}" width = "80" height = "80" alt = ""/>
-                            </div>
-                            <div class = "client-details">
-                                <!-- Name -->
-                                <strong class = "text-color">John Doe</strong>
-                                <!-- Company -->
+                    @endforeach
 
-                                <span>Bus Owner</span></div>
-                        </div>
-                    </div>
-                    <div class = "item">
-                        <div class = "desc-border bottom-arrow quote">
-                            <blockquote class = "small-text">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those intereste.</blockquote>
-                            <div class = "star-rating text-right">
-                                <i class = "fa fa-star text-color"></i>
-                                <i class = "fa fa-star text-color"></i>
-                                <i class = "fa fa-star text-color"></i>
-                                <i class = "fa fa-star text-color"></i>
-                                <i class = "fa fa-star-half-o text-color"></i>
-                            </div>
-                        </div>
-                        <div class = "client-details text-center">
-                            <div class = "client-image">
-                                <!-- Image -->
-                                <img class = "img-circle" src = "{{url('public/frontend/images/sections/testimonials/1.jpg')}}" width = "80" height = "80" alt = ""/>
-                            </div>
-                            <div class = "client-details">
-                                <!-- Name -->
-                                <strong class = "text-color">John Doe</strong>
-                                <!-- Company -->
+                   
 
-                                <span>Traveller</span></div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

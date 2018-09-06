@@ -10,6 +10,9 @@ use App\TNC;
 use App\Travellers;
 use App\Users;
 use App\Vendors;
+use App\Testimonials;
+use App\Whoweare;
+use App\Whatweoffer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +26,10 @@ class SiteController extends Controller
 
     public function index()
     {
-        return view('frontend.index');
+        $data['whoweare'] = Whoweare::all();
+        $data['whatweoffer'] = Whatweoffer::all();
+        $data['testimonials'] = Testimonials::all();
+        return view('frontend.index')->with($data);
     }
 
     public function about()

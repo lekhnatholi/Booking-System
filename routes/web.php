@@ -522,6 +522,45 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
     });
 
+
+    Route::group(['prefix' => 'whatweoffer'], function () {
+
+        Route::any('/', 'WhatweofferController@index')->name('whatweoffer');
+
+        Route::any('/create', 'WhatweofferController@create')->name('createWhatweoffer');
+
+        Route::any('/store', 'WhatweofferController@store')->name('storeWhatweoffer');
+
+        Route::any('/show/{id?}', 'WhatweofferController@show')->name('showWhatweoffer');
+
+        Route::any('/edit/{id?}', 'WhatweofferController@edit')->name('editWhatweoffer');
+
+        Route::any('/update', 'WhatweofferController@update')->name('updateWhatweoffer');
+
+        Route::any('/delete', 'WhatweofferController@destroy')->name('destroyWhatweoffer');
+
+    });
+
+
+    Route::group(['prefix' => 'whoweare'], function () {
+
+        Route::any('/', 'WhoweareController@index')->name('whoweare');
+
+        Route::any('/create', 'WhoweareController@create')->name('createWhoweare');
+
+        Route::any('/store', 'WhoweareController@store')->name('storeWhoweare');
+
+        Route::any('/show/{id?}', 'WhoweareController@show')->name('showWhoweare');
+
+        Route::any('/edit/{id?}', 'WhoweareController@edit')->name('editWhoweare');
+
+        Route::any('/update', 'WhoweareController@update')->name('updateWhoweare');
+
+        Route::any('/delete', 'WhoweareController@destroy')->name('destroyWhoweare');
+
+
+    });
+
 });
 
 
