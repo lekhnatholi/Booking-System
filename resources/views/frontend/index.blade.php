@@ -99,11 +99,74 @@
 
             <div class="col-md-6 col-sm-12 col-xs-12" style="float: right;">
                             
-                
+                <div class = "section-title" data-animation = "fadeInUp">
+                    <h1 class = "title" style="font-size: 26px;color: white;text-transform: capitalize;">Don't have an Account?</h1>
+                </div> 
+
+                <div class="orSignUp col-md-offset-3">
+                    <a href="{{ url('login/facebook') }}" class="btn btn-md " style="color:#fff ;background: #3b5999;">
+                                        Sign in with &nbsp <i class="fa fa-facebook "></i>
+                    </a> &nbsp &nbsp
+                    <a href="{{ url('login/google') }}" class="btn btn-md " style="color:#fff ;background: #dd4b39;">
+                                        Sign in with &nbsp <i class="fa fa-google"></i>
+                    </a>
+                </div>
+
                <div class = "section-title" data-animation = "fadeInUp">
                     <h1 class = "title" style="font-size: 26px;color: white;text-transform: capitalize;">Register Here</h1>
                 </div>
-                
+                <form action="{{route('registerUser')}}" class="contact-form"  method="post">
+                    {{@csrf_field()}}
+                    <div id="success"></div>
+                        <center>
+                                <div class="row" role="form">
+                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                         <div class="col-md-8 col-md-offset-2" id="registerUser">
+ 
+                                             @if(!empty($email))
+ 
+                                                <input id="email" type="email" class="form-control" name="email" id="userRegisterEmail" value="{{$email}}" required placeholder="Email*">
+ 
+                                             @else
+ 
+                                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Email *">
+ 
+                                             @endif
+ 
+                                            @if ($errors->has('email'))
+                                               <span class="help-block">
+                                                   <strong>{{ $errors->first('email') }}</strong>
+                                               </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <br>
+                                <div class="row" role="form">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <small class="text text-danger">{{$errors->first('password')}}</small>
+                                            <input type="password" class="form-control" name="password" id="exampleInputEmail2"
+                                                   placeholder="Password *"/>
+                                    </div>
+                                </div>
+
+                                    <br>
+                                <div class="row" role="form">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <input type="password" class="form-control" name="password_confirmation"
+                                                   placeholder="Confirm Password *"/>
+                                    </div>
+                                </div>
+
+                                    <br>
+                                </center>
+                                    <div class="clearfix"></div>
+
+                                <button id="submit" class="btn btn-primary col-md-offset-5" >Register Now</button>
+
+                                
+                </form>
             </div>
         </div>
     </div>
@@ -389,7 +452,7 @@
                 </div>
                 <div class = "panel-group no-list" id = "accordion1" data-animation = "fadeInLeft">
 
-                <?php $k=0 ?>
+<?php $k=0 ?>
                     @foreach($whatweoffer as $w)
                     <?php $k++ ?>
                     <div class = "panel panel-default active">
