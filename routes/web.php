@@ -39,8 +39,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::group(['middleware' => 'vendor', 'prefix' => 'vendor'], function () {
 
         Route::any('/profile', 'VendorsController@profileVendor')->name('profileVendor');
-        Route::any('/editProfile', 'VendorController@editProfileVendor')->name('editProfileVendor');
-        Route::any('/updateProfile', 'VendorController@updateProfileVendor')->name('updateProfileVendor');
+        Route::any('/editProfile', 'VendorsController@editProfileVendor')->name('editProfileVendor');
+        Route::any('/updateProfile', 'VendorsController@updateProfileVendor')->name('updateProfileVendor');
 
         Route::group(['prefix' => 'vehicles'], function () {
 
@@ -111,10 +111,10 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     //traveller
     Route::group(['middleware' => 'traveller'], function () {
-        Route::any('/profile', 'SiteController@profile')->name('profile');
-        Route::any('/editProfile', 'SiteController@editProfile')->name('editProfile');
-        Route::any('/updateProfile', 'SiteController@updateProfile')->name('updateProfile');
-        Route::any('/history', 'SiteController@history')->name('history');
+        Route::any('/profile', 'TravellersController@profile')->name('profile');
+        Route::any('/editProfile', 'TravellersController@editProfile')->name('editProfile');
+        Route::any('/updateProfile', 'TravellersController@updateProfile')->name('updateProfile');
+        Route::any('/history', 'TravellersController@history')->name('history');
     });
 
     //register, login and logout
