@@ -171,7 +171,11 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/store', 'BustypesController@store')->name('storeBustype');
 
-        Route::any('/show', 'BustypesController@show')->name('showBustype');
+        Route::any('/view', 'BustypesController@view')->name('viewBustype');
+
+        Route::any('/view', 'BustypesController@view')->name('viewBustype');
+
+        Route::any('/show/{id?}', 'BustypesController@show')->name('showBustype');
 
         Route::any('/edit/{id?}', 'BustypesController@edit')->name('editBustype');
 
@@ -249,6 +253,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
         Route::any('/store', 'BookingsController@store')->name('storeBooking');
 
         Route::any('/show/{id?}', 'BookingsController@show')->name('showBooking');
+
+        Route::any('/view', 'BookingsController@view')->name('viewBooking');
 
         Route::any('/edit/{id?}', 'BookingsController@edit')->name('editBooking');
 

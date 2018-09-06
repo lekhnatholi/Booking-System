@@ -32,13 +32,13 @@
                 <div class="col-12 col-lg-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Buses <strong></strong>&nbsp &nbsp                            </h3>
+                            <h3 class="box-title">Buses <strong></strong>&nbsp &nbsp </h3>
 
                             <a href="{{route('createBustype')}}" class="btn btn-default label-success">+ Add New</a>
 
 
-
-                            <a href="{{route('showBustype')}}" class="btn btn-info label-success pull-right" > <i class="glyphicon glyphicon-eye-open"></i> views all</a>
+                            <a href="{{route('viewBustype')}}" class="btn btn-info label-success pull-right"> <i
+                                        class="glyphicon glyphicon-eye-open"></i> views all</a>
                         </div>
 
                         <div class="box-body">
@@ -76,25 +76,28 @@
                                             <td>
                                                 <table>
                                                     <tr>
-                                                        {{--<th>--}}
-                                                        {{--<form action="{{route('showSchedule')."/".$key->schedules_id}}"--}}
-                                                        {{--method="get">--}}
-                                                        {{--<button type="submit" class="btn btn-info btn-xs">--}}
-                                                        {{--<i class="fa fa-eye"></i>--}}
-                                                        {{--</button>--}}
-                                                        {{--</form>--}}
-                                                        {{--</th>--}}
                                                         <th>
-                                                            <form action="{{route('editBustype')."/".$key->bustypes_id}}" method="get">
+                                                            <form action="{{route('showBustype')."/".$key->bustypes_id}}"
+                                                                  method="get">
+                                                                <button type="submit" class="btn btn-info btn-xs">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </button>
+                                                            </form>
+                                                        </th>
+                                                        <th>
+                                                            <form action="{{route('editBustype')."/".$key->bustypes_id}}"
+                                                                  method="get">
                                                                 <button type="submit" class="btn btn-success btn-xs">
                                                                     <i class="fa fa-pencil"></i>
                                                                 </button>
                                                             </form>
                                                         </th>
                                                         <th>
-                                                            <form class="client" action="{{route('destroyBustype')}}" method="post" onsubmit=" return ConfirmDelete()">
+                                                            <form class="client" action="{{route('destroyBustype')}}"
+                                                                  method="post" onsubmit=" return ConfirmDelete()">
                                                                 {{csrf_field()}}
-                                                                <input type="hidden" name="id" value="{{$key->bustypes_id}}">
+                                                                <input type="hidden" name="id"
+                                                                       value="{{$key->bustypes_id}}">
                                                                 <button type="submit" class="btn btn-danger btn-xs">
                                                                     <i class="fa fa-trash-o"></i>
                                                                 </button>
@@ -118,8 +121,7 @@
     </div>
 
     <script>
-        function ConfirmDelete()
-        {
+        function ConfirmDelete() {
             var x = confirm("Are you sure you want to delete?");
             if (x)
                 return true;
