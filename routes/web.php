@@ -152,6 +152,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/show/{id?}', 'UsersController@show')->name('showUser');
 
+        Route::any('/view', 'UsersController@view')->name('viewUser');
+
         Route::any('/edit/{id?}', 'UsersController@edit')->name('editUser');
 
         Route::any('/update', 'UsersController@update')->name('updateUser');
@@ -169,7 +171,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/store', 'BustypesController@store')->name('storeBustype');
 
-        Route::any('/show/{id?}', 'BustypesController@show')->name('showBustype');
+        Route::any('/show', 'BustypesController@show')->name('showBustype');
 
         Route::any('/edit/{id?}', 'BustypesController@edit')->name('editBustype');
 
@@ -188,7 +190,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/store', 'RoutesController@store')->name('storeRoute');
 
-        Route::any('/show/{id?}', 'RoutesController@show')->name('showRoute');
+        Route::any('/show', 'RoutesController@show')->name('showRoute');
 
         Route::any('/edit/{id?}', 'RoutesController@edit')->name('editRoute');
 
@@ -207,7 +209,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/store', 'BusesController@store')->name('storeBus');
 
-        Route::any('/show/{id?}', 'BusesController@show')->name('showBus');
+        Route::any('/show', 'BusesController@show')->name('showBus');
 
         Route::any('/edit/{id?}', 'BusesController@edit')->name('editBus');
 
@@ -225,6 +227,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
         Route::any('/create', 'SchedulesController@create')->name('createSchedule');
 
         Route::any('/store', 'SchedulesController@store')->name('storeSchedule');
+
+        Route::any('/view', 'SchedulesController@view')->name('viewSchedule');
 
         Route::any('/show/{id?}', 'SchedulesController@show')->name('showSchedule');
 
@@ -263,7 +267,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/store', 'TravellersController@store')->name('storeTraveller');
 
-        Route::any('/show/{id?}', 'TravellersController@show')->name('showTraveller');
+        Route::any('/show', 'TravellersController@show')->name('showTraveller');
 
         Route::any('/edit/{id?}', 'TravellersController@edit')->name('editTraveller');
 
@@ -281,7 +285,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/store', 'GuestsController@store')->name('storeGuest');
 
-        Route::any('/show/{id?}', 'GuestsController@show')->name('showGuest');
+        Route::any('/show', 'GuestsController@show')->name('showGuest');
 
         Route::any('/edit/{id?}', 'GuestsController@edit')->name('editGuest');
 
@@ -299,7 +303,7 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/store', 'VendorsController@store')->name('storeVendor');
 
-        Route::any('/show/{id?}', 'VendorsController@show')->name('showVendor');
+        Route::any('/show', 'VendorsController@show')->name('showVendor');
 
         Route::any('/edit/{id?}', 'VendorsController@edit')->name('editVendor');
 
@@ -319,6 +323,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
         Route::any('/store', 'AdminsController@store')->name('storeAdmin');
 
         Route::any('/show/{id?}', 'AdminsController@show')->name('showAdmin');
+
+        Route::any('/view', 'AdminsController@view')->name('viewAdmin');
 
         Route::any('/edit/{id?}', 'AdminsController@edit')->name('editAdmin');
 
@@ -453,6 +459,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
 
         Route::any('/show/{id?}', 'TeamsController@show')->name('showTeam');
 
+        Route::any('/view', 'TeamsController@view')->name('viewTeam');
+
         Route::any('/edit/{id?}', 'TeamsController@edit')->name('editTeam');
 
         Route::any('/update', 'TeamsController@update')->name('updateTeam');
@@ -471,6 +479,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
         Route::any('/store', 'TestimonialsController@store')->name('storeTestimonial');
 
         Route::any('/show/{id?}', 'TestimonialsController@show')->name('showTestimonial');
+
+        Route::any('/view', 'TestimonialsController@view')->name('viewTestimonial');
 
         Route::any('/edit/{id?}', 'TestimonialsController@edit')->name('editTestimonial');
 
@@ -509,6 +519,8 @@ Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],fu
         Route::any('/store', 'WhyusController@store')->name('storeWhyus');
 
         Route::any('/show/{id?}', 'WhyusController@show')->name('showWhyus');
+
+        Route::any('/view', 'WhyusController@view')->name('viewWhyus');
 
         Route::any('/edit/{id?}', 'WhyusController@edit')->name('editWhyus');
 

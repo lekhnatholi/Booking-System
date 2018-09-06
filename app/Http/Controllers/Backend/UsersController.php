@@ -78,6 +78,12 @@ class UsersController extends Controller
         $user = Users::where('users_id',$userId)->first();
         return view('backend.user.view_user', compact('user'));
     }
+    public function view()
+    {
+
+        $user = Users::orderBy('users_id','DESC')->paginate();
+        return view('backend.user.view_user', compact('user'));
+    }
 
     /**
      * Show the form for editing the specified resource.

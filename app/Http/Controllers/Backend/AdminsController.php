@@ -77,6 +77,13 @@ class AdminsController extends Controller
         return view('backend.admin.view_admin', compact('admin'));
     }
 
+    public function view()
+    {
+
+        $admin = Admins::orderBy('admins_id', 'DESC')->paginate(10);
+        return view('backend.admin.view_admin', compact('admin'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
