@@ -14,38 +14,35 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+Route::group(['namespace' => 'Frontend'], function () {
+    Route::any('/', 'SiteController@index')->name('home');
+
+    Route::any('/about', 'SiteController@about')->name('about');
+    Route::any('/faq', 'SiteController@faq')->name('frontfaq');
+    Route::any('/tnc', 'SiteController@tnc')->name('fronttnc');
+
+    //contact
+    Route::any('/contact', 'SiteController@contact')->name('contact');
+    Route::any('/contact/form', 'SiteController@contactForm')->name('contactForm');
+
+    //search and filter
+    Route::any('/search', 'SiteController@search')->name('search');
+    Route::any('/search/filter', 'SiteController@searchFilter')->name('searchFilter');
+
+    //passenger
+    Route::any('/booking/{id?}', 'PassengersController@booking')->name('booking');
+    Route::any('/passenger/detail', 'PassengersController@collectInformation')->name('passengerDetail');
+    Route::any('/passenger/add', 'PassengersController@storeInformation')->name('passengerAdd');
 
 
-
-Route::group(['namespace'=>'Frontend'],function (){
-    Route::any('/','SiteController@index')->name('home');
-
-    Route::get('/redirect/{service}', 'SiteController@redirect');
-
-    Route::get('/callback/{service}', 'SiteController@callback');
-
-
-Route::get('/login/{social}','SiteController@socialLogin')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
- 
-Route::get('/login/{social}/callback','SiteController@handleProviderCallback')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
-    
-    Route::any('/faq','SiteController@faq')->name('frontfaq');
-    Route::any('/tnc','SiteController@tnc')->name('fronttnc');  
-    Route::any('/history','SiteController@history')->name('historyVendor');
-    Route::any('/about','SiteController@about')->name('about');
-    Route::any('/contact','SiteController@contact')->name('contact');
-    Route::any('/contactForm','SiteController@contactForm')->name('contactForm');
-    Route::any('/search','SiteController@search')->name('search');
-    Route::any('/search/filter','SiteController@searchFilter')->name('searchFilter');
     //vendor
-    Route::any('/registerVendor','SiteController@registerVendor')->name('registerVendor');
-    Route::any('/validateUser/{id?}','SiteController@validateUser')->name('validateVendor');
-    Route::group(['middleware'=>'vendor','prefix'=>'vendor'],function (){
-        Route::any('/profile','SiteController@profileVendor')->name('profileVendor');
-        Route::any('/editProfile','SiteController@editProfileVendor')->name('editProfileVendor');
-        Route::any('/updateProfile','SiteController@updateProfileVendor')->name('updateProfileVendor');
+    Route::group(['middleware' => 'vendor', 'prefix' => 'vendor'], function () {
 
-        Route::group(['prefix'=>'vehicles'],function (){
+        Route::any('/profile', 'VendorsController@profileVendor')->name('profileVendor');
+        Route::any('/editProfile', 'VendorsController@editProfileVendor')->name('editProfileVendor');
+        Route::any('/updateProfile', 'VendorsController@updateProfileVendor')->name('updateProfileVendor');
+
+        Route::group(['prefix' => 'vehicles'], function () {
 
             Route::any('/', 'VehiclesController@index')->name('vehiclesVendor');
 
@@ -55,13 +52,13 @@ Route::get('/login/{social}/callback','SiteController@handleProviderCallback')->
 
             Route::any('/show/{id?}', 'VehiclesController@show')->name('showVehiclesVendor');
 
-            Route::any('/createSeatLayout','VehiclesController@createSeatLayout')->name('createSeatLayout');
+            Route::any('/createSeatLayout', 'VehiclesController@createSeatLayout')->name('createSeatLayout');
 
-            Route::any('/showSeatLayout','VehiclesController@showSeatLayout')->name('showSeatLayout');
+            Route::any('/showSeatLayout', 'VehiclesController@showSeatLayout')->name('showSeatLayout');
 
-            Route::any('/saveSeatLayout','VehiclesController@saveSeatLayout')->name('saveSeatLayout');
+            Route::any('/saveSeatLayout', 'VehiclesController@saveSeatLayout')->name('saveSeatLayout');
 
-            Route::any('/editSeatLayout','VehiclesController@editSeatLayout')->name('editSeatLayout');
+            Route::any('/editSeatLayout', 'VehiclesController@editSeatLayout')->name('editSeatLayout');
 
             Route::any('/edit/{id?}', 'VehiclesController@edit')->name('editVehiclesVendor');
 
@@ -72,7 +69,7 @@ Route::get('/login/{social}/callback','SiteController@handleProviderCallback')->
 
         });
 
-        Route::group(['prefix'=>'schedules'],function (){
+        Route::group(['prefix' => 'schedules'], function () {
 
             Route::any('/', 'SchedulesController@index')->name('schedulesVendor');
 
@@ -91,7 +88,7 @@ Route::get('/login/{social}/callback','SiteController@handleProviderCallback')->
 
         });
 
-        Route::group(['prefix'=>'bookings'],function (){
+        Route::group(['prefix' => 'bookings'], function () {
 
             Route::any('/', 'BookingsController@index')->name('bookingsVendor');
 
@@ -113,20 +110,26 @@ Route::get('/login/{social}/callback','SiteController@handleProviderCallback')->
     });
 
     //traveller
-    Route::any('/registerUser','SiteController@registerUser')->name('registerUser');
+    Route::group(['middleware' => 'traveller'], function () {
+        Route::any('/profile', 'TravellersController@profile')->name('profile');
+        Route::any('/editProfile', 'TravellersController@editProfile')->name('editProfile');
+        Route::any('/updateProfile', 'TravellersController@updateProfile')->name('updateProfile');
+        Route::any('/history', 'TravellersController@history')->name('history');
+    });
 
-    Route::group(['middleware'=>'traveller'],function (){
-       Route::any('/profile','SiteController@profile')->name('profile');
-       Route::any('/editProfile','SiteController@editProfile')->name('editProfile');
-       Route::any('/updateProfile','SiteController@updateProfile')->name('updateProfile');
-       Route::any('/history','SiteController@history')->name('history');
-   });
+    //register, login and logout
+    Route::any('/loginUser', 'LoginController@loginUser')->name('loginUser');
+    Route::any('/profile/logout', 'LoginController@userLogout')->name('userLogout');
+    Route::any('/registerVendor', 'LoginController@registerVendor')->name('registerVendor');
+    Route::any('/validateUser/{id?}', 'LoginController@validateUser')->name('validateVendor');
+    Route::any('/registerUser', 'LoginController@registerUser')->name('registerUser');
 
-    //login and logout
-    Route::any('/loginUser','SiteController@loginUser')->name('loginUser');
-    Route::any('/profile/logout','SiteController@userLogout')->name('userLogout');
-    Route::any('/booking','SiteController@booking')->name('booking');
-    Route::any('/showSeatLayout','SiteController@showSeatLayout')->name('showseatLayout');
+    //api login
+    Route::get('/redirect/{service}', 'SiteController@redirect');
+    Route::get('/callback/{service}', 'SiteController@callback');
+    Route::get('/login/{social}', 'SiteController@socialLogin')->where('social', 'twitter|facebook|linkedin|google|github|bitbucket');
+    Route::get('/login/{social}/callback', 'SiteController@handleProviderCallback')->where('social', 'twitter|facebook|linkedin|google|github|bitbucket');
+
 
 });
 
@@ -136,7 +139,7 @@ Route::namespace('Backend')->group(function () {
     Route::any('/logout', 'UsersController@logout')->name('logout');
 });
 
-Route::group(['namespace'=>'Backend','prefix'=>'admin','middleware'=>'admin'],function (){
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::get('/', function () {
         return view('backend.dashboard');

@@ -21,7 +21,7 @@ class CreateTravellersTable extends Migration
             $table->string('image')->nullable();
             $table->string('address')->nullable();
             $table->string('contact')->nullable();
-            $table->enum('profile',['active','offline'])->default('offline');
+            $table->enum('profile',['online','offline'])->default('offline');
             $table->timestamps();
         });
     }

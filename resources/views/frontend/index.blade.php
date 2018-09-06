@@ -10,7 +10,7 @@
             <!-- SEARCH FORM -->
             <div class="col-md-6 col-sm-12 col-xs-12" style="margin-left: -17px;">
                  <div class="search-form">
-                    <form action="http://localhost/ecosanjal/search" method="get">
+                    <form action="{{route('search')}}" method="get">
                          <div class="form-row align-items-center">
                             <div class="searchpanel panel-body">
 
@@ -27,11 +27,11 @@
                                 <div class="row">
                                     <div class="col-md-6 ui-widget">
                                         <center><strong>Departure</strong></center>
-                                            <input type="text" name="" id="departure" class="search-form-control" placeholder="Enter Departure">
+                                            <input type="text" name="from" id="departure" class="search-form-control" placeholder="Enter Departure">
                                     </div>
                                     <div class="col-md-6 ui-widget">
                                         <center><strong>Arrival</strong></center>
-                                            <input type="text" name="" id="arrival" class="search-form-control" placeholder="Enter Arrival">
+                                            <input type="text" name="to" id="arrival" class="search-form-control" placeholder="Enter Arrival">
                                     </div> 
                                 </div>
 
@@ -39,12 +39,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <center><strong>Departure Date</strong></center>
-                                            <input type="text" id="datepicker" name="" class="search-form-control" placeholder="Enter Departure Date">
+                                            <input type="text" id="datepicker" name="departure_date" class="search-form-control" placeholder="Enter Departure Date">
                                     </div>
                                     
                                      <div class="col-md-6" id="data">
                                         <center><strong>Return Date<center><strong>
-                                            <input type="text" id="datepicker1" name="" class="search-form-control" placeholder="Enter Return Date">
+                                            <input type="text" id="datepicker1" name="arrival_date" class="search-form-control" placeholder="Enter Return Date">
                                     </div>
                                 </div>
 
@@ -96,7 +96,7 @@
             <div class="col-md-6 col-sm-12 col-xs-12" style="float: right;">
                             
                 <div class = "section-title" data-animation = "fadeInUp">
-                    <h1 class = "title" style="font-size: 26px;color: white;text-transform: capitalize;">Don't have an Account?</h4>
+                    <h1 class = "title" style="font-size: 26px;color: white;text-transform: capitalize;">Don't have an Account?</h1>
                 </div> 
 
                 <div class="orSignUp col-md-offset-3">
@@ -109,7 +109,7 @@
                 </div>
 
                <div class = "section-title" data-animation = "fadeInUp">
-                    <h1 class = "title" style="font-size: 26px;color: white;text-transform: capitalize;">Register Here</h4>
+                    <h1 class = "title" style="font-size: 26px;color: white;text-transform: capitalize;">Register Here</h1>
                 </div>
                 <form action="{{route('registerUser')}}" class="contact-form"  method="post">
                     {{@csrf_field()}}

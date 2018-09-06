@@ -16,6 +16,8 @@ class CreateUsersTable extends Migration
         $table->string('password')->nullable();
        // $table->string('image')->nullable();
         $table->enum('user_type',['admin','traveller','vendor'])->default('traveller');
+        $table->string('verification_code',255)->nullable();
+        $table->enum('status',['hold','verified'])->default('hold');
         $table->rememberToken();
         $table->timestamps();
     });
