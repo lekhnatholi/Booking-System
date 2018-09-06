@@ -86,14 +86,14 @@
                                             <td>
                                                 <table>
                                                     <tr>
-                                                        {{--<th>--}}
-                                                        {{--<form action="{{route('showSchedule')."/".$key->schedules_id}}"--}}
-                                                        {{--method="get">--}}
-                                                        {{--<button type="submit" class="btn btn-info btn-xs">--}}
-                                                        {{--<i class="fa fa-eye"></i>--}}
-                                                        {{--</button>--}}
-                                                        {{--</form>--}}
-                                                        {{--</th>--}}
+                                                        <th>
+                                                        <form action="{{route('showBus')."/".$key->buses_id}}"
+                                                        method="get">
+                                                        <button type="submit" class="btn btn-info btn-xs">
+                                                        <i class="fa fa-eye"></i>
+                                                        </button>
+                                                        </form>
+                                                        </th>
                                                         <th>
                                                             <form action="{{route('editBus')."/".$key->buses_id}}" method="get">
                                                                 <button type="submit" class="btn btn-success btn-xs">
