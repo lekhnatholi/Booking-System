@@ -71,6 +71,13 @@ class TeamsController extends Controller
         $team = Teams::where('teams_id',$teamId)->first();
         return view('backend.team.view_team', compact('team'));
     }
+    public function view()
+    {
+
+        $team = Teams::orderBy('teams_id','DESC')->paginate(10);
+        return view('backend.team.view_team', compact('team'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

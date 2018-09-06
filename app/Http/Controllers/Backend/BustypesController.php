@@ -66,15 +66,26 @@ class BustypesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function view()
     {
-        if(!$request->id){
-            return redirect()->back();
-        }
-        $bustypeId=$request->id;
-        $bustype = Bustypes::where('bustypes_id',$bustypeId)->first();
+        // if(!$request->id){
+        //     return redirect()->back();
+        // }
+        // $bustypeId=$request->id;
+        $bustype = Bustypes::orderBy('bustypes_id','DESC')->paginate(8);
 
         return view('backend.bustype.view_bustype', compact('bustype'));
+    }
+
+    public function show(Request $request)
+    {
+         if(!$request->id){
+             return redirect()->back();
+         }
+         $bustypeId=$request->id;
+        $bustype = Bustypes::where('bustypes_id',$bustypeId)->first();
+
+        return view('backend.bustype.show_bustype', compact('bustype'));
     }
 
     /**

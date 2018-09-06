@@ -48,13 +48,13 @@ class GuestsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show()
     {
-        if (!$request->id) {
-            return redirect()->back();
-        }
-        $guestId = $request->id;
-        $guest = Guests::where('guests_id', $guestId)->first();
+//        if (!$request->id) {
+//            return redirect()->back();
+//        }
+//        $guestId = $request->id;
+        $guest = Guests::orderBy('guests_id', 'DESC')->paginate(8);
         return view('backend.guest.view_guest', compact('guest'));
     }
 

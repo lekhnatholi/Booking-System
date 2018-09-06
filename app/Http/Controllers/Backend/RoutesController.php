@@ -57,16 +57,15 @@ class RoutesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show()
     {
-        if(!$request->id){
-            return redirect()->back();
-        }
-        $routeId=$request->id;
-        $route = Routes::where('routes_id',$routeId)->first();
+//        if(!$request->id){
+//            return redirect()->back();
+//        }
+//        $routeId=$request->id;
+        $route = Routes::orderBy('routes_id','DESC')->paginate('8');
         return view('backend.route.view_route', compact('route'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *

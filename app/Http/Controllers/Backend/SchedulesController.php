@@ -66,16 +66,25 @@ class SchedulesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function view( )
+    {
+//        if(!$request->id){
+//            return redirect()->back();
+//        }
+//        $scheduleId=$request->id;
+        $schedule = Schedules::orderBy('schedules_id','DESC')->paginate(8);
+        return view('backend.schedule.view_schedule', compact('schedule'));
+    }
+
+    public function show(Request $request )
     {
         if(!$request->id){
             return redirect()->back();
         }
         $scheduleId=$request->id;
         $schedule = Schedules::where('schedules_id',$scheduleId)->first();
-        return view('backend.schedule.view_schedule', compact('schedule'));
+        return view('backend.schedule.show_schedule', compact('schedule'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
