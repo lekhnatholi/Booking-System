@@ -163,7 +163,7 @@
                                 </center>
                                     <div class="clearfix"></div>
 
-                                <button id="submit" class="btn btn-primary col-md-offset-5" style="background-color: #800000cf;color: white;">Register Now</button>
+                                <button id="submit" class="btn btn-primary col-md-offset-5" >Register Now</button>
 
                                 
                 </form>
