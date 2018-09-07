@@ -423,7 +423,7 @@
                         </h2>
                         <!-- Content -->
                         <div class = "entry-content">
-                            <p>{{$w->description}}</p>
+                            <p>{!! $w->description !!}</p>
                         </div>
                     </div>
                     @endforeach
@@ -470,7 +470,7 @@
                                 <!-- Image -->
                                 <img src = "{{ asset('public/img/whatweoffer/'.$w->image)}})}}" class = "pull-right" width = "120" height = "90" alt = ""/>
                                 <!-- Tab Content-->
-                                <p>{{$w->description}}</p>
+                                <p>{!! $w->description !!}  </p>
                             </div>
                         </div>
                     </div>

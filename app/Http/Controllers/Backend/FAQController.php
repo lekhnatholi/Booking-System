@@ -16,8 +16,8 @@ class FAQController extends Controller
      */
     public function index()
     {
-         $items = FAQ::orderBy('faq_id', 'DESC')->paginate(8);
-        return view('backend.faq.index', compact('items'));
+         $faqs = FAQ::orderBy('faq_id', 'DESC')->paginate(8);
+        return view('backend.faq.index', compact('faqs'));
     }
 
     /**

@@ -20,11 +20,11 @@ class CreatePassengersTable extends Migration
             $table->string('gender',255)->nullable();
             $table->string('seat',255)->nullable();
             $table->integer('buses_id')->unsigned();
-            $table->foreign('buses_id')->references('buses_id')->on('buses')->onDelete('cascade')->onUpdate('buses');
+            $table->foreign('buses_id')->references('buses_id')->on('buses')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('bookings_id')->unsigned();
-            $table->foreign('bookings_id')->references('bookings_id')->on('bookings')->onDelete('cascade')->onUpdate('bookings');
+            $table->foreign('bookings_id')->references('bookings_id')->on('bookings')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('schedules_id')->unsigned();
-            $table->foreign('schedules_id')->references('schedules_id')->on('schedules')->onDelete('cascade')->onUpdate('schedules');
+            $table->foreign('schedules_id')->references('schedules_id')->on('schedules')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

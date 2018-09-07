@@ -75,6 +75,19 @@
                         </div>
                     </div>
 
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3"><strong>Message : *</strong></div>
+                            <div class="col-md-9">
+                                    <textarea class="form-control ckeditor" name="message" rows="7" style="resize: none"
+                                              maxlength="255" required>
+                                        {{$testimonial->message}}
+                                    </textarea>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-12">
@@ -91,17 +104,6 @@
                     </div>
 
 
-                    <div class="form-group">
-                        <div class="row">
-                                <div class="col-md-3"><strong>Message : *</strong></div>
-                                <div class="col-md-9">
-                                    <textarea class="form-control ckeditor" name="message" rows="7" style="resize: none"
-                                              maxlength="255" required>
-                                        {{$testimonial->message}}
-                                    </textarea>
-                                </div>
-                        </div>    
-                    </div>
                 </form>
             </div>
         </div>

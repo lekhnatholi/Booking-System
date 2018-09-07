@@ -62,7 +62,7 @@
                             <div class="row">
                                 {{--<div class="col-md-3"><strong>Description : *</strong></div>--}}
                                 <div class="col-md-12">
-                                        <textarea class="form-control ckeditor" name="description" placeholder="message"
+                                        <textarea class="form-control ckeditor" id="description" name="description" placeholder="message"
                                                   rows="7" style="resize: none;"  required></textarea>
                                 </div>
                             </div>
