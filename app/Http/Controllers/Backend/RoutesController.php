@@ -64,8 +64,19 @@ class RoutesController extends Controller
         }
         $routeId=$request->id;
         $route = Routes::where('routes_id',$routeId)->first();
+        return view('backend.route.show_route', compact('route'));
+    }
+    public function view()
+    {
+
+
+        $route = Routes::where('routes_id','DESC')->paginate(10);
+        dd($route);die;
         return view('backend.route.view_route', compact('route'));
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.

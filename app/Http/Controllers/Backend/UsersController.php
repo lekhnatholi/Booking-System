@@ -76,6 +76,13 @@ class UsersController extends Controller
         }
         $userId=$request->id;
         $user = Users::where('users_id',$userId)->first();
+        return view('backend.user.show_user', compact('user'));
+    }
+
+    public function view()
+    {
+
+        $user = Users::orderBy('users_id','DESC')->paginate(10);
         return view('backend.user.view_user', compact('user'));
     }
 

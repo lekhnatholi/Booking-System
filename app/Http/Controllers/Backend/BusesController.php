@@ -82,6 +82,12 @@ class BusesController extends Controller
         }
         $busId=$request->id;
         $bus = Buses::where('buses_id',$busId)->first();
+        return view('backend.bus.show_bus', compact('bus'));
+    }
+    public function view()
+    {
+
+        $bus = Buses::orderBy('buses_id','DESC')->paginate(10);
         return view('backend.bus.view_bus', compact('bus'));
     }
 

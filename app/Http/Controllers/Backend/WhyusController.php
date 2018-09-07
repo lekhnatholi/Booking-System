@@ -76,8 +76,16 @@ class WhyusController extends Controller
         }
         $whyusId=$request->id;
         $whyus = Whyus::where('whyus_id',$whyusId)->first();
+        return view('backend.whyus.show_whyus', compact('whyus'));
+    }
+
+    public function view()
+    {
+
+        $whyus = Whyus::orderBy('whyus_id','DESC')->paginate();
         return view('backend.whyus.view_whyus', compact('whyus'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

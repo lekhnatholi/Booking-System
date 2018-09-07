@@ -393,7 +393,7 @@
 
           <a href="#">
             <i class="fa fa-users text-red"></i>
-            <span>Users</span>
+            <span>Visitors</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -800,6 +800,14 @@
 	
 	<!-- peity -->
 	<script src="{{ url('public/backend/assets/vendor_components/jquery.peity/jquery.peity.js')}}"></script>
+<!-- DataTables -->
+<script src="{{ url('public/backend/assets/vendor_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ url('public/backend/assets/vendor_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 	
 	<!-- Lion_admin App -->
 	<script src="{{ url('public/backend/js/template.js')}}"></script>
@@ -812,8 +820,24 @@
 
   <script src="{{ url('public/backend/assets/vendor_plugins/iCheck/icheck.min.js')}}"></script>
 
+<script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/media/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/buttons.flash.min.js')}}"></script>
+<script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/ex-js/jszip.min.js')}}"></script>
+<script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/ex-js/pdfmake.min.js')}}"></script>
+<script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/ex-js/vfs_fonts.js')}}"></script>
+<script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/buttons.print.min.js ')}}"></script>
+
+<script src="{{ url('public/backend/js/pages/data-table.js ')}}"></script>
+<script>
+    $(document).ready(function () {
+        $('#bussearch').select2();
+    });
+
+</script>
+
 	
 </body>
 
-<!-- Mirrored from lion-admin-templates.multipurposethemes.com/lion-admin/main/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Aug 2018 11:29:04 GMT -->
 </html>

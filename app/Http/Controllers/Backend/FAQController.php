@@ -68,6 +68,13 @@ class FAQController extends Controller
         return view('backend.faq.show', compact('faq'));
     }
 
+    public function view()
+    {
+
+        $faq = FAQ::orderBy('faq_id','DESC')->paginate(10);
+        return view('backend.faq.view', compact('faq'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

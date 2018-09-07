@@ -77,6 +77,12 @@ class TravellersController extends Controller
         }
         $travellerId = $request->id;
         $traveller = Travellers::where('travellers_id', $travellerId)->first();
+        return view('backend.traveller.show_traveller', compact('traveller'));
+    }
+    public function view()
+    {
+
+        $traveller = Travellers::orderBy('travellers_id', 'DESC')->paginate();
         return view('backend.traveller.view_traveller', compact('traveller'));
     }
 

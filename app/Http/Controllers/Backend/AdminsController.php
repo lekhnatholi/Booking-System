@@ -74,6 +74,13 @@ class AdminsController extends Controller
         }
         $adminId = $request->id;
         $admin = Admins::where('admins_id', $adminId)->first();
+        return view('backend.admin.show_admin', compact('admin'));
+    }
+
+    public function view()
+    {
+
+        $admin = Admins::orderBy('admins_id', 'DESc')->paginate(10);
         return view('backend.admin.view_admin', compact('admin'));
     }
 
