@@ -157,7 +157,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Booking Dashboard
+                Schedule Dashboard
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -173,7 +173,7 @@
                 <div class="col-12 col-lg-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Booking <strong>Datatable</strong>&nbsp &nbsp                            </h3>
+                            <h3 class="box-title">Schedule <strong>Datatable</strong>&nbsp &nbsp                            </h3>
 
                             <a href="{{route('createSchedule')}}" class="btn btn-default label-success">+ Add New</a>
 
@@ -206,10 +206,10 @@
                                     <tr>
                                         <th>S.N</th>
                                         <th>Bus</th>
-                                        <th>DepartureDate</th>
-                                        <th>DepartureTime</th>
-                                        <th>ArrivalDate</th>
-                                        <th>ArrivalTime</th>
+                                        <th>Departure Date</th>
+                                        <th>Departure Time</th>
+                                        <th>Arrival Date</th>
+                                        <th>Arrival Time</th>
                                         <th>Shift</th>
                                         <th>Action</th>
                                     </tr>

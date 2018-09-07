@@ -18,7 +18,7 @@
         <div class="col-12 col-lg-8">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Create <strong style="color: #5fa7da">Booking</strong>&nbsp &nbsp</h3>
+                    <h3 class="box-title">Create <strong style="color: #5fa7da">Schedule</strong>&nbsp &nbsp</h3>
                 </div>
                
                 <div class="box-body">   

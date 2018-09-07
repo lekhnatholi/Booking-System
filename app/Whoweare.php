@@ -8,5 +8,5 @@ class Whoweare extends Model
 {
     protected $fillable=['title','image','description'];
 
-    protected $table='whoweare';
+    protected $table='whoweares';
 }

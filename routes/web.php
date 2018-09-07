@@ -198,7 +198,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
         Route::any('/store', 'RoutesController@store')->name('storeRoute');
 
-        Route::any('/show', 'RoutesController@show')->name('showRoute');
+        Route::any('/show/{id?}', 'RoutesController@show')->name('showRoute');
 
         Route::any('/view', 'RoutesController@view')->name('viewRoute');
 
@@ -219,7 +219,9 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
         Route::any('/store', 'BusesController@store')->name('storeBus');
 
-        Route::any('/show', 'BusesController@show')->name('showBus');
+        Route::any('/show/{id?}', 'BusesController@show')->name('showBus');
+
+        Route::any('/view', 'BusesController@view')->name('viewBus');
 
         Route::any('/edit/{id?}', 'BusesController@edit')->name('editBus');
 

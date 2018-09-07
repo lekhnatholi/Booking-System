@@ -72,7 +72,7 @@ class BookingsController extends Controller
         }
         $bookingId=$request->id;
         $booking = Bookings::where('bookings_id',$bookingId)->first();
-        return view('backend.booking.view_booking', compact('booking'));
+        return view('backend.booking.show_booking', compact('booking'));
     }
     public function view()
     {
