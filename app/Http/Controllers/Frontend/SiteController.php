@@ -26,8 +26,8 @@ class SiteController extends Controller
 
     public function index()
     {
-        $data['whoweare'] = Whoweare::all();
-        $data['whatweoffer'] = Whatweoffer::all();
+        //$data['whoweare'] = Whoweare::all();
+       // $data['whatweoffer'] = Whatweoffer::all();
         $data['testimonials'] = Testimonials::all();
         return view('frontend.index')->with($data);
     }
