@@ -55,12 +55,7 @@
 	<link rel="stylesheet" href="{{ url('public/backend/css/skins/_all-skins.css')}}">
 
   <link rel="stylesheet" href="{{ url('public/backend/assets/vendor_components/bootstrap/dist/css/bootstrap.min.css')}}">
-<<<<<<< HEAD
 
-
-	
-=======
->>>>>>> origin/master
 
     {{--ckeditor--}}
     <link rel="stylesheet" href="{{url('public/ckeditor/content.css')}}">
