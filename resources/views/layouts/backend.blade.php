@@ -55,13 +55,16 @@
 	<link rel="stylesheet" href="{{ url('public/backend/css/skins/_all-skins.css')}}">
 
   <link rel="stylesheet" href="{{ url('public/backend/assets/vendor_components/bootstrap/dist/css/bootstrap.min.css')}}">
+<<<<<<< HEAD
 
 
 	
+=======
+>>>>>>> origin/master
 
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
+    {{--ckeditor--}}
+    <link rel="stylesheet" href="{{url('public/ckeditor/content.css')}}">
+
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
@@ -397,7 +400,7 @@
 
           <a href="#">
             <i class="fa fa-users text-red"></i>
-            <span>Users</span>
+            <span>Visitors</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -413,37 +416,47 @@
 
 <li class="header nav-small-cap">OTHERS</li>  
     
-       <li class="treeview">
+       <li >
           <a  href="{{route('faq')}}">
             <i class="fa fa-binoculars text-green"></i> <span>FAQ</span>
           </a>
         </li>
 
-         <li class="treeview">
+         <li class="">
           <a  href="{{route('whyus')}}">
             <i class="fa fa-question text-orange"></i> <span>Why Us</span>
           </a>
         </li>
+    <li class="">
+          <a  href="{{route('whoweare')}}">
+            <i class="fa fa-question text-orange"></i> <span>Who we are</span>
+          </a>
+        </li>
+    <li class="">
+          <a  href="{{route('whatweoffer')}}">
+            <i class="fa fa-question text-orange"></i> <span>What we offer</span>
+          </a>
+        </li>
 
-         <li class="treeview">
+         <li class="">
           <a  href="{{route('testimonials')}}">
             <i class="fa fa-comment text-purple"></i> <span>Testimonials</span>
           </a>
         </li>
 
-         <li class="treeview">
+         <li class="">
           <a  href="{{route('teams')}}">
             <i class="fa fa-group text-blue"></i> <span>Teams</span>
           </a>
         </li>
 
-        <li class="treeview">
+        <li class="">
           <a  href="{{route('admins')}}">
             <i class="fa fa-android text-green"></i> <span>Admin</span>
           </a>
         </li>
 
-        <li class="treeview">
+        <li class="">
           <a  href="{{route('users')}}">
             <i class="fa fa-user text-yellow"></i> <span>User</span>
           </a>
@@ -843,10 +856,12 @@
     </script>
 
   <script src="{{ url('public/backend/assets/vendor_plugins/iCheck/icheck.min.js')}}"></script>
+<script src="{{ url('public/ckeditor/ckeditor.js') }}"></script>
+
+<script src="{{ url('public/backend/js/custom.js')}}"></script>
 
 
 	
 </body>
 
-<!-- Mirrored from lion-admin-templates.multipurposethemes.com/lion-admin/main/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Aug 2018 11:29:04 GMT -->
 </html>

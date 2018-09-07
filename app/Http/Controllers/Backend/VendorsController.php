@@ -77,6 +77,13 @@ class VendorsController extends Controller
         }
         $vendorId = $request->id;
         $vendor = Vendors::where('vendors_id', $vendorId)->first();
+        return view('backend.vendor.show_vendor', compact('vendor'));
+    }
+
+    public function view()
+    {
+
+        $vendor = Vendors::orderBy('vendors_id', 'DESC')->paginate();
         return view('backend.vendor.view_vendor', compact('vendor'));
     }
 

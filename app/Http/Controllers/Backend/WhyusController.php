@@ -89,6 +89,7 @@ class WhyusController extends Controller
         return view('backend.whyus.view_whyus', compact('whyus'));
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *

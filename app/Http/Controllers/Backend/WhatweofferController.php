@@ -55,7 +55,7 @@ class WhatweofferController extends Controller
         }
 
         $data['title'] = $request->title;
-        $data['description']= html_entity_decode(strip_tags( $request->description));
+        $data['description']=  $request->description;
         if($whatweoffer->create($data)){
             return redirect()->route('whatweoffer')->with('success','The record has been successfully inserted.');
         }
@@ -122,7 +122,7 @@ class WhatweofferController extends Controller
 
         }
         $data['title']=$request->title;
-        $data['description']= html_entity_decode(strip_tags( $request->description));
+        $data['description']=  $request->description;
         if(Whatweoffer::where('whatweoffer_id',$whatweofferId)->update($data)){
           return redirect()->route('whatweoffer')->with('success','The record was successfully inserted');
         }

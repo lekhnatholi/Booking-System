@@ -26,7 +26,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item active">Teams</li>
+                <li class="breadcrumb-item active">Bookings</li>
             </ol>
         </section>
 
@@ -38,7 +38,7 @@
                 <div class="col-12 col-lg-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Teams <strong></strong>&nbsp &nbsp                            </h3>
+                            <h3 class="box-title">Bookings <strong></strong>&nbsp &nbsp                            </h3>
 
                             <a href="{{route('createBooking')}}" class="btn btn-default label-success">+ Add New</a>
 
@@ -73,6 +73,7 @@
                                         <th>Bus Name</th>
                                         <th>Traveller </th>
                                         <th>Guest </th>
+                                        <th>Seat</th>
                                         <th>Profile</th>
                                         <th>Action</th>
                                     </tr>
@@ -84,6 +85,7 @@
                                             <td>{{$key->buses->title}}</td>
                                             <td>{{$key->travellers->email}}</td>
                                             <td>{{$key->guests->contact}}</td>
+                                            <td>{{$key->seat}}</td>
                                             <td>{{$key->profile}}</td>
 
                                             <td>
@@ -91,7 +93,7 @@
                                                     <tr>
                                                         <th>
                                                             <form action="{{route('showBooking')."/".$key->bookings_id}}" method="get">
-                                                                  method="get">
+
                                                                 <button type="submit" class="btn btn-info btn-xs">
                                                                     <i class="fa fa-eye"></i>
                                                                 </button>
@@ -107,7 +109,7 @@
                                                         <th>
                                                             <form class="client" action="{{route('destroyBooking')}}" method="post" onsubmit=" return ConfirmDelete()">
                                                                 {{csrf_field()}}
-                                                                <input type="hidden" name="id" value="{{$key->teams_id}}">
+                                                                <input type="hidden" name="id" value="{{$key->bookings_id}}">
                                                                 <button type="submit" class="btn btn-danger btn-xs">
                                                                     <i class="fa fa-trash-o"></i>
                                                                 </button>

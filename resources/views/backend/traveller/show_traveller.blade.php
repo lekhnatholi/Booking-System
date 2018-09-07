@@ -21,8 +21,7 @@
                 </div>
 
                 <div class="box-body">
-                <form action="{{route('updateTraveller')}}" method="post" enctype="multipart/form-data">
-                    {{csrf_field()}}
+
 
                     <div class="form-group">
                         <div class="row">
@@ -59,7 +58,16 @@
                         <div class="row">
                             <div class="col-md-3"><strong>Name : *</strong></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{$traveller->name}}" required>
+                                <input type="text" class="form-control" name="name" value="{{$traveller->name}}" disabled>
+                                <small class="text text-danger">{{$errors->first('name')}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3"><strong>Email : *</strong></div>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control"  value="{{$traveller->email}}" disabled>
                                 <small class="text text-danger">{{$errors->first('name')}}</small>
                             </div>
                         </div>
@@ -67,11 +75,12 @@
 
 
 
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3"><strong>Address : *</strong></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="address" value="{{$traveller->address}}" required>
+                                <input type="text" class="form-control" name="address" value="{{$traveller->address}}" disabled>
                                 <small class="text text-danger">{{$errors->first('address')}}</small>
                             </div>
                         </div>
@@ -82,7 +91,7 @@
                         <div class="row">
                             <div class="col-md-3"><strong>Contact</strong></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="contact" value="{{$traveller->contact}}" required>
+                                <input type="text" class="form-control" name="contact" value="{{$traveller->contact}}" disabled>
                                 <small class="text text-danger">{{$errors->first('contact')}}</small>
                             </div>
                         </div>

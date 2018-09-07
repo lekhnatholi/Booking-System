@@ -17,11 +17,7 @@ class SchedulesController extends Controller
         return view('backend.schedule.list_schedule', compact('schedules'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $buses=Buses::all();
@@ -109,7 +105,7 @@ class SchedulesController extends Controller
             return redirect()->back();
         }
         $scheduleId=$request->id;
-        $data['buses_id']=$request['bus_id'];
+        $data['buses_id']=$request['buses_id'];
         $data['departure_date']=$request['departure_date'];
         $data['departure_time']=$request['departure_time'];
         $data['arrival_date']=$request['arrival_date'];

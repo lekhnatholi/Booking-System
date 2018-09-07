@@ -1,17 +1,21 @@
 @extends('layouts.backend')
-@section('title', 'View Bookings')
+
+@section('title', 'Bus')
+@section('activeBus', 'active')
+
 @section('content')
+
 
 
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Tables
+                FAQ
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                <li class="breadcrumb-item"><a href="#">FAQ</a></li>
                 <li class="breadcrumb-item active">Data tables</li>
             </ol>
         </section>
@@ -33,22 +37,18 @@
                                     <thead>
                                     <tr>
                                         <th>S.N.</th>
-                                        <th>Traveller</th>
-                                        <th>Guest</th>
-                                        <th>Bus</th>
-                                        <th>Seat</th>
-                                        <th>Price</th>
+                                        <th>Question</th>
+                                        <th>Answer</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($booking as $count =>$key)
+                                    @foreach($faq as $count =>$key)
+
                                         <tr>
                                             <td>{{++$count}}</td>
-                                            <td>{{$key->travellers->name}}</td>
-                                            <td>{{$key->guests->contact}}</td>
-                                            <td>{{$key->buses->name}}</td>
-                                            <td>{{$key->seat}}</td>
-                                            <td>{{$key->price}}</td>
+                                            <td>{{$key->question}}</td>
+                                            <td>{{$key->answer}}</td>
                                         </tr>
                                     @endforeach
 
@@ -69,4 +69,5 @@
         </section>
         <!-- /.content -->
     </div>
+
 @endsection
