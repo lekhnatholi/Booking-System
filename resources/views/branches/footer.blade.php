@@ -1,4 +1,6 @@
 
+
+
 <!-- Footer -->
 <footer id="footer">
 
@@ -117,6 +119,13 @@
 <script src="{{ url('public/frontend/js/plugins.min.js') }}"></script>
 <script src="{{ url('public/frontend/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ url('public/frontend/js/custom.js') }}"></script>
+
+
+
+
+  
+
+
 
 
 </body>

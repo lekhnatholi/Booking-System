@@ -137,7 +137,7 @@
 
 
 
-                            <a href="{{route('viewGuest')}}" class="btn btn-info label-success pull-right" > <i class="glyphicon glyphicon-eye-open"></i> views all</a>
+                            <a href="{{route('showGuest')}}" class="btn btn-info label-success pull-right" > <i class="glyphicon glyphicon-eye-open"></i> views all</a>
                         </div>
 
                         <div class="box-body">
@@ -177,14 +177,14 @@
                                             <td>
                                                 <table>
                                                     <tr>
-                                                        <th>
-                                                        <form action="{{route('showGuest')."/".$key->guests_id}}"
-                                                        method="get">
-                                                        <button type="submit" class="btn btn-info btn-xs">
-                                                        <i class="fa fa-eye"></i>
-                                                        </button>
-                                                        </form>
-                                                        </th>
+                                                        {{--<th>--}}
+                                                        {{--<form action="{{route('showSchedule')."/".$key->schedules_id}}"--}}
+                                                        {{--method="get">--}}
+                                                        {{--<button type="submit" class="btn btn-info btn-xs">--}}
+                                                        {{--<i class="fa fa-eye"></i>--}}
+                                                        {{--</button>--}}
+                                                        {{--</form>--}}
+                                                        {{--</th>--}}
                                                         <th>
                                                             <form action="{{route('editGuest')."/".$key->guests_id}}" method="get">
                                                                 <button type="submit" class="btn btn-success btn-xs">

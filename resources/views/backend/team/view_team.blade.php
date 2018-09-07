@@ -82,8 +82,6 @@
                                         <th>S.N.</th>
                                         <th>title</th>
                                         <th>Name</th>
-                                        <th>Facebook</th>
-                                        <th>twitter</th>
                                         <th>Post</th>
 
                                     </tr>
@@ -95,8 +93,6 @@
                                             <td>{{++$count}}</td>
                                             <td>{{$key->title}}</td>
                                             <td>{{$key->name}}</td>
-                                            <td>{{$key->facebook}}</td>
-                                            <td>{{$key->twitter}}</td>
                                             <td>{{$key->post}}</td>
 
                                         </tr>

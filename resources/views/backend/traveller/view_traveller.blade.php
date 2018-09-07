@@ -82,7 +82,6 @@
                                         <th>S.N.</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Address</th>
                                         <th>Contact</th>
                                         <th>status</th>
 
@@ -95,7 +94,6 @@
                                             <td>{{++$count}}</td>
                                             <td>{{$key->name}}</td>
                                             <td>{{$key->email}}</td>
-                                            <td>{{$key->address}}</td>
                                             <td>{{$key->contact}}</td>
                                             <td>{{$key->profile}}</td>
 

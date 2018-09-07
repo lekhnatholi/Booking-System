@@ -1,5 +1,14 @@
 @extends('layouts.backend')
+
+@section('title', 'Booking')
+@section('activeBooking', 'active')
+
 @section('content')
+
+
+
+
+
 
     <script>
         window.setTimeout(function () {
@@ -17,7 +26,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item active">Booking</li>
+                <li class="breadcrumb-item active">Teams</li>
             </ol>
         </section>
 
@@ -29,7 +38,7 @@
                 <div class="col-12 col-lg-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Booking <strong>Datatable</strong>&nbsp &nbsp                            </h3>
+                            <h3 class="box-title">Teams <strong></strong>&nbsp &nbsp                            </h3>
 
                             <a href="{{route('createBooking')}}" class="btn btn-default label-success">+ Add New</a>
 
@@ -60,11 +69,10 @@
                                        class="table   table-responsive editable_table table-striped table-hover">
                                     <thead>
                                     <tr>
-                                        <th>S.N.</th>
+                                        <th>S.N</th>
                                         <th>Bus Name</th>
-                                        <th>Traveller</th>
-                                        <th>Subject</th>
-                                        <th>Guest</th>
+                                        <th>Traveller </th>
+                                        <th>Guest </th>
                                         <th>Profile</th>
                                         <th>Action</th>
                                     </tr>
@@ -76,12 +84,13 @@
                                             <td>{{$key->buses->title}}</td>
                                             <td>{{$key->travellers->email}}</td>
                                             <td>{{$key->guests->contact}}</td>
-                                            <td><span class="label label-warning">{{$key->profile}} </span></td>
+                                            <td>{{$key->profile}}</td>
+
                                             <td>
                                                 <table>
                                                     <tr>
                                                         <th>
-                                                            <form action="{{route('showBooking')."/".$key->bookings_id}}"
+                                                            <form action="{{route('showBooking')."/".$key->bookings_id}}" method="get">
                                                                   method="get">
                                                                 <button type="submit" class="btn btn-info btn-xs">
                                                                     <i class="fa fa-eye"></i>
@@ -89,20 +98,16 @@
                                                             </form>
                                                         </th>
                                                         <th>
-                                                            <form action="{{route('editBooking')."/".$key->bookings_id}}"
-                                                                  method="get">
+                                                            <form action="{{route('editBooking')."/".$key->bookings_id}}" method="get">
                                                                 <button type="submit" class="btn btn-success btn-xs">
                                                                     <i class="fa fa-pencil"></i>
                                                                 </button>
                                                             </form>
                                                         </th>
                                                         <th>
-                                                            <form class="client" action="{{route('destroyBooking')}}"
-                                                                  method="post"
-                                                                  onsubmit=" return ConfirmDelete()">
+                                                            <form class="client" action="{{route('destroyBooking')}}" method="post" onsubmit=" return ConfirmDelete()">
                                                                 {{csrf_field()}}
-                                                                <input type="hidden" name="id"
-                                                                       value="{{$key->bookings_id}}">
+                                                                <input type="hidden" name="id" value="{{$key->teams_id}}">
                                                                 <button type="submit" class="btn btn-danger btn-xs">
                                                                     <i class="fa fa-trash-o"></i>
                                                                 </button>
@@ -122,11 +127,11 @@
                 </div>
             </div>
         </section>
-
     </div>
 
     <script>
-        function ConfirmDelete() {
+        function ConfirmDelete()
+        {
             var x = confirm("Are you sure you want to delete?");
             if (x)
                 return true;
@@ -135,6 +140,5 @@
         }
     </script>
 
-
-
 @endsection
+

@@ -38,9 +38,9 @@ class SchedulesController extends Controller
         if(!Auth::user() | Auth::user()->user_type!='vendor'){
             return redirect()->route('home');
         }
-        $vendor=Vendors::where('email',Auth::user()->email);
+        $vendor=Vendors::where('email',Auth::user()->email)->first();
         $vendorId=$vendor->vendors_id;
-        $buses=Buses::where('vendors_id',$vendorId);
+        $buses=Buses::where('vendors_id',$vendorId)->get();
         return view('frontend.schedule.create_schedule',compact('buses'));
     }
 
@@ -104,7 +104,7 @@ class SchedulesController extends Controller
 
         $vendor=Vendors::where('email',Auth::user()->email)->first();
         $vendorId=$vendor->vendors_id;
-        $buses=Buses::where('vendors_id',$vendorId);
+        $buses=Buses::where('vendors_id',$vendorId)->get();
         $schedule = Schedules::where('schedules_id',$scheduleId)->first();
         return view('frontend.schedule.edit_schedule', compact('schedule','buses'));
     }

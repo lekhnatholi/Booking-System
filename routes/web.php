@@ -39,8 +39,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::group(['middleware' => 'vendor', 'prefix' => 'vendor'], function () {
 
         Route::any('/profile', 'VendorsController@profileVendor')->name('profileVendor');
-        Route::any('/editProfile', 'VendorController@editProfileVendor')->name('editProfileVendor');
-        Route::any('/updateProfile', 'VendorController@updateProfileVendor')->name('updateProfileVendor');
+        Route::any('/editProfile', 'VendorsController@editProfileVendor')->name('editProfileVendor');
+        Route::any('/updateProfile', 'VendorsController@updateProfileVendor')->name('updateProfileVendor');
 
         Route::group(['prefix' => 'vehicles'], function () {
 
@@ -111,10 +111,10 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     //traveller
     Route::group(['middleware' => 'traveller'], function () {
-        Route::any('/profile', 'SiteController@profile')->name('profile');
-        Route::any('/editProfile', 'SiteController@editProfile')->name('editProfile');
-        Route::any('/updateProfile', 'SiteController@updateProfile')->name('updateProfile');
-        Route::any('/history', 'SiteController@history')->name('history');
+        Route::any('/profile', 'TravellersController@profile')->name('profile');
+        Route::any('/editProfile', 'TravellersController@editProfile')->name('editProfile');
+        Route::any('/updateProfile', 'TravellersController@updateProfile')->name('updateProfile');
+        Route::any('/history', 'TravellersController@history')->name('history');
     });
 
     //register, login and logout
@@ -198,7 +198,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
         Route::any('/store', 'RoutesController@store')->name('storeRoute');
 
-        Route::any('/show/{id?}', 'RoutesController@show')->name('showRoute');
+        Route::any('/show', 'RoutesController@show')->name('showRoute');
 
         Route::any('/view', 'RoutesController@view')->name('viewRoute');
 
@@ -219,9 +219,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
         Route::any('/store', 'BusesController@store')->name('storeBus');
 
-        Route::any('/view', 'BusesController@view')->name('viewBus');
-
-        Route::any('/show/{id?}', 'BusesController@show')->name('showBus');
+        Route::any('/show', 'BusesController@show')->name('showBus');
 
         Route::any('/edit/{id?}', 'BusesController@edit')->name('editBus');
 
@@ -281,7 +279,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
         Route::any('/store', 'TravellersController@store')->name('storeTraveller');
 
-        Route::any('/show/{id?}', 'TravellersController@show')->name('showTraveller');
+        Route::any('/show', 'TravellersController@show')->name('showTraveller');
 
         Route::any('/view', 'TravellersController@view')->name('viewTraveller');
 
@@ -301,7 +299,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
         Route::any('/store', 'GuestsController@store')->name('storeGuest');
 
-        Route::any('/show/{id?}', 'GuestsController@show')->name('showGuest');
+        Route::any('/show', 'GuestsController@show')->name('showGuest');
 
         Route::any('/view', 'GuestsController@view')->name('viewGuest');
 
@@ -321,7 +319,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
         Route::any('/store', 'VendorsController@store')->name('storeVendor');
 
-        Route::any('/show/{id?}', 'VendorsController@show')->name('showVendor');
+        Route::any('/show', 'VendorsController@show')->name('showVendor');
 
         Route::any('/view', 'VendorsController@view')->name('viewVendor');
 
@@ -549,6 +547,45 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
         Route::any('/update', 'WhyusController@update')->name('updateWhyus');
 
         Route::any('/delete', 'WhyusController@destroy')->name('destroyWhyus');
+
+
+    });
+
+
+    Route::group(['prefix' => 'whatweoffer'], function () {
+
+        Route::any('/', 'WhatweofferController@index')->name('whatweoffer');
+
+        Route::any('/create', 'WhatweofferController@create')->name('createWhatweoffer');
+
+        Route::any('/store', 'WhatweofferController@store')->name('storeWhatweoffer');
+
+        Route::any('/show/{id?}', 'WhatweofferController@show')->name('showWhatweoffer');
+
+        Route::any('/edit/{id?}', 'WhatweofferController@edit')->name('editWhatweoffer');
+
+        Route::any('/update', 'WhatweofferController@update')->name('updateWhatweoffer');
+
+        Route::any('/delete', 'WhatweofferController@destroy')->name('destroyWhatweoffer');
+
+    });
+
+
+    Route::group(['prefix' => 'whoweare'], function () {
+
+        Route::any('/', 'WhoweareController@index')->name('whoweare');
+
+        Route::any('/create', 'WhoweareController@create')->name('createWhoweare');
+
+        Route::any('/store', 'WhoweareController@store')->name('storeWhoweare');
+
+        Route::any('/show/{id?}', 'WhoweareController@show')->name('showWhoweare');
+
+        Route::any('/edit/{id?}', 'WhoweareController@edit')->name('editWhoweare');
+
+        Route::any('/update', 'WhoweareController@update')->name('updateWhoweare');
+
+        Route::any('/delete', 'WhoweareController@destroy')->name('destroyWhoweare');
 
 
     });

@@ -37,7 +37,7 @@ class VendorsController extends Controller
         }
         $vendorEmail = Auth::user()->email;
         $vendor = Vendors::where('email', $vendorEmail)->first();
-        return view('frontend.profileedit', compact('vendor'));
+        return view('frontend.vendor.profileedit', compact('vendor'));
     }
 
     public function updateProfileVendor(Request $request)

@@ -81,8 +81,11 @@ class WhyusController extends Controller
 
     public function view()
     {
-
-        $whyus = Whyus::orderBy('whyus_id','DESC')->paginate();
+//        if(!$request->id){
+//            return redirect()->back();
+//        }
+//        $whyusId=$request->id;
+        $whyus = Whyus::orderBy('whyus_id','DESC')->paginate(10);
         return view('backend.whyus.view_whyus', compact('whyus'));
     }
 

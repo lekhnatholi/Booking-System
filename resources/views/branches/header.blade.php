@@ -26,6 +26,9 @@
     <link href="{{ url('public/frontend/css/bootstrap-datepicker.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{url('public/frontend/css/overrides.css')}}">
+
+   
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -138,35 +141,15 @@
                                     Logout
                                     </a>
                                     @else
-                <div class="col-md-12" >
-                    <form action="{{route('loginUser')}}" id="loginUser" class="contact-form "
-                          method="post">
-                        {{@csrf_field()}}
-                        <div class="col-md-4 col-sm-4">
-                            <input class="form-control" type="text" name="email"
-                                   id="userLoginEmail" placeholder="Email *"/>
-                        </div>
 
-                        <div class="col-md-4 col-sm-4">
-                            <input class="form-control" type="password" name="password"
-                                   placeholder="Password *"/>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <button id="submit" class="btn btn-primary">Login</button>
-
-                        </div>
-                        <div class="col-md-12 col-sm-4">
-
-                            <center><a href="#" class="text-success forget">Forgot Password?</a>
-                            </center>
-
-                        </div>
-
-                        <div class="clearfix">
-
-                        </div>
-                    </form>
-                </div>                    
+                                    <a href="#">Don't you have an account?</a>&emsp;
+                                    <button class="btn btn-deault " data-toggle="collapse" data-target="" id="register">
+                                        Register
+                                    </button>
+                                    <button class="btn btn-deault " data-toggle="collapse" data-target="" id="login">
+                                        Login
+                                    </button>
+                            
                                 @endif
 
                                     <!-- Shortcode Menu Ends -->
@@ -215,33 +198,62 @@
         <span id="close"><i class="fa fa-times pull-right"></i></span>
         <div class="content col-sm-12 col-md-6 col-md-offset-2">
             <h3 class="title">Don&#39;t have an Account? </h3>
+            
             <form action="{{route('registerUser')}}" class="contact-form"  method="post">
-                {{@csrf_field()}}
-                <div id="success"></div>
-                <div class="row" role="form">
-                    <div class="col-md-10" id="registerUser">
-                        <small class="text text-danger">{{$errors->first('email')}}</small>
-                        <input type="text" class="form-control" name="email" id="userRegisterEmail"
-                               placeholder="Email *"/>
-                    </div>
-                </div>
-                <div class="row" role="form">
-                    <div class="col-md-10">
-                        <small class="text text-danger">{{$errors->first('password')}}</small>
-                        <input type="password" class="form-control" name="password" id="exampleInputEmail2"
-                               placeholder="Password *"/>
-                    </div>
-                </div>
-                <div class="row" role="form">
-                    <div class="col-md-10">
-                        <input type="password" class="form-control" name="password_confirmation"
-                               placeholder="Confirm Password *"/>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <button id="submit" class="btn btn-default">Register Now</button>
-            </form>
+                    {{@csrf_field()}}
+                    <div id="success"></div>
+                        <center>
+                                <div class="row" role="form">
+                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                         <div class="col-md-8 col-md-offset-2" id="registerUser">
+ 
+                                             @if(!empty($email))
+ 
+                                                <input id="email" type="email" class="form-control" name="email" id="userRegisterEmail" value="{{$email}}" required placeholder="Email*">
+ 
+                                             @else
+ 
+                                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Email *">
+ 
+                                             @endif
+ 
+                                            @if ($errors->has('email'))
+                                               <span class="help-block">
+                                                   <strong>{{ $errors->first('email') }}</strong>
+                                               </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <br>
+                                <div class="row" role="form">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <small class="text text-danger">{{$errors->first('password')}}</small>
+                                            <input type="password" class="form-control" name="password" id="exampleInputEmail2"
+                                                   placeholder="Password *"/>
+                                    </div>
+                                </div>
+
+                                    <br>
+                                <div class="row" role="form">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <input type="password" class="form-control" name="password_confirmation"
+                                                   placeholder="Confirm Password *"/>
+                                    </div>
+                                </div>
+
+                                    <br>
+                                </center>
+                                    <div class="clearfix"></div>
+
+                                <button id="submit" class="btn btn-primary col-md-offset-5" style="background-color: #800000cf;color: white;">Register Now</button>
+
+                                
+                </form>
         </div>
+
+
         <!-- .content -->
         <div class="col-sm-12 col-md-4" style="margin-top: -17px;">
             <h3 class="title">Login Now</h3>
@@ -259,15 +271,14 @@
                         </span>
                     </div>
                 </form>
-            <div class="orSignUp" style="margin-top: 20px;">
-                <a href="#" class="btn btn-md " style="color:#fff ;background: #3b5999;">
-                    Sign in with &nbsp;<i class="fa fa-facebook "></i>
-                </a>&nbsp;
-                <a href="#" class="btn btn-md " style="color:#fff ;background: #dd4b39;">
-                    Sign in with &nbsp;<i class="fa fa-google"></i>
-                </a>
-
-            </div>
+                <div class="orSignUp col-md-offset-3">
+                    <a href="{{ url('login/facebook') }}" class="btn btn-md " style="color:#fff ;background: #3b5999;">
+                                        Sign in with &nbsp <i class="fa fa-facebook "></i>
+                    </a> &nbsp &nbsp
+                    <a href="{{ url('login/google') }}" class="btn btn-md " style="color:#fff ;background: #dd4b39;">
+                                        Sign in with &nbsp <i class="fa fa-google"></i>
+                    </a>
+                </div>
         </div>
         
     

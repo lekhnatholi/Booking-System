@@ -165,7 +165,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($items as $count => $key)
+                                    @foreach($faqs as $count => $key)
                                         <tr>
                                             <td>{{++$count}}</td>
                                             <td>{{$key->question}}</td>
@@ -207,7 +207,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-md-12" align="center">{{ $items->links() }}</div>
+                        <div class="col-md-12" align="center">{{ $faqs->links() }}</div>
                     </div>
                 </div>
             </div>

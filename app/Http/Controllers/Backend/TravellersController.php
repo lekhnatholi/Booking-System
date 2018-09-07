@@ -70,19 +70,13 @@ class TravellersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show()
     {
-        if (!$request->id) {
-            return redirect()->back();
-        }
-        $travellerId = $request->id;
-        $traveller = Travellers::where('travellers_id', $travellerId)->first();
-        return view('backend.traveller.show_traveller', compact('traveller'));
-    }
-    public function view()
-    {
-
-        $traveller = Travellers::orderBy('travellers_id', 'DESC')->paginate();
+//        if (!$request->id) {
+//            return redirect()->back();
+//        }
+//        $travellerId = $request->id;
+        $traveller = Travellers::orderBy('travellers_id', 'DESC')->paginate(8);
         return view('backend.traveller.view_traveller', compact('traveller'));
     }
 

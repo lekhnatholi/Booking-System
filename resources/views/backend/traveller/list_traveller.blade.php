@@ -128,7 +128,7 @@
 
 
 
-                            <a href="{{route('viewTraveller')}}" class="btn btn-info label-success pull-right" > <i class="glyphicon glyphicon-eye-open"></i> views all</a>
+                            <a href="{{route('showTraveller')}}" class="btn btn-info label-success pull-right" > <i class="glyphicon glyphicon-eye-open"></i> views all</a>
                         </div>
 
                         <div class="box-body">
@@ -156,7 +156,6 @@
                                         <th>S.No.</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Address</th>
                                         <th>Contact</th>
                                         <th>status</th>
                                         <th>Action</th>
@@ -168,20 +167,19 @@
                                             <td>{{++$count}}</td>
                                             <td>{{$key->name}}</td>
                                             <td>{{$key->email}}</td>
-                                            <td>{{$key->Address}}</td>
                                             <td>{{$key->contact}}</td>
                                             <td>{{$key->profile}}</td>
                                             <td>
                                                 <table>
                                                     <tr>
-                                                        <th>
-                                                        <form action="{{route('showTraveller')."/".$key->travellers_id}}"
-                                                        method="get">
-                                                        <button type="submit" class="btn btn-info btn-xs">
-                                                        <i class="fa fa-eye"></i>
-                                                        </button>
-                                                        </form>
-                                                        </th>
+                                                        {{--<th>--}}
+                                                        {{--<form action="{{route('showSchedule')."/".$key->schedules_id}}"--}}
+                                                        {{--method="get">--}}
+                                                        {{--<button type="submit" class="btn btn-info btn-xs">--}}
+                                                        {{--<i class="fa fa-eye"></i>--}}
+                                                        {{--</button>--}}
+                                                        {{--</form>--}}
+                                                        {{--</th>--}}
                                                         <th>
                                                             <form action="{{route('editTraveller')."/".$key->travellers_id}}" method="get">
                                                                 <button type="submit" class="btn btn-success btn-xs">

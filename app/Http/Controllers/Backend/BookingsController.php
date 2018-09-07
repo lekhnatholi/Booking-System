@@ -74,6 +74,11 @@ class BookingsController extends Controller
         $booking = Bookings::where('bookings_id',$bookingId)->first();
         return view('backend.booking.view_booking', compact('booking'));
     }
+    public function view()
+    {
+        $booking = Bookings::orderBy('bookings_id','DESC')->paginate(10);
+        return view('backend.booking.view_booking', compact('booking'));
+    }
 
     /**
      * Show the form for editing the specified resource.
