@@ -38,6 +38,12 @@
   .owl-carousel .col-sm-12 {
     max-width: 750px;
   }
+
+ .arrow
+  {
+  	margin-top: 120px; 
+  	margin-left: 27px;
+  }
 }
 /******************************************************************************
   Max Width "767px"
@@ -226,6 +232,12 @@
 .single-product{
 	margin-bottom:40px;
 }
+
+ .arrow
+  {
+  	margin-top: 120px; 
+  	margin-left: 27px;
+  }
 }  
 /******************************************************************************
   Min Width "992px"
@@ -372,6 +384,12 @@
 	.side-navbar.navbar-default .navbar-nav > li > a.has-submenu{
 		background:none!important;
 	}
+
+	.arrow
+  {
+  	margin-top: 120px; 
+  	margin-left: 27px;
+  }
 	
 }
 /******************************************************************************
@@ -413,6 +431,12 @@
 		float:none;
 		border-bottom:none;
 	}
+
+	.arrow
+  {
+  	margin-top: 120px; 
+  	margin-left: 27px;
+  }
 	
 }
 /******************************************************************************
@@ -652,6 +676,21 @@
 		display:block;
 		width:100%;
 	}
+
+	.rotate90
+	{
+		-webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    width: 80px;
+    margin-top: 2px; 
+	}
+
+}
+
+
 }
 
 @media (max-width: 480px) 
@@ -667,5 +706,13 @@
     /* -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05); */
     box-shadow: 0px 5px 27px #1b191a;
 	}
+
+	.primary-search-form-small {
+    height: 797px;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
    
 }

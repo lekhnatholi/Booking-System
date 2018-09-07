@@ -21,6 +21,12 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::any('/faq', 'SiteController@faq')->name('frontfaq');
     Route::any('/tnc', 'SiteController@tnc')->name('fronttnc');
 
+
+/* social login */
+    Route::get('/login/{social}','SiteController@socialLogin')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
+     
+    Route::get('/login/{social}/callback','SiteController@handleProviderCallback')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
+
     //contact
     Route::any('/contact', 'SiteController@contact')->name('contact');
     Route::any('/contact/form', 'SiteController@contactForm')->name('contactForm');

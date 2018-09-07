@@ -8,5 +8,5 @@ class Whatweoffer extends Model
 {
     protected $fillable=['title','image','description'];
 
-    protected $table='Whatweoffer';
+    protected $table='whatweoffers';
 }

@@ -13,6 +13,7 @@ use App\Vendors;
 use App\Testimonials;
 use App\Whoweare;
 use App\Whatweoffer;
+use Socialite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -200,6 +201,42 @@ class SiteController extends Controller
         $bustypes = Bustypes::all();
         return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat', 'bustype', 'shift', 'price'));
     }
+
+
+    public function socialLogin($social)
+ 
+   {
+ 
+       return Socialite::driver($social)->redirect();
+ 
+   }
+ 
+   
+ 
+   public function handleProviderCallback($social)
+ 
+   {
+        $data['whoweare'] = Whoweare::all();
+        $data['whatweoffer'] = Whatweoffer::all();
+        $data['testimonials'] = Testimonials::all();
+ 
+       $userSocial = Socialite::driver($social)->user();
+ 
+       $user = Users::where(['email' => $userSocial->getEmail()])->first();
+ 
+       if($user){
+ 
+           Auth::login($user);
+ 
+           return redirect()->route('home');
+ 
+       }else{
+ 
+           return view('frontend.index',['email' => $userSocial->getEmail()])->with($data);
+ 
+       }
+ 
+   }
 
 
 }

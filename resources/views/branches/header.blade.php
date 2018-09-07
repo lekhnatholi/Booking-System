@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,8 @@
 
     <link rel="stylesheet" href="{{url('public/frontend/css/overrides.css')}}">
 
-   
+    <!-- slider -->
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]>
@@ -142,13 +144,42 @@
                                     </a>
                                     @else
 
-                                    <a href="#">Don't you have an account?</a>&emsp;
-                                    <button class="btn btn-deault " data-toggle="collapse" data-target="" id="register">
-                                        Register
-                                    </button>
-                                    <button class="btn btn-deault " data-toggle="collapse" data-target="" id="login">
-                                        Login
-                                    </button>
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <form action="{{route('loginUser')}}" id="loginUser" class="contact-form " method="post">
+                                                {{@csrf_field()}}
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <input class="form-control" type="text" name="email" id="userLoginEmail" placeholder="Email *"/>
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <input class="form-control" type="password" name="password" placeholder="Password *"/>
+                                                     <p>
+                                                        <a href="#" class="text-success forget">Forgot Password?</a>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-2 col-sm-6">
+                                                    <div class="clearfix">
+                                                        <button id="submit" class="btn btn-default" style="color: white">Login</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    
+                                
+                                        <div class="col-md-5">
+                                            <!-- <a href="#">Don't you have an account?</a>&emsp; -->
+                                           &nbsp&nbsp<strong> Or Click Here To: </strong>&nbsp
+                                            <button class="btn btn-deault " data-toggle="collapse" data-target="" id="register" style="background-color: #800000cf;color: white;">
+                                                Register
+                                            </button>
+                                           <!--  <button class="btn btn-deault " data-toggle="collapse" data-target="" id="login">
+                                                Login
+                                            </button> -->
+                                        </div>
+                                    </div>
                             
                                 @endif
 
@@ -196,8 +227,14 @@
     <!--    login and register form-->
     <div class="container row collapse loginx">
         <span id="close"><i class="fa fa-times pull-right"></i></span>
-        <div class="content col-sm-12 col-md-6 col-md-offset-2">
-            <h3 class="title">Don&#39;t have an Account? </h3>
+        <div class="content col-sm-12 col-md-6 col-md-offset-1">
+           <div class = "section-title" data-animation = "fadeInUp">
+
+            <!--  Social Media Sign Up  -->
+                    <h1 class = "title" style="font-size: 24px;color: #5da6da;text-transform: capitalize;">Don't Have an account? Register Here</h1>
+                </div>
+
+                <!-- Manual Registration -->
             
             <form action="{{route('registerUser')}}" class="contact-form"  method="post">
                     {{@csrf_field()}}
@@ -226,7 +263,7 @@
                                     </div>
                                 </div>
 
-                                    <br>
+                                    
                                 <div class="row" role="form">
                                     <div class="col-md-8 col-md-offset-2">
                                         <small class="text text-danger">{{$errors->first('password')}}</small>
@@ -235,7 +272,7 @@
                                     </div>
                                 </div>
 
-                                    <br>
+                                    
                                 <div class="row" role="form">
                                     <div class="col-md-8 col-md-offset-2">
                                         <input type="password" class="form-control" name="password_confirmation"
@@ -243,7 +280,7 @@
                                     </div>
                                 </div>
 
-                                    <br>
+                                    
                                 </center>
                                     <div class="clearfix"></div>
 
@@ -251,12 +288,28 @@
 
                                 
                 </form>
+                <br>
+                 <div class = "section-title" data-animation = "fadeInUp">
+                
+                    <div class="orSignUp col-md-offset-3">
+                        <a href="{{ url('login/facebook') }}" class="btn btn-md " style="color:#fff ;background: #3b5999;">
+                                            Sign Up with &nbsp <i class="fa fa-facebook "></i>
+                        </a> &nbsp &nbsp
+                        <a href="{{ url('login/google') }}" class="btn btn-md " style="color:#fff ;background: #dd4b39;">
+                                            Sign Up with &nbsp <i class="fa fa-google"></i>
+                        </a>
+                    </div>
+                 </div>
         </div>
+
+        <!-- End of Registration -->
 
 
         <!-- .content -->
         <div class="col-sm-12 col-md-4" style="margin-top: -17px;">
-            <h3 class="title">Login Now</h3>
+            <div class = "section-title" data-animation = "fadeInUp">
+                    <h1 class = "title" style="font-size: 22px;color: #5da6da;text-transform: capitalize;">Login Now</h1>
+                </div>
 
 
             <div id="success">  </div>
@@ -271,15 +324,42 @@
                         </span>
                     </div>
                 </form>
-                <div class="orSignUp col-md-offset-3">
+                 
+                <br>
+                <div class="orSignUp">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <a href="{{ url('login/facebook') }}" class="btn btn-md " style="color:#fff ;background: #3b5999;">
+                                                Sign In with &nbsp <i class="fa fa-facebook "></i>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <a href="{{ url('login/google') }}" class="btn btn-md " style="color:#fff ;background: #dd4b39;">
+                                                Sign In with &nbsp <i class="fa fa-google"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                   
+        </div>
+
+        <!-- <div class="col-sm-12 col-md-4" style="margin-top: -17px;">
+            <div class = "section-title" data-animation = "fadeInUp">
+                    <h1 class = "title" style="font-size: 22px;color: #5da6da;text-transform: capitalize;">Or Sign Up Using Social Media</h1>
+                </div>
+
+            <div id="success">  </div>
+            <div class="orSignUp">
                     <a href="{{ url('login/facebook') }}" class="btn btn-md " style="color:#fff ;background: #3b5999;">
-                                        Sign in with &nbsp <i class="fa fa-facebook "></i>
+                                        Sign Up with &nbsp <i class="fa fa-facebook "></i>
                     </a> &nbsp &nbsp
                     <a href="{{ url('login/google') }}" class="btn btn-md " style="color:#fff ;background: #dd4b39;">
-                                        Sign in with &nbsp <i class="fa fa-google"></i>
+                                        Sign Up with &nbsp <i class="fa fa-google"></i>
                     </a>
                 </div>
-        </div>
+            </div>
+        </div> -->
+    </div>
         
     
         <!--    login and register form-->

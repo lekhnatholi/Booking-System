@@ -44,6 +44,7 @@
 .primary-search-form .search-form label {
     font-weight: 400;
     box-shadow:2px 3px 3px -3px #060606f0;
+    margin-top: 8px;
 }
 
 

@@ -23,6 +23,8 @@
 <link rel="stylesheet" type="text/css" href="{{ url('public/backend/assets/vendor_components/material-design-iconic-font/css/materialdesignicons.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url('public/backend/assets/vendor_components/simple-line-icons-master/css/simple-line-icons.css')}}">
 
+<link rel="stylesheet" href="{{ url('public/backend/assets/vendor_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+
 <link rel="stylesheet" href="{{ url('public/backend/assets/vendor_plugins/iCheck/all.css')}}">
     
 	<!-- Bootstrap 4.0-->
@@ -53,6 +55,8 @@
 	<link rel="stylesheet" href="{{ url('public/backend/css/skins/_all-skins.css')}}">
 
   <link rel="stylesheet" href="{{ url('public/backend/assets/vendor_components/bootstrap/dist/css/bootstrap.min.css')}}">
+
+
 	
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -828,6 +832,7 @@
   <script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/ex-js/vfs_fonts.js')}}"></script>
   <script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/buttons.html5.min.js')}}"></script>
   <script src="{{ url('public/backend/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/buttons.print.min.js ')}}"></script>
+  <script src="{{ url('public/backend/assets/vendor_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 
    <script src="{{ url('public/backend/js/pages/data-table.js ')}}"></script>
     <script>
