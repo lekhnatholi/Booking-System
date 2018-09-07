@@ -117,7 +117,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Testimonial
+                Booking Dashboard
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>

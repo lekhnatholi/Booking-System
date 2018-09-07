@@ -79,10 +79,10 @@ class BustypesController extends Controller
 
     public function show(Request $request)
     {
-        if(!$request->id){
-            return redirect()->back();
-        }
-        $bustypeId=$request->id;
+         if(!$request->id){
+             return redirect()->back();
+         }
+         $bustypeId=$request->id;
         $bustype = Bustypes::where('bustypes_id',$bustypeId)->first();
 
         return view('backend.bustype.show_bustype', compact('bustype'));

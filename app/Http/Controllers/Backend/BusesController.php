@@ -75,18 +75,12 @@ class BusesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show()
     {
-        if(!$request->id){
-            return redirect()->back();
-        }
-        $busId=$request->id;
-        $bus = Buses::where('buses_id',$busId)->first();
-        return view('backend.bus.show_bus', compact('bus'));
-    }
-    public function view()
-    {
-
+//        if(!$request->id){
+//            return redirect()->back();
+//        }
+//        $busId=$request->id;
         $bus = Buses::orderBy('buses_id','DESC')->paginate(10);
         return view('backend.bus.view_bus', compact('bus'));
     }

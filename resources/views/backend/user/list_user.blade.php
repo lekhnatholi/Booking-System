@@ -189,7 +189,7 @@
                                                                 <button type="submit" class="btn btn-info btn-xs">
                                                                     <i class="fa fa-eye"></i>
                                                                 </button>
-                                                        </form>
+                                                            </form>
                                                         </th>
                                                         <th>
                                                             <form action="{{route('editUser')."/".$key->users_id}}" method="get">

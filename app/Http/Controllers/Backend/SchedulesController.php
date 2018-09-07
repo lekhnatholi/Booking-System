@@ -85,7 +85,6 @@ class SchedulesController extends Controller
         $schedule = Schedules::where('schedules_id',$scheduleId)->first();
         return view('backend.schedule.show_schedule', compact('schedule'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
