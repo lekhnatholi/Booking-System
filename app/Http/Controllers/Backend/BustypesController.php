@@ -85,7 +85,7 @@ class BustypesController extends Controller
          $bustypeId=$request->id;
         $bustype = Bustypes::where('bustypes_id',$bustypeId)->first();
 
-        return view('backend.bustype.show_bustype', compact('bustype'));
+        return view('backend.bustype.view_bustype', compact('bustype'));
     }
 
     /**
