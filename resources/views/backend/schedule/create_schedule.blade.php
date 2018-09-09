@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Booking
+        Schedule
       </h1>
       
     </section>
@@ -18,7 +18,7 @@
         <div class="col-12 col-lg-8">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Create <strong style="color: #5fa7da">Booking</strong>&nbsp &nbsp</h3>
+                    <h3 class="box-title">Create <strong style="color: #5fa7da">Schedule</strong>&nbsp &nbsp</h3>
                 </div>
                
                 <div class="box-body">   
@@ -46,10 +46,11 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="departure_date"
-                                               placeholder=" Departure Date (dd-mm-yy) " required>
+                                               placeholder=" Departure Date (dd-mm-yy) " id="datepicker" required>
                                         <small class="text text-danger">{{$errors->first('departure_date')}}</small>
 
                                     </div>
+
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="departure_time"
                                                placeholder="00:00 am" required>

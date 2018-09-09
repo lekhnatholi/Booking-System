@@ -69,8 +69,9 @@ class TeamsController extends Controller
         }
         $teamId=$request->id;
         $team = Teams::where('teams_id',$teamId)->first();
-        return view('backend.team.view_team', compact('team'));
+        return view('backend.team.show_team', compact('team'));
     }
+
     public function view()
     {
 

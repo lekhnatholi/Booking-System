@@ -88,6 +88,7 @@ class BustypesController extends Controller
         return view('backend.bustype.view_bustype', compact('bustype'));
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *

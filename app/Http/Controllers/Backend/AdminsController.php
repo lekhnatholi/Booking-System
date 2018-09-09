@@ -74,22 +74,17 @@ class AdminsController extends Controller
         }
         $adminId = $request->id;
         $admin = Admins::where('admins_id', $adminId)->first();
-        return view('backend.admin.view_admin', compact('admin'));
+        return view('backend.admin.show_admin', compact('admin'));
     }
 
     public function view()
     {
 
-        $admin = Admins::orderBy('admins_id', 'DESC')->paginate(10);
+        $admin = Admins::orderBy('admins_id', 'DESc')->paginate(10);
         return view('backend.admin.view_admin', compact('admin'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Request $request)
     {
         if (!$request->id) {

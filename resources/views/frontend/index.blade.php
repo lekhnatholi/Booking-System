@@ -3,57 +3,59 @@
 @section('content')
 
 
-<section class = "primary-search-form" style="background-image: url({{url('public/frontend/assets/uploads/images/6.jpg')}})">
+<section class = "primary-search-form primary-search-form-small" style="background-image: url({{url('public/frontend/assets/uploads/images/6.jpg')}})">
+    
+
     <div class="container">
         <div class="row">
 
             <!-- SEARCH FORM -->
-            <div class="col-md-6 col-sm-12 col-xs-12" style="margin-left: -17px;">
+            <div class="col-md-4 col-sm-12 col-xs-12" style="margin-left: -17px;">
                  <div class="search-form">
                     <form action="{{route('search')}}" method="get">
                          <div class="form-row align-items-center">
                             <div class="searchpanel panel-body">
 
                                 <div class="row">
-                                    <div class="col-md-6 demo-radio-button">
+                                    <div class="col-md-5 demo-radio-button">
                                         <input type="radio" name="way" value="one way" id="hideid"/> <label for="hideid">&nbsp One Way</label>
                                     </div>        
-                                    <div class="col-md-6">        
+                                    <div class="col-md-7">        
                                         <input type="radio" name="way" value="two way" id="showid" checked /> &nbsp <label for="showid">Return ( Two Way )</label>
                                     </div>
                                 </div>
 
 
                                 <div class="row">
-                                    <div class="col-md-6 ui-widget">
+                                    <div class="col-md-10 ui-widget col-md-offset-1">
                                         <center><strong>Departure</strong></center>
                                             <input type="text" name="from" id="departure" class="search-form-control" placeholder="Enter Departure">
                                     </div>
-                                    <div class="col-md-6 ui-widget">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-10  col-md-offset-1 ui-widget">
                                         <center><strong>Arrival</strong></center>
                                             <input type="text" name="to" id="arrival" class="search-form-control" placeholder="Enter Arrival">
                                     </div> 
                                 </div>
 
 
-
-
-
-
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-10  col-md-offset-1">
                                         <center><strong>Departure Date</strong></center>
                                             <input type="text" id="datepicker" name="departure_date" class="search-form-control" placeholder="Enter Departure Date">
                                     </div>
+                                </div>
+                                <div class="row">
                                     
-                                     <div class="col-md-6" id="data">
+                                     <div class="col-md-10  col-md-offset-1" id="data">
                                         <center><strong>Return Date<center><strong>
                                             <input type="text" id="datepicker1" name="arrival_date" class="search-form-control" placeholder="Enter Return Date">
                                     </div>
                                 </div>
 
 
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-6">
                                         <center><strong>Discount</strong></center>
                                             <select name="" class="search-form-control">
@@ -81,10 +83,10 @@
                                           <center><strong style="font-size: 10px">TICKET BY PHONE: 9841512143</strong></center> 
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="row">
-                                    <div class="col-md-3" >
+                                    <div class="col-md-3 col-md-offset-4">
                                         <input type="submit" name="SUBMIT" class="btn btn-default" style="background-color: #800000cf;color: white;">
                                     </div>
                                 </div>
@@ -97,7 +99,7 @@
 
                         <!-- Registration Form -->
 
-            <div class="col-md-6 col-sm-12 col-xs-12" style="float: right;">
+           <!--  <div class="col-md-6 col-sm-12 col-xs-12" style="float: right;">
                             
                 <div class = "section-title" data-animation = "fadeInUp">
                     <h1 class = "title" style="font-size: 26px;color: white;text-transform: capitalize;">Don't have an Account?</h1>
@@ -168,8 +170,8 @@
                                 
                 </form>
             </div>
-        </div>
-    </div>
+        </div>-->
+    </div> 
 </div>
 
 </section>
@@ -349,7 +351,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <img src="public/img/arrow.png" style="margin-top: 120px; margin-left: 27px" width="130px">
+                        <img src="public/img/arrow.png" width="130px" class="arrow rotate90">
                     </div>
                 </div>
             </div>
@@ -367,7 +369,7 @@
                         </div>
                      </div>
                     <div class="col-md-3">
-                        <img src="public/img/arrow.png" style="margin-top: 120px; margin-left: 27px" width="130px">
+                        <img src="public/img/arrow.png" class="arrow rotate90" width="130px">
                     </div>
                 </div>
             </div>
@@ -385,7 +387,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <img src="public/img/arrow.png" style="margin-top: 120px; margin-left: 30px" width="130px">
+                        <img src="public/img/arrow.png" class="arrow rotate90" width="130px">
                     </div>
                 </div>        
             </div>
@@ -423,7 +425,7 @@
                         </h2>
                         <!-- Content -->
                         <div class = "entry-content">
-                            <p>{{$w->description}}</p>
+                            <p>{!! $w->description !!}</p>
                         </div>
                     </div>
                     @endforeach
@@ -470,7 +472,7 @@
                                 <!-- Image -->
                                 <img src = "{{ asset('public/img/whatweoffer/'.$w->image)}})}}" class = "pull-right" width = "120" height = "90" alt = ""/>
                                 <!-- Tab Content-->
-                                <p>{{$w->description}}</p>
+                                <p>{!! $w->description !!}  </p>
                             </div>
                         </div>
                     </div>

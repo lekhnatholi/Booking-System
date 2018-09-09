@@ -42,7 +42,7 @@
 
 
 
-                            <a href="{{route('showBus')}}" class="btn btn-info label-success pull-right" > <i class="glyphicon glyphicon-eye-open"></i> views all</a>
+                            <a href="{{route('viewBus')}}" class="btn btn-info label-success pull-right" > <i class="glyphicon glyphicon-eye-open"></i> views all</a>
                         </div>
 
                         <div class="box-body">
