@@ -19,18 +19,12 @@ class BookingsController extends Controller
         return view('backend.booking.list_booking', compact('bookings'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $buses=Buses::all();
-        $guests=Guests::all();
-        $travellers=Travellers::all();
-        return view('backend.booking.create_booking',compact('guests','buses','travellers'));
-    }
+
+//    public function create()
+//    {
+//        $buses=Buses::all();
+//        return view('backend.booking.create_booking',compact('guests','buses','travellers'));
+//    }
 
     public function store(Request $request)
     {
@@ -74,18 +68,13 @@ class BookingsController extends Controller
         $booking = Bookings::where('bookings_id',$bookingId)->first();
         return view('backend.booking.show_booking', compact('booking'));
     }
+
     public function view()
     {
         $booking = Bookings::orderBy('bookings_id','DESC')->paginate(10);
         return view('backend.booking.view_booking', compact('booking'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request)
     {
         if(!$request->id){

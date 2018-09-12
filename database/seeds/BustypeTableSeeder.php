@@ -12,10 +12,10 @@ class BustypeTableSeeder extends Seeder
     public function run()
     {
         DB::table('bustypes')->insert([
-            [ 'title'=>'AC'],
-            [ 'title'=>'Hice'],
-            [ 'title'=>'Delauxe'],
-            [ 'title'=>'Metro']
+            [ 'bustypes_title'=>'AC'],
+            [ 'bustypes_title'=>'Hice'],
+            [ 'bustypes_title'=>'Delauxe'],
+            [ 'bustypes_title'=>'Metro']
         ]);
     }
 }

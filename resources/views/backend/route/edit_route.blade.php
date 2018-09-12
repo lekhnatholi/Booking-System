@@ -9,7 +9,6 @@
       <h1>
         Route
       </h1>
-      
     </section>
     <!-- Main content -->
 <section class="content">
@@ -30,49 +29,30 @@
                         <div class="row">
                             <div class="col-md-3"><strong>Title : *</strong></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="title" value="{{$route->title}}" placeholder="Title" >
-                                <small class="text text-danger">{{$errors->first('title')}}</small>
-
+                                <input type="text" class="form-control" name="routes_title" value="{{$route->routes_title}}" placeholder="Title" >
+                                <small class="text text-danger">{{$errors->first('routes_title')}}</small>
                             </div>
                         </div>
                     </div>
 
-                    
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3"><strong>From : *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="from" value="{{$route->from}}" placeholder="From" >
-                                <small class="text text-danger">{{$errors->first('from')}}</small>
+                    @foreach ($destination as $key=>$value)
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3"><strong>Location@php echo ++$key; @endphp : *</strong></div>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="educationDate" name="destination[]">
+                                        <option value="">Select City</option>
+                                        @foreach($cities as $count => $data)
+                                            <option value="{{$data->cities_title}}" @if($data->cities_title==$value) selected @endif>{{$data->cities_title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
 
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3"><strong>To : *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" value="{{$route->to}}" name="to" placeholder="To" >
-                                <small class="text text-danger">{{$errors->first('to')}}</small>
 
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="row" >
-                            <div class="col-md-3"><strong>City Cover : *</strong></div>
-                            <div class="col-md-9">
-                                {{--<input type="text" class="form-control" name="city_cover"  value="{{$route->city_cover}}" placeholder="Location 1" >--}}
-                                <textarea name="city_cover" class="form-control" id="" cols="80" rows="5"
-                                          style="resize: none;">{{$route->city_cover}}</textarea>
-                                <small class="text text-danger">{{$errors->first('city_cover')}}</small>
-
-                            </div>
-                        </div>
-                    </div>
 
                         
 

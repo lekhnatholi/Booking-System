@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TravellerTableSeeder::class);
         $this->call(GuestTableSeeder::class);
         $this->call(BustypeTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
         $this->call(RouteTableSeeder::class);
         $this->call(BusTableSeeder::class);
         $this->call(FeedbacksTableSeeder::class);

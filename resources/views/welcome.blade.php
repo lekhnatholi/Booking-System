@@ -1,3 +1,20 @@
+<!-- <div class="form-group">
+    <div class="row">
+        <div class="col-md-3"><strong>Route </strong></div>
+        <div class="col-md-9">
+            <select name="routes_id" id="" class="form-control">
+                @foreach($routes as $key)
+                    <option value="{{$key->routes_id}}" @if($key->routes_id==$bus->routes_id) selected @endif >{{$key->title}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>

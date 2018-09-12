@@ -22,10 +22,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::any('/tnc', 'SiteController@tnc')->name('fronttnc');
 
 
-/* social login */
-    Route::get('/login/{social}','SiteController@socialLogin')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
-     
-    Route::get('/login/{social}/callback','SiteController@handleProviderCallback')->where('social','twitter|facebook|linkedin|google|github|bitbucket');
+    /* social login */
+    Route::get('/login/{social}', 'SiteController@socialLogin')->where('social', 'twitter|facebook|linkedin|google|github|bitbucket');
+
+    Route::get('/login/{social}/callback', 'SiteController@handleProviderCallback')->where('social', 'twitter|facebook|linkedin|google|github|bitbucket');
 
     //contact
     Route::any('/contact', 'SiteController@contact')->name('contact');
@@ -58,13 +58,13 @@ Route::group(['namespace' => 'Frontend'], function () {
 
             Route::any('/show/{id?}', 'VehiclesController@show')->name('showVehiclesVendor');
 
-            Route::any('/createSeatLayout', 'VehiclesController@createSeatLayout')->name('createSeatLayout');
-
-            Route::any('/showSeatLayout', 'VehiclesController@showSeatLayout')->name('showSeatLayout');
-
-            Route::any('/saveSeatLayout', 'VehiclesController@saveSeatLayout')->name('saveSeatLayout');
-
-            Route::any('/editSeatLayout', 'VehiclesController@editSeatLayout')->name('editSeatLayout');
+//            Route::any('/createSeatLayout', 'VehiclesController@createSeatLayout')->name('createSeatLayout');
+//
+//            Route::any('/showSeatLayout', 'VehiclesController@showSeatLayout')->name('showSeatLayout');
+//
+//            Route::any('/saveSeatLayout', 'VehiclesController@saveSeatLayout')->name('saveSeatLayout');
+//
+//            Route::any('/editSeatLayout', 'VehiclesController@editSeatLayout')->name('editSeatLayout');
 
             Route::any('/edit/{id?}', 'VehiclesController@edit')->name('editVehiclesVendor');
 
@@ -145,7 +145,9 @@ Route::namespace('Backend')->group(function () {
     Route::any('/logout', 'UsersController@logout')->name('logout');
 });
 
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
+
+
+Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
 
     Route::get('/', function () {
         return view('backend.dashboard');
@@ -172,7 +174,6 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
     });
 
-
     Route::group(['prefix' => 'bustypes'], function () {
 
         Route::any('/', 'BustypesController@index')->name('bustypes');
@@ -183,8 +184,6 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
 
         Route::any('/view', 'BustypesController@view')->name('viewBustype');
 
-        Route::any('/view', 'BustypesController@view')->name('viewBustype');
-
         Route::any('/show/{id?}', 'BustypesController@show')->name('showBustype');
 
         Route::any('/edit/{id?}', 'BustypesController@edit')->name('editBustype');
@@ -192,6 +191,27 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
         Route::any('/update', 'BustypesController@update')->name('updateBustype');
 
         Route::any('/delete', 'BustypesController@destroy')->name('destroyBustype');
+
+
+    });
+
+    Route::group(['prefix' => 'cities'], function () {
+
+        Route::any('/', 'CitiesController@index')->name('cities');
+
+        Route::any('/create', 'CitiesController@create')->name('createCity');
+
+        Route::any('/store', 'CitiesController@store')->name('storeCity');
+
+        Route::any('/view', 'CitiesController@view')->name('viewCity');
+
+        Route::any('/show/{id?}', 'CitiesController@show')->name('showCity');
+
+        Route::any('/edit/{id?}', 'CitiesController@edit')->name('editCity');
+
+        Route::any('/update', 'CitiesController@update')->name('updateCity');
+
+        Route::any('/delete', 'CitiesController@destroy')->name('destroyCity');
 
 
     });
@@ -234,13 +254,19 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
         Route::any('/update', 'BusesController@update')->name('updateBus');
 
         Route::any('/delete', 'BusesController@destroy')->name('destroyBus');
-
+        Route::any('/seat/show/{id?}', 'BusesController@showSeatLayout')->name('showSeatLayout');
+        Route::any('/seat/create/{id?}', 'BusesController@createSeatLayout')->name('createSeatLayout');
+        Route::any('/seat/edit/{id?}', 'BusesController@editSeatLayout')->name('editSeatLayout');
+        Route::any('/seat/save', 'BusesController@saveSeatLayout')->name('saveSeatLayout');
 
     });
 
     Route::group(['prefix' => 'schedules'], function () {
 
         Route::any('/', 'SchedulesController@index')->name('schedules');
+
+        Route::any('/ajax/fetch','SchedulesController@ajaxFetch');
+
 
         Route::any('/create', 'SchedulesController@create')->name('createSchedule');
 
@@ -255,6 +281,12 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'middleware' => 'ad
         Route::any('/update', 'SchedulesController@update')->name('updateSchedule');
 
         Route::any('/delete', 'SchedulesController@destroy')->name('destroySchedule');
+
+        Route::any('/price/{id?}', 'SchedulesController@createSchedulePrice')->name('createSchedulePrice');
+
+        Route::any('/price/show/{id?}', 'SchedulesController@showSchedulePrice')->name('showSchedulePrice');
+
+        Route::any('/price/edit/{id?}', 'SchedulesController@editSchedulePrice')->name('editSchedulePrice');
 
     });
 

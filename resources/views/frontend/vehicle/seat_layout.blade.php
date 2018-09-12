@@ -2,14 +2,19 @@
 
 <style>
     .busSeat {
-        min-height: 400px;
-        border: 1px dashed red;
+
+        margin-top: 58px;
+        text-align: center;
+        min-height: 294px;
+        border: 2px dashed red;
         margin-top: 20px;
+        border-radius: 21px;
+        width: 638px;
     }
 
     .seats {
-        width: 40px;
-        border-radius: 10px;
+        width: 32px;
+        border-radius: 7px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -17,8 +22,8 @@
 
     .seats {
         margin: 13px;
-        height: 45px;
-        background: salmon;
+        height: 37px;
+        background: #5fa7da;
         transition: box-shadow 0.3s ease-in-out;
         cursor: -webkit-grab;
     }
@@ -38,8 +43,13 @@
     /*min-width: 30px;*/
     /*}*/
 
-    .bus input[type='text'] {
-        background: grey;
+    .busSeat input[type='text'] {
+        background: #5fa7da;;
+        text-align: center;
+    }
+
+    .busSeat .front input[type='text'] {
+        background: #33b7b1;;
         text-align: center;
     }
 
@@ -52,121 +62,142 @@
         {{--seat layout edit--}}
         @if($seat!==null)
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="row">
                         <form action="{{route('createSeatLayout')}}" method="post" class="form-inline">
-                            <div class="col-md-8">
-                                {{@csrf_field()}}
-                                <input type="hidden" name="id" value="{{$busId}}">
-                                <div class="form-group">
-                                    <level for="count">No of Seats:</level>
-                                    <input type="text" name="count" id="count" value="{{$count}}"
-                                           class="form-control" placeholder="Enter no of seats">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary">Update</button>
+                            {{@csrf_field()}}
+                            <input type="hidden" name="id" value="{{$busId}}">
+                            <div class="form-group">
+                                <level for="count">No of Seats:</level>
+                                <input type="text" name="count" id="count" value="{{$count}}"
+                                       class="form-control" placeholder="Enter no of seats">
                             </div>
                         </form>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <form action="{{route('saveSeatLayout')}}" method="post">
-                        {{@csrf_field()}}
-                        <input type="hidden" id="seatLayout" name="seatLayout" value="">
-                        <input type="hidden" id="frontLayout" name="frontLayout" value="">
-                        <input type="hidden" name="id" value="{{$busId}}">
-                        <button type="submit" class="btn btn-primary form-control submit-layout">Submit</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="row busSeat">
-                <div class="col-md-11">
-                    <div class="bus">
-                        @foreach($seat as $key => $item)
-                            <div class="col-md-1">
-                                <div class="seats" data-id="{{$key}}" style="{{$item['style']}}">
-                                    <div class="special-attributes"></div>
-                                    <input type="text" name="seat[{{$key}}]" placeholder="Seat Name"/>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="front">
-                        <div class="seats" data-id="0" style="{{$front[0]['style']}}">
-                            <div class="special-attributes"></div>
-                            <input type="text" name="seat[0]" value="" placeholder="Driver"/>
-                        </div>
-                        <div class="seats" data-id="1" style="{{$front[1]['style']}}">
-                            <div class="special-attributes"></div>
-                            <input type="text" name="seat[1]" value="" placeholder="Entry"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @else
-            {{--seat layout create--}}
-            <div class="row">
-                <div class="col-md-6">
                     <div class="row">
-                        <form action="{{route('createSeatLayout')}}" method="post" class="form-inline">
-                            <div class="col-md-8">
-                                {{@csrf_field()}}
-                                <input type="hidden" name="id" value="{{$busId}}">
-                                <div class="form-group">
-                                    <level for="count">No of Seats:</level>
-                                    <input type="text" name="count" id="count" value="{{$count}}"
-                                           class="form-control" placeholder="Enter no of seats">
+                        <button class="btn btn-primary">Update</button>
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <div class="busSeat">
+                        <span style="color: red">Bus Seat Layout</span>
+                        <div class="row ">
+                            <div class="col-md-11">
+                                <div class="bus">
+                                    @foreach($seat as $key => $item)
+                                        <div class="col-md-1">
+                                            <div class="seats" data-id="{{$key}}" style="{{$item['style']}}">
+                                                <div class="special-attributes"></div>
+                                                <input type="text" name="seat[{{$key}}]" placeholder="Seat Name"/>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="front">
+                                    <div class="col-md-1">
+                                        <div class="seats" data-id="0" style="{{$front[0]['style']}}">
+                                            <div class="special-attributes"></div>
+                                            <input type="text" name="seat[0]" value="" placeholder="Driver"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="seats" data-id="1" style="{{$front[1]['style']}}">
+                                            <div class="special-attributes"></div>
+                                            <input type="text" name="seat[1]" value="" placeholder="Entry"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-primary">Update</button>
-                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">&ensp;</div>
+                <div class="row">&ensp;</div>
+                <div class="row" align="center">
+                    <div class="col-md-2">&ensp;</div>
+                    <div class="col-md-10">
+                        <form action="{{route('saveSeatLayout')}}" method="post">
+                            {{@csrf_field()}}
+                            <input type="hidden" id="seatLayout" name="seatLayout" value="">
+                            <input type="hidden" id="frontLayout" name="frontLayout" value="">
+                            <input type="hidden" name="id" value="{{$busId}}">
+                            <button type="submit" class="btn btn-danger submit-layout">Submit</button>
                         </form>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <form action="{{route('saveSeatLayout')}}" method="post">
-                        {{@csrf_field()}}
-                        <input type="hidden" id="seatLayout" name="seatLayout" value="">
-                        <input type="hidden" id="frontLayout" name="frontLayout" value="">
-                        <input type="hidden" name="id" value="{{$busId}}">
-                        <button type="submit" class="btn btn-primary form-control submit-layout">Submit</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="row busSeat">
-                <div class="col-md-11">
-                    <div class="bus">
-                        @for($i=0;$i<$count;$i++)
-                            <div class="col-md-1">
-                                <div class="seats" data-id="{{$i}}" style="">
-                                    <div class="special-attributes"></div>
-                                    <input type="text" name="seat[{{$i}}]" value="" placeholder="Seat Name"/>
-                                </div>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="front">
-                        <div class="seats" data-id=0 style="">
-                            <div class="special-attributes"></div>
-                            <input type="text" name="seat[0]" value="" placeholder="Driver"/>
-                        </div>
-                        <div class="seats" data-id="1" style="">
-                            <div class="special-attributes"></div>
-                            <input type="text" name="seat[1]" value="" placeholder="Entry"/>
-                        </div>
                     </div>
                 </div>
             </div>
     </div>
+
+    @else
+        {{--seat layout create--}}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <form action="{{route('createSeatLayout')}}" method="post" class="form-inline">
+                        {{@csrf_field()}}
+                        <input type="hidden" name="id" value="{{$busId}}">
+                        <div class="form-group">
+                            <level for="count">No of Seats:</level>
+                            <input type="text" name="count" id="count" value="{{$count}}"
+                                   class="form-control" placeholder="Enter no of seats">
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary">Update</button>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <div class="busSeat">
+                    <span style="color: red">Bus Seat Layout</span>
+                    <div class="row ">
+                        <div class="col-md-11">
+                            <div class="bus">
+                                @for($i=0;$i<$count;$i++)
+                                    <div class="col-md-1">
+                                        <div class="seats" data-id="{{$i}}" style="">
+                                            <div class="special-attributes"></div>
+                                            <input type="text" name="seat[{{$i}}]" value="" placeholder="Seat Name"/>
+                                        </div>
+                                    </div>
+                                @endfor
+                            </div>
+                            <div class="front">
+                                <div class="col-md-1">
+                                    <div class="seats" data-id="0" style="">
+                                        <div class="special-attributes"></div>
+                                        <input type="text" name="seat[0]" value="" placeholder="Driver"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="seats" data-id="1" style="">
+                                        <div class="special-attributes"></div>
+                                        <input type="text" name="seat[1]" value="" placeholder="Entry"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">&ensp;</div>
+            <div class="row">&ensp;</div>
+            <div class="row" align="center">
+                <div class="col-md-2">&ensp;</div>
+                <div class="col-md-10">
+                    <form action="{{route('saveSeatLayout')}}" method="post">
+                        {{@csrf_field()}}
+                        <input type="hidden" id="seatLayout" name="seatLayout" value="">
+                        <input type="hidden" id="frontLayout" name="frontLayout" value="">
+                        <input type="hidden" name="id" value="{{$busId}}">
+                        <button type="submit" class="btn btn-danger submit-layout">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     @endif
 
 
@@ -203,7 +234,7 @@
                     "style": $(this).attr('style')
                 };
             });
-
+            console.log(arr);
             $('#seatLayout').val(JSON.stringify(arr));
             $('#frontLayout').val(JSON.stringify(bus));
 

@@ -134,7 +134,10 @@
                                         <th>Arrival Date</th>
                                         <th>Arrival Time</th>
                                         <th>shift</th>
-                                        <th>Price</th>
+                                        <!-- <th>Price</th>
+ -->                                        <th>Routes</th>
+                                        <th>Boarding Point</th>
+                                        <th>Dropping Point</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -147,7 +150,10 @@
                                             <td>{{$key->arrival_date}}</td>
                                             <td>{{$key->arrival_time}}</td>
                                             <td>{{$key->shift}}</td>
-                                            <td>{{$key->ticket_price}}</td>
+                                            <!-- <td>{{$key->ticket_price}}</td> -->
+                                            <td>{{$key->routes['title']}}</td>
+                                            <td>{{$key->boarding }}</td>
+                                            <td>{{$key->dropping }}</td>
                                         </tr>
                                     @endforeach
 

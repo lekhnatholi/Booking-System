@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Bookings extends Model
 {
 
-    protected $fillable=['buses_id','travellers_id','guests_id','seat','price','profile'];
+
+    protected $fillable=['buses_id','users_id','schedules_id','routes_id','seat','price','profile'];
     protected $primaryKey='bookings_id';
 
     public function buses()
@@ -15,13 +16,18 @@ class Bookings extends Model
         return $this->belongsTo('App\Buses','buses_id');
     }
 
-    public function travellers()
+    public function routes()
     {
-        return $this->belongsTo('App\Travellers','travellers_id');
+        return $this->belongsTo('App\Routes','routes_id');
     }
 
-    public function guests()
+    public function users()
     {
-        return $this->belongsTo('App\Guests','guests_id');
+        return $this->belongsTo('App\Users','users_id');
+    }
+
+    public function schedules()
+    {
+        return $this->belongsTo('App\Schedules','schedules_id');
     }
 }

@@ -691,6 +691,10 @@
 
 <script>
 
+
+
+
+
     /*for departure autocomplete*/
   $( function() {
     var availableDeparture = [

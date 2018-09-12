@@ -15,11 +15,15 @@ class CreateSchedulesTable extends Migration
             $table->increments('schedules_id');
             $table->integer('buses_id')->unsigned();
             $table->foreign('buses_id')->references('buses_id')->on('buses')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('routes_id')->unsigned();
+            $table->foreign('routes_id')->references('routes_id')->on('routes')->onDelete('cascade')->onUpdate('cascade');
             $table->string('departure_date',255)->nullable();
             $table->string('departure_time',255)->nullable();
             $table->string('arrival_date',255)->nullable();
             $table->string('arrival_time',255)->nullable();
-            $table->string('ticket_price',255)->nullable();
+            $table->longText('ticket_price')->nullable();
+            $table->longText('boarding_points')->nullable();
+            $table->longText('dropping_points')->nullable();
             $table->enum('shift',['day','night','none']);
             $table->timestamps();
         });

@@ -17,7 +17,7 @@
         <div class="col-12 col-lg-8">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Edit <strong style="color: #5fa7da">Route</strong>&nbsp &nbsp</h3>
+                    <h3 class="box-title">Show <strong style="color: #5fa7da">Route</strong>&nbsp &nbsp</h3>
                 </div>
 
                 <div class="box-body">
@@ -26,57 +26,30 @@
                         <div class="row">
                             <div class="col-md-3"><strong>Title : *</strong></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="title" value="{{$route->title}}" disabled >
+                                <input type="text" class="form-control" name="title" value="{{$route->routes_title}}" disabled >
                                 <small class="text text-danger">{{$errors->first('title')}}</small>
 
                             </div>
                         </div>
                     </div>
 
-                    
+                    @foreach ($destination as $key=>$value)
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-3"><strong>From : *</strong></div>
+                            <div class="col-md-3"><strong>Location@php echo ++$key; @endphp : *</strong></div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="from" value="{{$route->from}}" disabled >
-                                <small class="text text-danger">{{$errors->first('from')}}</small>
+                                <input type="text" class="form-control" name="from" value="@php echo $value @endphp" disabled >
                             </div>
                         </div>
                     </div>
+                    @endforeach
 
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3"><strong>To : *</strong></div>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" value="{{$route->to}}" name="to" disabled >
-                                <small class="text text-danger">{{$errors->first('to')}}</small>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="row" >
-                            <div class="col-md-3"><strong>City Cover : *</strong></div>
-                            <div class="col-md-9">
-                                {{--<input type="text" class="form-control" name="city_cover"  value="{{$route->city_cover}}" placeholder="Location 1" >--}}
-                                <textarea name="city_cover" class="form-control" id="" cols="80" rows="5"
-                                          style="resize: none;">{{$route->city_cover}}</textarea>
-                                <small class="text text-danger">{{$errors->first('city_cover')}}</small>
-
-                            </div>
-                        </div>
-                    </div>
-
-                        
 
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
                                 <div align="center">
-                                    <a href="{{route('buses')}}" class="btn btn-success">
+                                    <a href="{{route('routes')}}" class="btn btn-success">
                                         <i class="fa fa-check"></i>&nbsp;&nbsp;Procced
                                     </a>
                                 </div>

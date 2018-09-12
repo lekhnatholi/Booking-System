@@ -6,8 +6,6 @@
 @section('content')
 
 
-
-
     <script>
         window.setTimeout(function () {
             $(".alert").fadeTo(500, 0).slideUp(500, function () {
@@ -20,11 +18,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Booking Dashboard
+                Buses Dashboard
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item active">Booking</li>
+                <li class="breadcrumb-item active">Buses</li>
             </ol>
         </section>
 
@@ -71,7 +69,7 @@
                                         <th>Name</th>
                                         <th>Bus Type</th>
                                         <th>Owner</th>
-                                        <th>Route</th>
+                                        <th>Seat Layout</th>
                                         <th>Status</th>
                                     </tr>
                                     </thead>
@@ -79,10 +77,10 @@
                                     @foreach($buses as $count => $key)
                                         <tr>
                                             <td>{{++$count}}</td>
-                                            <td>{{$key->title}}</td>
-                                            <td>{{$key->bustypes->title}}</td>
+                                            <td>{{$key->buses_title}}</td>
+                                            <td>{{$key->bustypes->bustypes_title}}</td>
                                             <td>{{$key->vendors->email}}</td>
-                                            <td>{{$key->routes->title}}</td>
+                                            <td><a href="{{route('createSeatLayout').'/'.$key->buses_id}}">Create|</a><a href="{{route('showSeatLayout').'/'.$key->buses_id}}">Show</a></td>
                                             <td>
                                                 <table>
                                                     <tr>

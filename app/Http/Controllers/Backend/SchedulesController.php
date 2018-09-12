@@ -3,17 +3,72 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Buses;
+use App\Cities;
+use App\Routes;
 use App\Guests;
 use App\Schedules;
 use App\Travellers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
+use Illuminate\View\View;
 
 class SchedulesController extends Controller
 {
+    public function ajaxFetch(){
+
+            $id = $_POST['id'];
+            $test = Routes::where('routes_id',$id)->first();
+             $cities=$test->destination;
+             $data= explode(',',$cities);
+            echo json_encode($data);
+    }
+
+    public function saveSeatLayout(Request $request)
+    {
+        $seat = $request->seatLayout;
+        $front=$request->frontLayout;
+        $busId=$request->id;
+        $data['seat_layout'] = $seat;
+        $data['front_layout']=$front;
+        if (Buses::where('buses_id',$busId)->update($data)) {
+            return redirect()->route('buses')->with('success','Your seat layout is processed successfullly');
+        }
+        return redirect()->route('buses')->with('error','Sorry your seat layout could not be processed');
+    }
+
+    public function showSchedulePrice(Request $request)
+    {
+        $scheduleId=$request->id;
+        $data =Schedules::where('schedules_id', $scheduleId)->first();
+        $price = $data->ticeket_price;
+        if(is_null($price)){
+            return redirect()->route('schedules')->with('error','You must create price range first');
+        }
+        return view('backend.schedules.show_schedule_price', ['price'=>$price,'schedulesId'=>$scheduleId]);
+    }
+
+    public function editSchedulePrice(Request $request)
+    {
+        $scheduleId=$request->id;
+        $data =Schedules::where('schedules_id', $scheduleId)->first();
+        $price = $data->ticeket_price;
+        return view('backend.bus.edit_schedule_price', ['scheduleId'=>$scheduleId,'price'=>$price]);
+    }
+
+    public function createSchedulePrice(Request $request)
+    {
+        $scheduleId=$request->id;
+        $schedule =Schedules::where('schedules_id', $scheduleId)->first();
+        $dropping_points=explode(",", $schedule->dropping_points);
+        $boarding_points=explode(",", $schedule->boarding_points);
+        return view('backend.bus.create_schedule_price', ['scheduleId'=>$scheduleId]);
+    }
+
+
     public function index()
     {
-        $schedules =Schedules ::orderBy('schedules_id', 'DESC')->paginate(8);
+        $schedules =Schedules::orderBy('schedules_id', 'DESC')->paginate(8);
         return view('backend.schedule.list_schedule', compact('schedules'));
     }
 
@@ -21,9 +76,9 @@ class SchedulesController extends Controller
     public function create()
     {
         $buses=Buses::all();
-        $travellers=Travellers::all();
-        $guests=Guests::all();
-        return view('backend.schedule.create_schedule',compact('buses','travellers','guests'));
+        $routes = Routes::all();
+        $destinations=Cities::all();
+        return view('backend.schedule.create_schedule',compact('buses','routes','destinations'));
     }
 
 
@@ -39,7 +94,6 @@ class SchedulesController extends Controller
             'departure_date'=>'required',
             'departure_time'=>'required',
             'shift'=>'required',
-            'ticket_price'=>'required|numeric'
         ]);
 
         $data['buses_id']=$request->buses_id;
@@ -48,8 +102,17 @@ class SchedulesController extends Controller
         $data['arrival_date']=$request->arrival_date;
         $data['arrival_time']=$request->arrival_time;
         $data['ticket_price']=$request->ticket_price;
+        $data['routes_id']= $request->routes_id;
+        if(!empty($request->dropping_points)){
+            $data['dropping_points']= implode(",", $request->dropping_points);
+        }
+       if(!empty($request->boarding_points)){
+           $data['boarding_points'] = implode(",", $request->boarding_points);
+        }
+
         $data['shift']=$request->shift;
         if($schedule->create($data)){
+
             return redirect()->route('schedules')->with('success','The record has been successfully inserted.');
         }
         return redirect()->route('schedules')->with('error','Sorry, the record couldn\'t be stored');
@@ -78,8 +141,9 @@ class SchedulesController extends Controller
             return redirect()->back();
         }
         $scheduleId=$request->id;
+        $routes = Routes::all();
         $schedule = Schedules::where('schedules_id',$scheduleId)->first();
-        return view('backend.schedule.show_schedule', compact('schedule'));
+        return view('backend.schedule.show_schedule', compact('schedule','routes'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -94,8 +158,9 @@ class SchedulesController extends Controller
         }
         $scheduleId=$request->id;
         $buses=Buses::all();
+        $routes = Routes::all();
         $schedule = Schedules::where('schedules_id',$scheduleId)->first();
-        return view('backend.schedule.edit_schedule', compact('schedule','buses'));
+        return view('backend.schedule.edit_schedule', compact('schedule','buses','routes'));
     }
 
 
@@ -105,13 +170,23 @@ class SchedulesController extends Controller
             return redirect()->back();
         }
         $scheduleId=$request->id;
-        $data['buses_id']=$request['buses_id'];
-        $data['departure_date']=$request['departure_date'];
-        $data['departure_time']=$request['departure_time'];
-        $data['arrival_date']=$request['arrival_date'];
-        $data['arrival_time']=$request['arrival_time'];
-        $data['ticket_price']=$request['ticket_price'];
-        $data['shift']=$request['shift'];
+        $this->validate($request,[
+            'departure_date'=>'required',
+            'departure_time'=>'required',
+            'shift'=>'required',
+        ]);
+
+        $data['buses_id']=$request->buses_id;
+        $data['departure_date']=$request->departure_date;
+        $data['departure_time']=$request->departure_time;
+        $data['arrival_date']=$request->arrival_date;
+        $data['arrival_time']=$request->arrival_time;
+        $data['ticket_price']=$request->ticket_price;
+        $data['routes_id']= $request->routes_id;
+        $data['dropping_points']= implode(",", $request->dropping_points);;
+        $data['shift']=$request->shift;
+        $data['boarding_points'] = implode(",", $request->boarding_points);
+
         if(Schedules::where('schedules_id',$scheduleId)->update($data)){
             return redirect()->route('schedules')->with('success','The record has been successfully inserted');
         }

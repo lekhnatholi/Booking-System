@@ -15,9 +15,9 @@ class CreateBustypesTable extends Migration
     {
         Schema::create('bustypes', function (Blueprint $table) {
             $table->increments('bustypes_id');
-            $table->string('title',255)->nullable();
-            $table->string('image',255)->nullable();
-            $table->string('seat',255)->nullable();
+            $table->string('bustypes_title',255)->nullable();
+            //$table->string('image',255)->nullable();
+            //$table->string('seat',255)->nullable();
             $table->timestamps();
         });
     }

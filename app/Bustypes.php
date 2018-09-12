@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Bustypes extends Model
 {
 
-    protected $fillable=['title','seat','image'];
-    protected $guarded=['bustyes_id'];
+    protected $fillable=['bustypes_title','seat','image'];
+    protected $guarded=['bustypes_id'];
     protected $table='bustypes';
     protected $primaryKey='bustypes_id';
 

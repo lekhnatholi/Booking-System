@@ -71,8 +71,9 @@
                                     <tr>
                                         <th>S.N</th>
                                         <th>Bus Name</th>
-                                        <th>Traveller </th>
-                                        <th>Guest </th>
+                                        <th>Booker </th>
+                                        <th>Route </th>
+                                        <th>Departure Date</th>
                                         <th>Seat</th>
                                         <th>Profile</th>
                                         <th>Action</th>
@@ -82,9 +83,11 @@
                                     @foreach($bookings as $count => $key)
                                         <tr>
                                             <td>{{++$count}}</td>
-                                            <td>{{$key->buses->title}}</td>
-                                            <td>{{$key->travellers->email}}</td>
-                                            <td>{{$key->guests->contact}}</td>
+                                            <td>{{$key->buses->buses_title}}</td>
+                                            <td>{{$key->users->email}}</td>
+                                            <td>{{$key->routes->routes_title}}</td>
+                                            <td>1</td>
+                                            {{--<td>{{$key->schedules->departure_date}}</td>--}}
                                             <td>{{$key->seat}}</td>
                                             <td>{{$key->profile}}</td>
 

@@ -87,13 +87,13 @@
                                     <div class="col-md-3"><strong>User Type:</strong></div>
                                     <div class="col-md-9 demo-radio-button" >
                                         
-                                        <input type="radio"  id="radio_1" class="with-gap" name="user_type" value="admin" @php if($user->user_type=='admin') echo 'checked'; @endphp>
+                                        <input type="radio"  id="radio_1" class="with-gap" name="user_type" value="admin" @if($user->user_type=='admin') checked @endif>
                                         <label for="radio_1">Admin</label>
 
 
-                                        <input type="radio"  id="radio_2" class="with-gap" name="user_type" value="user" @php if($user->user_type=='traveller') echo 'checked'; @endphp> <label for="radio_2">Traveller</label>
+                                        <input type="radio"  id="radio_2" class="with-gap" name="user_type" value="user" @if($user->user_type=='traveller') checked @endif> <label for="radio_2">Traveller</label>
 
-                                        <input type="radio" id="radio_3" class="with-gap" name="user_type" value="user" @php if($user->user_type=='vendor') echo 'checked'; @endphp> 
+                                        <input type="radio" id="radio_3" class="with-gap" name="user_type" value="user" @if($user->user_type=='vendor') checked @endif>
                                          <label for="radio_3">Vendor</label>
                                         <small class="text text-danger">{{$errors->first('user_type')}}</small>
                                     </div>

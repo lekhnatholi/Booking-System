@@ -3,6 +3,9 @@
 @section('title', 'Create Gallery')
 
 @section('content')
+
+
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -28,13 +31,13 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" name="title" placeholder="title" required>
-                                <strong class="text-danger">{{$errors->first('title')}}</strong>
+                                <input type="text" class="form-control" name="bustypes_title" placeholder="title" required>
+                                <strong class="text-danger">{{$errors->first('bustypes_title')}}</strong>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                   <!--  <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" name="seat" placeholder="No. of seat" required>
@@ -42,9 +45,9 @@
                             </div>
                         </div>
                     </div> 
+                    -->    
                        
-                       
-                    <strong class="text-danger">{{$errors->first('image')}}</strong>
+                   <!--  <strong class="text-danger">{{$errors->first('image')}}</strong>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-12">
@@ -78,7 +81,7 @@
                             </div>
                         </div>
 
-                       
+                    -->    
                         <div align="center">
                             <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;
                                 Save Changes
@@ -96,4 +99,6 @@
 </div>
 </section>
 </div>
+
+
 @endsection

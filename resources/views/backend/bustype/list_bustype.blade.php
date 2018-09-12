@@ -16,11 +16,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Booking Dashboard
+                Vehicle Dashboard
             </h1>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item active">BusTypes</li>
+                <li class="breadcrumb-item active">Vehicle Types</li>
             </ol>
         </section>
 
@@ -32,7 +32,7 @@
                 <div class="col-12 col-lg-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Buses <strong></strong>&nbsp &nbsp </h3>
+                            <h3 class="box-title">Vehicles <strong></strong>&nbsp &nbsp </h3>
 
                             <a href="{{route('createBustype')}}" class="btn btn-default label-success">+ Add New</a>
 
@@ -60,11 +60,11 @@
                                     </div>
                                 @endif
                                 <table id="example1"
-                                       class="table   table-responsive editable_table table-striped table-hover">
+                                       class="table table-responsive editable_table table-striped table-hover">
                                     <thead>
                                     <tr>
                                         <th>S.No.</th>
-                                        <th>title</th>
+                                        <th>Title</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -72,7 +72,7 @@
                                     @foreach($bustypes as $count => $key)
                                         <tr>
                                             <td>{{++$count}}</td>
-                                            <td>{{$key->title}}</td>
+                                            <td>{{$key->bustypes_title}}</td>
                                             <td>
                                                 <table>
                                                     <tr>

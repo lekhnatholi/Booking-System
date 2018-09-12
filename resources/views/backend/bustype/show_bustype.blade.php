@@ -1,13 +1,13 @@
 @extends('layouts.backend')
 
-@section('title', 'Create Gallery')
+@section('title', 'View Vehicle Type')
 
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Bustype
+                Vechile Type
             </h1>
 
         </section>
@@ -18,23 +18,21 @@
                 <div class="col-12 col-lg-8">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Create <strong style="color: #5fa7da">Bustype</strong>&nbsp &nbsp</h3>
+                            <h3 class="box-title">View <strong style="color: #5fa7da">Vechile Types</strong>&nbsp &nbsp</h3>
                         </div>
 
                         <div class="box-body">
 
-                            <form action="{{route('storeBustype')}}" method="post" enctype="multipart/form-data">
-                                {{csrf_field()}}
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="text" class="form-control" name="title" value="{{$bustype->title}}" disabled>
-                                            <strong class="text-danger">{{$errors->first('title')}}</strong>
+                                            <input type="text" class="form-control" name="bustypes_title" value="{{$bustype->bustypes_title}}" disabled>
+                                            <strong class="text-danger">{{$errors->first('bustypes_title')}}</strong>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                           <!--      <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <input type="text" class="form-control" name="seat" value="{{$bustype->seat}}"  disabled>
@@ -77,19 +75,14 @@
                                         </div>
                                     </div>
                                 </div>
-
+ -->
 
                                 <div align="center">
-                                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;
-                                        Save Changes
-                                    </button>
-                                    &nbsp &nbsp
-                                    <button type="reset" class="btn btn-danger"><i class="fa fa-close"></i>&nbsp;&nbsp;
-                                        Cancel &nbsp &nbsp
-                                    </button>
+                                    <a href="{{route('bustypes')}}" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;
+                                        Proceed
+                                    </a>
                                 </div>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
