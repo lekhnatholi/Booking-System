@@ -41,6 +41,59 @@
         text-align: center;
     }
 
+    /* The container */
+.boxcontainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.boxcontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.boxcontainer:hover input ~ .checkmark {
+    background-color: #blue;
+}
+
+/* When the checkbox is checked, add a blue background */
+.boxcontainer input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.boxcontainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
     /*.squaredOne {*/
     /*width: 28px;*/
     /*height: 28px;*/
@@ -113,7 +166,11 @@
                         @foreach($seat as $key => $item)
                             <div class="col-md-1">
                                 <div class="seats" data-id="{{$key}}" style="{{$item['style']}}">
-                                    <input type="checkbox" name="seat_id[]" id="{{$key}}" class="hh" value="{{$key}}"/>
+                                    <!-- <input type="checkbox" name="seat_id[]" id="{{$key}}" class="hh" value="{{$key}}"/> -->
+                                    <label class="boxcontainer">
+                                         <input type="checkbox" name="seat_id[]" id="{{$key}}" class="hh" value="{{$key}}">
+                                        <span class="checkmark"></span>
+                                    </label>
                                     <input type="text" name="seat[{{$key}}]" value="{{$item['name']}}"
                                            placeholder="Seat No" disabled/>
                                     <div class="special-attributes"></div>

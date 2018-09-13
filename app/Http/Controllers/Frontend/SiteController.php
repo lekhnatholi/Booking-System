@@ -216,10 +216,7 @@ class SiteController extends Controller
    public function handleProviderCallback($social)
  
    {
-        $data['whoweare'] = Whoweare::all();
-        $data['whatweoffer'] = Whatweoffer::all();
-        $data['testimonials'] = Testimonials::all();
- 
+        
        $userSocial = Socialite::driver($social)->user();
  
        $user = Users::where(['email' => $userSocial->getEmail()])->first();
@@ -232,7 +229,7 @@ class SiteController extends Controller
  
        }else{
  
-           return view('frontend.index',['email' => $userSocial->getEmail()])->with($data);
+           return view('frontend.index',['email' => $userSocial->getEmail()]);
  
        }
  

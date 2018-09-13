@@ -108,12 +108,82 @@
 
 
                     
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <div class="row">
                             <div class="col-md-3"><strong>Ticket Price : *</strong></div>
                             <div class="col-md-9">
                                 <input type="text" name="ticket_price" class="form-control" value="{{$schedule->ticket_price}}">
                                 <small class="text text-danger">{{$errors->first('shift')}}</small>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3"><strong>Routes : *</strong></div>
+                            <div class="col-md-9">
+                                <select name="routes_id" class="form-control">
+                                    @foreach($routes as $key)
+                                        <option value="{{$key->routes_id}}"
+                                            @if($key->routes_id==$schedule->routes_id) selected @endif>{{$key->title}}</option>
+                                    @endforeach
+                            </select>
+                                <small class="text text-danger">{{$errors->first('routes_id')}}</small>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">    
+                        <div class="row">
+                            <div class="col-md-3"><strong>Boarding Point : *</strong></div>
+
+                            <div class="col-md-9">
+                                 <a href="#" id="showbutton" onclick="show()" class="btn btn-primary col-md-3"><i class="fa fa-check"></i>&nbsp Select Here</a>
+                              
+                                <a href="#" id="hidebutton" onclick="hide()" class="btn btn-danger col-md-3"><i class="fa fa-close"></i>&nbsp Close</a>
+                               
+                                <div id="hide">
+                                 @foreach($routes as $key)
+                                    <input type="checkbox" name="boarding[]" class="{{$key->routes_id}}" value="{{$key->city_cover}}" @if($key->routes_id==$schedule->boarding) checked @endif>
+                                    <label for="{{$key->routes_id}}">{{$key->city_cover}}</label>
+                                @endforeach
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">    
+                        <div class="row">
+                            <div class="col-md-3"><strong>Dropping Point : *</strong></div>
+                            <div class="col-md-9">
+                                <a href="#" id="showdroppingbutton" onclick="showdropping()" class="btn btn-primary col-md-3"><i class="fa fa-check"></i>&nbsp Select Here</a>
+                                <a href="#" id="hidedroppingbutton" onclick="hidedropping()" class="btn btn-danger col-md-3"><i class="fa fa-close"></i>&nbsp Close</a>
+                                
+                                <div id="hidedropping">
+                                 <input type="checkbox" name="dropping[]" id="ktm" value="ktm">
+                                  <label for="ktm">Kathmandu</label>
+                                  &nbsp
+                                   <input type="checkbox" name="dropping[]" id="brt" value="brt">
+                                  <label for="brt">Biratnagar</label>
+                                 &nbsp
+
+                                  <input type="checkbox" name="dropping[]" id="jhapa" value="jhapa">
+                                  <label for="jhapa">Jhapa</label>
+&nbsp
+                                  <input type="checkbox" name="dropping[]" id="palpa" value="palpa">
+                                  <label for="palpa">Palpa</label>
+&nbsp
+                                  <input type="checkbox" name="dropping[]" id="pokhara" value="pokhara">
+                                  <label for="pokhara">Pokhara</label>
+&nbsp
+                                  <input type="checkbox" name="dropping[]" id="narayanghat" value="narayanghat">
+                                  <label for="narayanghat">Narayanghat</label>
+&nbsp
+                                  <input type="checkbox" name="dropping[]" id="butwal" value="butwal">
+                                  <label for="butwal">Butwal</label>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,4 +210,56 @@
 </div>
 </section>
 </div>
+
+<style type="text/css">
+   #hide
+  {
+    display: none;
+  }
+  #hidebutton
+  {
+    display: none;
+  }
+
+  #hidedropping
+  {
+    display: none;
+  }
+
+  #hidedroppingbutton
+  {
+    display: none;
+  }
+</style>
+<script type="text/javascript">
+
+  function show()
+  { 
+    document.getElementById("hidebutton").style.display = "block";
+    document.getElementById("hide").style.display = "block";
+    document.getElementById("showbutton").style.display = "none"; 
+  }
+
+  function hide()
+  { 
+    document.getElementById("hidebutton").style.display = "none";
+    document.getElementById("hide").style.display = "none";
+    document.getElementById("showbutton").style.display = "block";
+}
+
+     function showdropping()
+  { 
+    document.getElementById("hidedroppingbutton").style.display = "block";
+    document.getElementById("hidedropping").style.display = "block";
+    document.getElementById("showdroppingbutton").style.display = "none"; 
+  }
+
+  function hidedropping()
+  { 
+    document.getElementById("hidedroppingbutton").style.display = "none";
+    document.getElementById("hidedropping").style.display = "none";
+    document.getElementById("showdroppingbutton").style.display = "block";
+    
+  }
+</script>
 @endsection

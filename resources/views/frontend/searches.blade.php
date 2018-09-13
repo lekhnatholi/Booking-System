@@ -1,6 +1,4 @@
 @extends('layouts.frontend')
-
-
 @section('content')
     @include('branches.search')
     <div class="container-fluid">

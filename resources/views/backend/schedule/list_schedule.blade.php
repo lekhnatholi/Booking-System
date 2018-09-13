@@ -211,6 +211,8 @@
                                         <th>Arrival Date</th>
                                         <th>Arrival Time</th>
                                         <th>Shift</th>
+                                        <th>Routes</th>
+                                        <!-- <th>Boarding Point</th> -->
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -218,12 +220,14 @@
                                     @foreach($schedules as $count => $key)
                                         <tr>
                                             <td>{{++$count}}</td>
-                                            <td>{{$key->buses->title}}</td>
+                                            <td>{{$key->buses['title']}}</td>
                                             <td>{{$key->departure_date}}</td>
                                             <td>{{$key->departure_time}}</td>
                                             <td>{{$key->arrival_date}}</td>
                                             <td>{{$key->arrival_time}}</td>
                                             <td>{{$key->shift}}  </td>
+                                            <td>{{$key->routes['title'] }}</td>
+
                                             <td>
                                                 <table>
                                                     <tr>
@@ -243,6 +247,7 @@
                                                                 </button>
                                                             </form>
                                                         </th>
+                                                        
                                                         <th>
                                                             <form class="client" action="{{route('destroySchedule')}}"
                                                                   method="post"
@@ -269,7 +274,6 @@
                 </div>
             </div>
         </section>
-
     </div>
 
 

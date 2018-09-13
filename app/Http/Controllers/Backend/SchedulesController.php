@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Buses;
+use App\Routes;
 use App\Guests;
 use App\Schedules;
 use App\Travellers;
@@ -13,17 +14,18 @@ class SchedulesController extends Controller
 {
     public function index()
     {
-        $schedules =Schedules ::orderBy('schedules_id', 'DESC')->paginate(8);
-        return view('backend.schedule.list_schedule', compact('schedules'));
+        $schedules =Schedules::orderBy('schedules_id', 'DESC')->paginate(8);
+        return view('backend.schedule.list_schedule', compact('schedules','routes'));
     }
 
 
     public function create()
     {
         $buses=Buses::all();
+        $routes = Routes::all();
         $travellers=Travellers::all();
         $guests=Guests::all();
-        return view('backend.schedule.create_schedule',compact('buses','travellers','guests'));
+        return view('backend.schedule.create_schedule',compact('buses','travellers','guests','routes'));
     }
 
 
@@ -39,7 +41,6 @@ class SchedulesController extends Controller
             'departure_date'=>'required',
             'departure_time'=>'required',
             'shift'=>'required',
-            'ticket_price'=>'required|numeric'
         ]);
 
         $data['buses_id']=$request->buses_id;
@@ -48,8 +49,13 @@ class SchedulesController extends Controller
         $data['arrival_date']=$request->arrival_date;
         $data['arrival_time']=$request->arrival_time;
         $data['ticket_price']=$request->ticket_price;
+        $data['routes_id']= $request->routes_id;
+        $data['dropping']= implode(",", $request->dropping);;
         $data['shift']=$request->shift;
+        $data['boarding'] = implode(",", $request->boarding);
+
         if($schedule->create($data)){
+            
             return redirect()->route('schedules')->with('success','The record has been successfully inserted.');
         }
         return redirect()->route('schedules')->with('error','Sorry, the record couldn\'t be stored');
@@ -78,8 +84,9 @@ class SchedulesController extends Controller
             return redirect()->back();
         }
         $scheduleId=$request->id;
+        $routes = Routes::all();
         $schedule = Schedules::where('schedules_id',$scheduleId)->first();
-        return view('backend.schedule.show_schedule', compact('schedule'));
+        return view('backend.schedule.show_schedule', compact('schedule','routes'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -94,8 +101,11 @@ class SchedulesController extends Controller
         }
         $scheduleId=$request->id;
         $buses=Buses::all();
+        $routes = Routes::all();
         $schedule = Schedules::where('schedules_id',$scheduleId)->first();
-        return view('backend.schedule.edit_schedule', compact('schedule','buses'));
+        $boarding = Schedules::findMany($boarding)->update(['is_checked' => 1]);
+        $data['boarding'] = Schedules::findMany($unCheckedIDs)->update(['is_checked' => 0]);
+        return view('backend.schedule.edit_schedule', compact('schedule','buses','routes','boarding'));
     }
 
 
@@ -111,7 +121,10 @@ class SchedulesController extends Controller
         $data['arrival_date']=$request['arrival_date'];
         $data['arrival_time']=$request['arrival_time'];
         $data['ticket_price']=$request['ticket_price'];
-        $data['shift']=$request['shift'];
+        $data['routes_id']=$request['routes_id'];
+        $data['dropping']= implode(",", $request->get('dropping'));;
+        $data['boarding'] = implode(",", $request->get('boarding')); 
+        
         if(Schedules::where('schedules_id',$scheduleId)->update($data)){
             return redirect()->route('schedules')->with('success','The record has been successfully inserted');
         }
