@@ -86,8 +86,7 @@
                                             <td>{{$key->buses->buses_title}}</td>
                                             <td>{{$key->users->email}}</td>
                                             <td>{{$key->routes->routes_title}}</td>
-                                            <td>1</td>
-                                            {{--<td>{{$key->schedules->departure_date}}</td>--}}
+                                            <td>{{$key->schedules->departure_date}}</td>
                                             <td>{{$key->seat}}</td>
                                             <td>{{$key->profile}}</td>
 

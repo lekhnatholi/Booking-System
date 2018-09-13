@@ -3,6 +3,7 @@
 @section('title', 'Create Schedule')
 
 @section('content')
+    <style></style>
     <link href="{{ url('public/frontend/css/bootstrap-datepicker.css') }}" rel="stylesheet">
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -191,10 +192,15 @@
                     },
                     success: function (response) {
                         var string = '';
+                        var dropping='';
                         var r = jQuery.parseJSON(response);
                         var i;
                         for (i = 0; i < r.length; ++i) {
                             string += ' <input type="checkbox" name="boarding_points[]" id = "' + r[i] + '"  value="' + r[i] + '"><label for="' + r[i] + '">' + r[i] + '</label>&ensp;';
+                            // console.log(string);
+                        }
+                        for (i = 0; i < r.length; ++i) {
+                            dropping += ' <input type="checkbox" name="dropping_points[]" id = "' + r[i] +1+ '"  value="' + r[i] + '"><label for="' + r[i] +1+ '">' + r[i] + '</label>&ensp;';
                             // console.log(string);
                         }
                         $('#boarding_points').prepend(string);

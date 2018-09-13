@@ -27,15 +27,15 @@
                     <input type="hidden" name="departure_date" value="{{$departure_date}}">
                     <input type="hidden" name="arrival_date" value="{{$arrival_date}}">
                     <input type="hidden" name="seat" value="{{$seat}}">
+                    <input type="hidden" name="results_id" value="{{$results_id}}">
                     <div class="container">
                         <div class=" search_text">
-
                             <div class="row">
                                 <div class="col-md-12 ">
                                     <li>Bus Type</li>
                                     @foreach($bustypes as $bus)
                                         <input type="checkbox" name="bustype" value="{{$bus->bustypes_id}}"
-                                               size="small" class="bhh" @if($bustype==$bus->bustypes_id) checked @endif>{{ $bus->title}}<br>
+                                               size="small" class="bhh" @if($bustype==$bus->bustypes_id) checked @endif>{{ $bus->bustypes_title}}<br>
                                     @endforeach
                                 </div>
                             </div>
@@ -110,7 +110,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 search_text">
                                     <div class="col-md-4 col-xs-4">
                                         <div class="-title">
-                                            {{$result->bustitle}}
+                                            {{$result->buses_title}}
                                         </div>
                                         <p><span class="text-danger">{{$result->bustypes_title}}</span></p>
                                         <p><span class="text-primary">{{ucfirst($result->shift)}} </span></p>

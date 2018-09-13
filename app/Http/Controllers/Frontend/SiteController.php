@@ -6,6 +6,7 @@ use App\Buses;
 use App\Bustypes;
 use App\FAQ;
 use App\Routes;
+use App\Schedules;
 use App\TNC;
 use App\Travellers;
 use App\Users;
@@ -24,6 +25,9 @@ use App\Http\Requests;
 class SiteController extends Controller
 {
 
+//data contains 'results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat', 'bustype', 'shift', 'price';
+    protected $search_schedules = [];
+    protected $data = [];
 
     public function index()
     {
@@ -61,182 +65,237 @@ class SiteController extends Controller
             return redirect()->back();
         }
         //for checkbox to be selected incase filter appllied
-        $bustype = isset($request->bustype) ? $request->bustype : '';
-        $shift = isset($request->shift) ? $request->shift : '';
-        $price = isset($request->price) ? $request->price : '';
+        $data['bustype'] = isset($request->bustype) ? $request->bustype : '';
+        $data['shift'] = isset($request->shift) ? $request->shift : '';
+        $data['price'] = isset($request->price) ? $request->price : '';
+        $data['results_id']=isset($request->results_id)?$request->results_id:'';
 
         //catching data from user input to display search routes
-        $to = $request->to;
-        $from = $request->from;
-        $route = $from . "-" . $to;
-        $departure_date = isset($request->departure_date) ? $request->departure_date : date('Y/m/d');
-        $arrival_date = $request->arrival_date;
-        $seat = $request->seat;
-        $results = DB::table('schedules')
+        $data['to'] = $request->to;
+        $data['from'] = $request->from;
+        $data['route'] = $data['from'] . "-" . $data['to'];
+        $data['departure_date'] = isset($request->departure_date) ? $request->departure_date : date('Y/m/d');
+        $data['arrival_date'] = $request->arrival_date;
+        $data['seat'] = $request->seat;
+        $schedules=Schedules::where('departure_date','>=','2010/00/10')->get();
+        //$schedules = Schedules::all();
+        foreach ($schedules as $key => $schedule) {
+            $destination = $schedule->routes->destination;
+            $destination = explode(',', $destination);
+            $count = count($destination);
+            for ($i = 0; $i < $count; $i++) {
+                if ($data['from'] == $destination[$i]) {
+                    for ($j = ++$i; $j < $count; $j++) {
+                        if ($data['to'] == $destination[$j]) {
+                            $this->search_schedules[] = $schedule->schedules_id;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        $data['results'] = DB::table('schedules')
             ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-            ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+            ->join('routes', 'schedules.routes_id', '=', 'routes.routes_id')
             ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-            ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
-            ->where([
-                ['routes.title', 'LIKE', '%' . $route . '%'],
-            ])
+            ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.*')
+            ->whereIn(
+                'schedules_id', $this->search_schedules
+            )
             ->get();
-        $count = count($results, COUNT_RECURSIVE);
-        $bustypes = Bustypes::all();
-        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat', 'bustype', 'shift', 'price'));
+        $data['count'] = count($data['results'], COUNT_RECURSIVE);
+        $data['bustypes'] = Bustypes::all();
+        $data['results_id']=implode(',',$this->search_schedules);
+        $this->data = $data;
+        //data contains 'results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat', 'bustype', 'shift', 'price';
+        return view('frontend.searches')->with($data);
     }
 
     public function searchFilter(Request $request)
     {
         if (!isset($request->shift) && !isset($request->bustype) && !isset($request->price)) {
-            return redirect()->route('search');
+            return redirect()->back();
         }
         //for checkbox to be selected incase filter appllied
-        $bustype = isset($request->bustype) ? $request->bustype : '';
-        $shift = isset($request->shift) ? $request->shift : '';
-        $price = isset($request->price) ? $request->price : '';
+        $this->data['bustype'] = isset($request->bustype) ? $request->bustype : '';
+        $this->data['shift'] = isset($request->shift) ? $request->shift : '';
+        $this->data['price'] = isset($request->price) ? $request->price : '';
 
-        //catching form data of hidden inputs
-        $from = $request->from;
-        $to = $request->to;
-        $route = $from . "-" . $to;
-        $departure_date = $request->departure_date;
-        $arrival_date = $request->shift;
-        $seat = $request->seat;
+        //catching from data of hidden inputs
+       $this->data['to'] = $request->to;
+        $this->data['from'] = $request->from;
+        $this->data['route'] = $this->data['from'] . "-" . $this->data['to'];
+        $this->data['departure_date'] = isset($request->departure_date) ? $request->departure_date : date('Y/m/d');
+        $this->data['arrival_date'] = $request->arrival_date;
+        $this->data['seat'] = $request->seat;
+
+//        $schedules=Schedules::where('departure_date','>=','2010/00/10')->get();
+//        foreach ($schedules as $key => $schedule) {
+//            $destination = $schedule->routes->destination;
+//            $destination = explode(',', $destination);
+//            $count = count($destination);
+//            for ($i = 0; $i < $count; $i++) {
+//                if ($this->data['from'] == $destination[$i]) {
+//                    for ($j = ++$i; $j < $count; $j++) {
+//                        if ($this->data['to'] == $destination[$j]) {
+//                            $this->search_schedules[] = $schedule->schedules_id;
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+
+        //why to waster time
+        $this->data['results_id']=$request->results_id;
+        $this->search_schedules=explode(',',$this->data['results_id']);
+
 
         if (isset($request->bustype) && !isset($request->shift) && !isset($request->price)) {
-            $results = DB::table('schedules')
+            $this->data['results'] = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('routes', 'schedules.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.*')
+                ->whereIn(
+                    'schedules_id', $this->search_schedules
+                )
                 ->where([
-                    ['bustypes.bustypes_id', $bustype],
-                    ['routes.title', 'LIKE', '%' . $route . '%']
-                ])
+                    ['bustypes.bustypes_id', $this->data['bustype']],
+                    ])
                 ->get();
         }
         if (!isset($request->bustype) && !isset($request->shift) && isset($request->price)) {
-            $results = DB::table('schedules')
+            $this->data['results'] = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
                 ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
                 ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
-                ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%']
-                ])
-                ->orderBy('schedules.ticket_price', $price)
+                ->whereIn(
+                    'schedules_id', $this->search_schedules
+                )
+                ->orderBy('schedules.ticket_price', $this->data['price'])
                 ->get();
         }
         if (!isset($request->bustype) && isset($request->shift) && !isset($request->price)) {
-            $results = DB::table('schedules')
+            $this->data['results'] = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('routes', 'schedules.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.*')
+                ->whereIn(
+                    'schedules_id', $this->search_schedules
+                )
                 ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['schedules.shift', $shift]
+                    ['schedules.shift', $this->data['shift']]
                 ])
                 ->get();
         }
-
         if (isset($request->shift) && isset($request->bustype) && !isset($request->price)) {
-            $results = DB::table('schedules')
+            $this->data['results'] = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('routes', 'schedules.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.*')
+                ->whereIn(
+                    'schedules_id', $this->search_schedules
+                )
                 ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['bustypes.bustypes_id', $bustype],
-                    ['schedules.shift', $shift]
+                    ['bustypes.bustypes_id', $this->data['bustype']],
+                    ['schedules.shift', $this->data['shift']]
                 ])
                 ->get();
         }
         if (!isset($request->shift) && isset($request->bustype) && isset($request->price)) {
-            $results = DB::table('schedules')
+            $this->data['results'] = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('routes', 'schedules.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.*')
+                ->whereIn(
+                    'schedules_id', $this->search_schedules
+                )
                 ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['bustypes.bustypes_id', $bustype],
+                    ['bustypes.bustypes_id', $this->data['bustype']],
                 ])
-                ->orderBy('schedules.ticket_price', $price)
+                ->orderBy('schedules.ticket_price', $this->data['price'])
                 ->get();
 
         }
         if (isset($request->shift) && !isset($request->bustype) && isset($request->price)) {
-            $results = DB::table('schedules')
+            $this->data['results'] = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('routes', 'schedules.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.*')
+                ->whereIn(
+                    'schedules_id', $this->search_schedules
+                )
                 ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['schedules.shift', $shift]
+                    ['schedules.shift', $this->data['shift']]
                 ])
-                ->orderBy('schedules.ticket_price', $price)
+                ->orderBy('schedules.ticket_price', $this->data['price'])
                 ->get();
         }
 
         if (isset($request->shift) && isset($request->bustype) && isset($request->price)) {
-            $results = DB::table('schedules')
+            $this->data['results'] = DB::table('schedules')
                 ->join('buses', 'schedules.buses_id', '=', 'buses.buses_id')
-                ->join('routes', 'buses.routes_id', '=', 'routes.routes_id')
+                ->join('routes', 'schedules.routes_id', '=', 'routes.routes_id')
                 ->join('bustypes', 'buses.bustypes_id', '=', 'bustypes.bustypes_id')
-                ->select('schedules.*', 'buses.*', 'routes.*', 'buses.title as bustitle', 'bustypes.title as bustypes_title')
+                ->select('schedules.*', 'buses.*', 'routes.*', 'bustypes.*')
+                ->whereIn(
+                    'schedules_id', $this->search_schedules
+                )
                 ->where([
-                    ['routes.title', 'LIKE', '%' . $route . '%'],
-                    ['buses.bustypes_id', $bustype],
-                    ['schedules.shift', $shift]
+                    ['buses.bustypes_id', $this->data['bustype']],
+                    ['schedules.shift', $this->data['shift']]
                 ])
-                ->orderBy('schedules.ticket_price', $price)
+                ->orderBy('schedules.ticket_price', $this->data['price'])
                 ->get();
         }
 
-        $count = count($results, COUNT_RECURSIVE);
-        $bustypes = Bustypes::all();
-        return view('frontend.searches', compact('results', 'from', 'to', 'count', 'bustypes', 'departure_date', 'arrival_date', 'seat', 'bustype', 'shift', 'price'));
+        $this->data['count'] = count($this->data['results'], COUNT_RECURSIVE);
+        $this->data['bustypes'] = Bustypes::all();
+        return view('frontend.searches')->with($this->data);
     }
 
 
     public function socialLogin($social)
- 
-   {
- 
-       return Socialite::driver($social)->redirect();
- 
-   }
- 
-   
- 
-   public function handleProviderCallback($social)
- 
-   {
+
+    {
+
+        return Socialite::driver($social)->redirect();
+
+    }
+
+
+    public function handleProviderCallback($social)
+
+    {
         $data['whoweare'] = Whoweare::all();
         $data['whatweoffer'] = Whatweoffer::all();
         $data['testimonials'] = Testimonials::all();
- 
-       $userSocial = Socialite::driver($social)->user();
- 
-       $user = Users::where(['email' => $userSocial->getEmail()])->first();
- 
-       if($user){
- 
-           Auth::login($user);
- 
-           return redirect()->route('home');
- 
-       }else{
- 
-           return view('frontend.index',['email' => $userSocial->getEmail()])->with($data);
- 
-       }
- 
-   }
+
+        $userSocial = Socialite::driver($social)->user();
+
+        $user = Users::where(['email' => $userSocial->getEmail()])->first();
+
+        if ($user) {
+
+            Auth::login($user);
+
+            return redirect()->route('home');
+
+        } else {
+
+            return view('frontend.index', ['email' => $userSocial->getEmail()])->with($data);
+
+        }
+
+    }
 
 
 }

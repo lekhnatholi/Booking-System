@@ -18,33 +18,55 @@
                 <div class="col-12 col-lg-10">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Edit <strong style="color: #5fa7da">Schedule</strong>&nbsp &nbsp</h3>
+                            <h3 class="box-title">Show <strong style="color: #5fa7da">Schedule</strong>&nbsp &nbsp</h3>
                         </div>
 
                         <div class="box-body">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-3"><strong>Traveller</strong></div>
+                                    <div class="col-md-3"><strong>Booker</strong></div>
                                     <div class="col-md-9">
-                                        <input type="text" value="{{$booking->travellers->contact }}" class="form-control"
+                                        <input type="text" value="{{$booking->users->email }}" class="form-control"
                                                disabled>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-3"><strong>Guest</strong></div>
-                                    <div class="col-md-9">
-                                        <input type="text" value="{{$booking->guests->contact }}" class="form-control"
-                                               disabled>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-3"><strong>Bus Name : *</strong></div>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" value="{{$booking->buses->title}}"
+                                        <input type="text" class="form-control" value="{{$booking->buses->buses_title}}"
+                                               disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3"><strong>Route</strong></div>
+                                    <div class="col-md-9">
+                                        <input type="text" value="{{$booking->routes->routes_title }}"
+                                               class="form-control"
+                                               disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3"><strong>Schedule</strong></div>
+                                    <div class="col-md-9">
+                                        <input type="text" value="{{$booking->schedules->departure_date}}"
+                                               class="form-control"
+                                               disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3"><strong>Departure Time</strong></div>
+                                    <div class="col-md-9">
+                                        <input type="text" value="{{$booking->schedules->departure_time}}"
+                                               class="form-control"
                                                disabled>
                                     </div>
                                 </div>
@@ -99,7 +121,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div align="center">
-                                            <a href="{{route('bookings')}}" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;
+                                            <a href="{{route('bookings')}}" class="btn btn-success"><i
+                                                        class="fa fa-check"></i>&nbsp;&nbsp;
                                                 Go Back
                                             </a>
 

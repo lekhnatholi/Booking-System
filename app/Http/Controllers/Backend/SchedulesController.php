@@ -24,7 +24,7 @@ class SchedulesController extends Controller
             echo json_encode($data);
     }
 
-    public function saveSeatLayout(Request $request)
+    public function saveSchedulePrice(Request $request)
     {
         $seat = $request->seatLayout;
         $front=$request->frontLayout;
@@ -101,7 +101,6 @@ class SchedulesController extends Controller
         $data['departure_time']=$request->departure_time;
         $data['arrival_date']=$request->arrival_date;
         $data['arrival_time']=$request->arrival_time;
-        $data['ticket_price']=$request->ticket_price;
         $data['routes_id']= $request->routes_id;
         if(!empty($request->dropping_points)){
             $data['dropping_points']= implode(",", $request->dropping_points);
@@ -169,7 +168,8 @@ class SchedulesController extends Controller
         if($request->isMethod('get')){
             return redirect()->back();
         }
-        $scheduleId=$request->id;
+
+        $scheduleId = $request->id;
         $this->validate($request,[
             'departure_date'=>'required',
             'departure_time'=>'required',
@@ -181,11 +181,15 @@ class SchedulesController extends Controller
         $data['departure_time']=$request->departure_time;
         $data['arrival_date']=$request->arrival_date;
         $data['arrival_time']=$request->arrival_time;
-        $data['ticket_price']=$request->ticket_price;
         $data['routes_id']= $request->routes_id;
-        $data['dropping_points']= implode(",", $request->dropping_points);;
+        if(!empty($request->dropping_points)){
+            $data['dropping_points']= implode(",", $request->dropping_points);
+        }
+        if(!empty($request->boarding_points)){
+            $data['boarding_points'] = implode(",", $request->boarding_points);
+        }
+
         $data['shift']=$request->shift;
-        $data['boarding_points'] = implode(",", $request->boarding_points);
 
         if(Schedules::where('schedules_id',$scheduleId)->update($data)){
             return redirect()->route('schedules')->with('success','The record has been successfully inserted');
