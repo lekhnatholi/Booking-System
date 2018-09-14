@@ -110,6 +110,8 @@ class SchedulesController extends Controller
         }
 
         $data['shift']=$request->shift;
+        $data['boarding'] = implode(",", $request->boarding);
+
         if($schedule->create($data)){
 
             return redirect()->route('schedules')->with('success','The record has been successfully inserted.');

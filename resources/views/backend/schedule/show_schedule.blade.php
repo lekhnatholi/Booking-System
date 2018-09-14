@@ -83,6 +83,22 @@
                                 </div>
                             </div>
 
+                                 <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3"><strong>Routes : *</strong></div>
+                            <div class="col-md-9">
+                                <select name="routes_id" class="form-control" disabled="">
+                                 @foreach($routes as $key)
+                                        <option value="{{$key->routes_id}}"
+                                            @if($key->routes_id==$schedule->routes_id) selected @endif>{{$key->title}}</option>
+                                    @endforeach
+                            </select>
+                                <small class="text text-danger">{{$errors->first('routes_id')}}</small>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                             <div class="form-group">
                                 <div class="row">

@@ -14,6 +14,8 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+
 Route::group(['namespace' => 'Frontend'], function () {
     Route::any('/', 'SiteController@index')->name('home');
 
@@ -90,6 +92,8 @@ Route::group(['namespace' => 'Frontend'], function () {
             Route::any('/update', 'SchedulesController@update')->name('updateSchedulesVendor');
 
             Route::any('/delete', 'SchedulesController@destroy')->name('destroySchedulesVendor');
+
+          
 
 
         });

@@ -14,6 +14,10 @@ class Schedules extends Model
     public function buses(){
         return $this->belongsTo('App\Buses','buses_id');
     }
+     public function routes()
+    {
+    	return $this->belongsTo('App\Routes','routes_id');
+    }
 
     public function routes(){
         return $this->belongsTo('App\Routes','routes_id');

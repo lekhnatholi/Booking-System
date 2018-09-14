@@ -181,6 +181,16 @@ h6 {
 	font-size: 12px;
     line-height: 18px;
 }
+
+.hr1
+{
+    border: 0;
+    border-top: 1px solid #e1e1e1;
+    border-top: 0px solid rgba(0,0,0,.1);
+    border-bottom: 2px solid rgba(0,0,0,.1);
+}
+
+
 hr{
   border: 0;
   border-top: 1px solid #e1e1e1;
@@ -4976,11 +4986,19 @@ ul.tags li{
     padding: 27px 30px 25px;
 }
 
+.slider-search-form
+{
+	border-bottom: 2px solid white;
+    background: transparent;
+    border-right:transparent;
+	border-top: transparent;
+	border-left: transparent
+}
+
 .selectBox, .search-form-control {
     background: #0485e09c;
     border: 1px solid #08859285;
     border-radius: 3px;
-    box-shadow: 2px 3px 3px -3px #060606f0;
     font-size: 12px;
     height: 40px;
     line-height: 40px;
@@ -5972,10 +5990,10 @@ ul.tags li{
 
 
 .search-form-control {
-    background: #f7f7f7e0;
-    border: 1px solid #08859285;
-    border-radius: 3px;
-    box-shadow: 2px 3px 3px -3px #060606f0;
+	background: #0485e000;
+    border: 1px solid #08859200;
+    box-shadow: 2px 5px 1px -4px #1e5073;
+    border-bottom-color: white; 
     font-size: 12px;
     height: 40px;
     line-height: 40px;
@@ -5983,7 +6001,7 @@ ul.tags li{
     min-height: 40px;
     padding: 0px 12px;
     width: 100%;
-    color: #0088cc;
+    color: #ffffff;
 }
 
 @media (max-width:480px)
@@ -6368,3 +6386,35 @@ ul.tags li{
    padding-left:20px;
    padding-right:20px;
 }
+
+
+
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+        display: block;
+        height: 593px;
+        min-width: 100%;
+        width: 100%;
+        max-width: 100%;
+        line-height: 1;
+    }
+.carousel-control {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-right: 30;
+    width: 15%;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+    background-color: rgba(0,0,0,0);
+    filter: alpha(opacity=50);
+    opacity: .5;
+} 
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}   

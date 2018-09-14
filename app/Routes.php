@@ -14,4 +14,9 @@ class Routes extends Model
     public function buses(){
         return $this->hasMany('App\Schedules','routes_id');
     }
+
+    public function schedules()
+    {
+    	return $this->hasMany('App\Schedules','routes_id');
+    }
 }
