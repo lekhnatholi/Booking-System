@@ -17,7 +17,6 @@ class PassengersController extends Controller
         $schedules_id = $request->schedules_id;
         $data = Buses::where('buses_id', $buses_id)->first();
         $seat = json_decode($data->seat_layout, true);
-    
         $front = json_decode($data->front_layout, true);
         return view('frontend.booking', ['seat' => $seat, 'buses_id' => $buses_id,'schedules_id'=>$schedules_id, 'front' => $front,]);
 
