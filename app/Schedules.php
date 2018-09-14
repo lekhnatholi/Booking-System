@@ -19,8 +19,6 @@ class Schedules extends Model
     	return $this->belongsTo('App\Routes','routes_id');
     }
 
-    public function routes(){
-        return $this->belongsTo('App\Routes','routes_id');
-    }
+
 
 }

@@ -12,9 +12,9 @@
                 <form action="{{route('passengerAdd')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <div class="rows">
-                        <div class="col-md-3"><strong>Traveller Name : *</strong></div>
+                        <div class="col-md-3"><strong> Name : *</strong></div>
                         <div class="col-md-9">
-                            <input type="text" name="tname" class="form-control" placeholder="Traveller Name">
+                            <input type="text" name="booker_name" class="form-control" placeholder="Traveller Name">
                             <small class="text text-danger">{{$errors->first('name')}}</small>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                     <div class="rows">
                         <div class="col-md-3"><strong>Contact : *</strong></div>
                         <div class="col-md-9">
-                            <input type="text" name="contact" class="form-control" placeholder="Contact No:">
+                            <input type="text" name="booker_contact" class="form-control" placeholder="Contact No:">
                             <small class="text text-danger">{{$errors->first('contact')}}</small>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="rows">
                         <div class="col-md-3"><strong>Address : *</strong></div>
                         <div class="col-md-9">
-                            <input type="text" name="address" value="" class="form-control" placeholder="address">
+                            <input type="text" name="booker_address" value="" class="form-control" placeholder="address">
                             <small class="text text-danger">{{$errors->first('address')}}</small>
                         </div>
                     </div>
@@ -40,13 +40,13 @@
                         <div class="col-md-9" style="text-align: left; padding-left: 30px">
                             <div class="row">
                                 <label for="male">
-                                    <input type="radio" name="tgender" value="male"> Male &nbsp;&nbsp;
+                                    <input type="radio" name="booker_gender" value="male"> Male &nbsp;&nbsp;
                                 </label>
                                 <label for="female">
-                                    <input type="radio" name="tgender" value="female"> Female &nbsp;&nbsp;
+                                    <input type="radio" name="booker_gender" value="female"> Female &nbsp;&nbsp;
                                 </label>
                                 <label for="other">
-                                    <input type="radio" name="tgender" value="other"> Other &nbsp;&nbsp;
+                                    <input type="radio" name="booker_gender" value="other"> Other &nbsp;&nbsp;
                                 </label>
                                 <small class="text text-danger">{{$errors->first('profile')}}</small>
                             </div>
@@ -147,34 +147,6 @@
     </div>
 
 
-
-
-    <!-- <style>
-        .form-row{
-            padding:20px;
-            margin: 5px;
-        }
-        .passen
-        {
-          margin:30px;
-        }
-    </style> -->
-
-
-
-    {{--<script type="text/javascript">--}}
-        {{--$(document).ready(function () {--}}
-            {{--$('#dismiss_butt').on('click', function (c) {--}}
-                {{--$('#info_passenger').fadeOut('slow', function (c) {--}}
-                    {{--$('#info_').remove();--}}
-                {{--});--}}
-            {{--});--}}
-        {{--});--}}
-
-
-    {{--</script>--}}
-
-    <!-- To hide and show  the informations of passenger, used for id passengersInfo-->
     <script>
 
         function showhide(which) {

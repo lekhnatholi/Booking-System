@@ -48,11 +48,11 @@
                                 <div class="searchpanel panel-body">
                                     <div class="row">
                                         <div class="col-md-5 demo-radio-button" style="padding-left: 38px">
-                                            <input type="radio" name="way" value="one way" id="hideid"/> <label
+                                            <input type="radio" name="way" value="one_way" id="hideid"/> <label
                                                     for="hideid">&nbsp One Way</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <input type="radio" name="way" value="two way" id="showid" checked/> &nbsp
+                                            <input type="radio" name="way" value="two_way" id="showid" checked/> &nbsp
                                             <label for="showid">Return ( Two Way )</label>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                         <div class="col-md-10  col-md-offset-1" style="padding-right: 28px">
                                             <strong>Departure Date</strong>
                                             <input type="text" id="datepicker" name="departure_date"
-                                                   class="search-form-control form-material" placeholder="Enter Departure Date">
+                                                   class="search-form-control form-material" placeholder="Enter Departure Date" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -86,7 +86,7 @@
                                         <div class="col-md-10  col-md-offset-1" id="data" style="padding-right: 28px">
                                             <strong>Return Date</strong>
                                             <input type="text" id="datepicker1" name="arrival_date"
-                                                   class="search-form-control" placeholder="Enter Return Date">
+                                                   class="search-form-control" placeholder="Enter Return Date" autocomplete="off">
                                         </div>
                                     </div>
 

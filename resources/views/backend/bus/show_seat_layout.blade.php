@@ -110,6 +110,7 @@
                         <button type="submit" class="btn btn-primary submit-layout">Proceed</button>
                     </form>
                     <form action="{{route('editSeatLayout')."/".$busId}}}}" method="post" >
+                        {{@csrf_field()}}
                         &ensp;<button class="btn btn-danger"><i class="fa fa-edit"></i>Action</button>
                     </form>
                 </div>

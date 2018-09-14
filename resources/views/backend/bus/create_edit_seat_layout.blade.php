@@ -227,13 +227,19 @@
             var bus = [];
             $('.bus').find('.seats').each(function () {
                 arr[$(this).data('id')] = {
-                    "style": $(this).attr('style')
+                    "style": $(this).attr('style'),
+                    "id":$(this).data('id'),
+                    "name":$(this).find(":input").val(),
+                    "profile":"",
                 };
             });
 
             $('.front').find('.seats').each(function () {
                 bus[$(this).data('id')] = {
-                    "style": $(this).attr('style')
+                    "style": $(this).attr('style'),
+                    "id":$(this).data('id'),
+                    "name":$(this).find(":input").val(),
+                    "profile":"",
                 };
             });
             console.log(arr);

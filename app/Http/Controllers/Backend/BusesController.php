@@ -35,7 +35,7 @@ class BusesController extends Controller
         $busId=$request->id;
         $data['seat_layout'] = $seat;
         $data['front_layout']=$front;
-        if (Buses::where('buses_id',$busId)->update($data)) {
+        if (Buses::where('buses_id',1)->update($data)) {
             return redirect()->route('buses')->with('success','Your seat layout is processed successfullly');
         }
         return redirect()->route('buses')->with('error','Sorry your seat layout could not be processed');
