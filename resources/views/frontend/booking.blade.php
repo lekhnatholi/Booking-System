@@ -349,5 +349,5 @@
 
 
 {{--</script>--}}
-@include('branches.footer')
+{{--@include('branches.footer')--}}
 
